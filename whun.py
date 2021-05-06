@@ -49,8 +49,6 @@ class Item:
     max_featuresused = -math.inf
     min_featuresused = math.inf
     costs = [secrets.randbelow(10) for _ in range(NUM_FEATURES)]
-    print(costs)
-
     defective = [bool(secrets.randbelow(2)) for _ in range(NUM_FEATURES)]
     used = [bool(secrets.randbelow(2)) for _ in range(NUM_FEATURES)]
 
