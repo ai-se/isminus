@@ -52,7 +52,7 @@ class Item:
     defective = [bool(secrets.randbelow(2)) for _ in range(NUM_FEATURES)]
     used = [bool(secrets.randbelow(2)) for _ in range(NUM_FEATURES)]
 
-    def __init__(self, item):
+    def __init__(self, item, eval):
         self.r = -1
         self.d = -1
         self.theta = -1
@@ -63,6 +63,10 @@ class Item:
         self.totalcost = sum(np.multiply(item, self.costs))
         self.knowndefects = sum(np.multiply(item, self.defective))
         self.featuresused = sum(np.multiply(item, self.used))
+        self.completionrate = eval[0]
+        self.idlerate = eval[1]
+        self.overallcost = eval[2]
+
 
     @staticmethod
     def calc_staticfeatures(items):
@@ -225,10 +229,14 @@ class SATSolver:
 
     @staticmethod
     def get_solutions(cnf):
+        evals = pd.read_csv('POM3/pom3a_eval.csv').to_numpy()
+
         with open(cnf, 'r') as read_obj:
             binary_solutions = [[int(x) for x in rec]
                                 for rec in reader(read_obj, delimiter=',')]
-            items = [Item(item) for item in binary_solutions]
+            items = []
+            for i, item in enumerate(binary_solutions):
+                items.append(Item(item, evals[i]))
             return items
 
 
@@ -564,9 +572,8 @@ class Method:
         sumsq = lambda *args: sum([i ** 2 for i in args])
         all_items = Search.get_all_leaves(self.tree)
         scores = list(
-            map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused, HUMAN_WEIGHT * (100 - x.selectedpoints)), solutions))
-        total_scores = list(map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused, HUMAN_WEIGHT * (100 -
-                                                                                                                   x.selectedpoints)), all_items))
+            map(lambda x: sumsq(1 - x.completionrate, x.idlerate, x.overallcost, HUMAN_WEIGHT * (1 - (x.selectedpoints/100))), solutions))
+        total_scores = list(map(lambda x: sumsq(1 - x.completionrate, x.idlerate, x.overallcost, HUMAN_WEIGHT * (1 - (x.selectedpoints/100))), all_items))
         minimizer = np.argmin(scores)
         solutions[minimizer].score = st.percentileofscore(
             total_scores, scores[minimizer])
@@ -614,10 +621,10 @@ def main():
                 print("Found a solution.")
                 a.append(asked)
                 p.append(np.sum(o.picked))
-                c.append(best.totalcost)
+                c.append(best.overallcost)
                 s.append(best.selectedpoints)
-                d.append(best.knowndefects)
-                u.append(best.featuresused)
+                d.append(best.completionrate)
+                u.append(best.idlerate)
                 scores.append(best.score)
                 t.append(time.time() - start_time)
                 break
@@ -628,8 +635,8 @@ def main():
             'User Picked': p,
             'Cost': c,
             'Selected Points': s,
-            'Known Defects': d,
-            'Features Used': u,
+            'Completion Rate': d,
+            'Idle Rate': u,
             'Score': scores,
             'Time': t
         }).T
@@ -638,7 +645,7 @@ def main():
 
 
 if __name__ == "__main__":
-    filenames = ['pom3a_bin.csv', 'pom3b_bin.csv', 'pom3c_bin.csv']
+    filenames = ['pom3a_bin.csv']
     for f in filenames:
         filename = f
         main()
