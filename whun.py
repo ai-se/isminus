@@ -12,9 +12,9 @@ from datetime import datetime
 import time
 
 # SETUP VARIABLES
-folder = 'CSVModels/'
-filename = 'billing10k.csv'
-NUM_FEATURES = 88
+folder = 'POM3/'
+filename = 'pom3a_bin.csv'
+NUM_FEATURES = 36
 HUMAN_WEIGHT = 1.5
 
 random.seed(datetime.now())
@@ -156,7 +156,8 @@ class Ranker:
                 q.append([p[0].west_node, p[1] + 1])
             if p[0].east_node:
                 q.append([p[0].east_node, p[1] + 1])
-        print(int(np.sum([1 for x in items_rank if x > 0])), "Total number of important questions")
+        print(int(np.sum([1 for x in items_rank if x > 0])),
+              "Total number of important questions")
         return items_rank
 
     @staticmethod
@@ -215,6 +216,8 @@ class Ranker:
         print("Count =", count)
         if count == 1:
             return 1
+        if count < 1:
+            return -1
         return None
 
 
@@ -223,7 +226,8 @@ class SATSolver:
     @staticmethod
     def get_solutions(cnf):
         with open(cnf, 'r') as read_obj:
-            binary_solutions = [[int(x) for x in rec] for rec in reader(read_obj, delimiter=',')]
+            binary_solutions = [[int(x) for x in rec]
+                                for rec in reader(read_obj, delimiter=',')]
             items = [Item(item) for item in binary_solutions]
             return items
 
@@ -461,6 +465,8 @@ class Method:
         return self.get_index(diff, ranks)
 
     def adjust_tree(self, node, q_idx):
+        if node.leaf:
+            return
         if node.west:
             for i in q_idx:
                 if i in node.west[0].item:
@@ -547,6 +553,8 @@ class Method:
         value = Ranker.check_solution(self.tree)
         if value is None:
             return None
+        if value == -1:
+            return -1
         return Search.get_all_items(self.tree)
 
     def get_item(self, path):
@@ -556,21 +564,22 @@ class Method:
         sumsq = lambda *args: sum([i ** 2 for i in args])
         all_items = Search.get_all_leaves(self.tree)
         scores = list(
-            map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused, HUMAN_WEIGHT * (100 - x.selectedpoints))
-                , solutions))
+            map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused, HUMAN_WEIGHT * (100 - x.selectedpoints)), solutions))
         total_scores = list(map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused, HUMAN_WEIGHT * (100 -
-                                                                                                          x.selectedpoints))
-                                , all_items))
+                                                                                                                   x.selectedpoints)), all_items))
         minimizer = np.argmin(scores)
-        solutions[minimizer].score = st.percentileofscore(total_scores, scores[minimizer])
+        solutions[minimizer].score = st.percentileofscore(
+            total_scores, scores[minimizer])
         return solutions[minimizer]
 
 
 def main():
     global filename
     global folder
+    print(folder + filename)
     a, p, c, s, d, u, scores, t = [], [], [], [], [], [], [], []
-    for i in range(20):
+    for i in range(100):
+        print("--------------------RUN", i+1, '------------------------')
         start_time = time.time()
         m = Method(folder+filename)
         o = Oracle(len(m.rank))
@@ -587,9 +596,22 @@ def main():
             m.re_rank()
             solutions = m.check_solution()
             if solutions is not None:
+                if solutions == -1:
+                    print("No solutions were found matching your preferences.")
+                    a.append(asked)
+                    p.append(np.sum(o.picked))
+                    c.append(-1)
+                    s.append(-1)
+                    d.append(-1)
+                    u.append(-1)
+                    scores.append(-1)
+                    t.append(time.time() - start_time)
+                    break
                 for item in solutions:
-                    item.selectedpoints = np.sum(np.multiply(item.item, o.picked)) / np.sum(o.picked) * 100
+                    item.selectedpoints = np.sum(np.multiply(
+                        item.item, o.picked)) / np.sum(o.picked) * 100
                 best = m.pick_best(solutions)
+                print("Found a solution.")
                 a.append(asked)
                 p.append(np.sum(o.picked))
                 c.append(best.totalcost)
@@ -616,5 +638,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
-
+    filenames = ['pom3a_bin.csv', 'pom3b_bin.csv', 'pom3c_bin.csv']
+    for f in filenames:
+        filename = f
+        main()
