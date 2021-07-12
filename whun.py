@@ -12,9 +12,10 @@ from datetime import datetime
 import time
 
 # SETUP VARIABLES
-folder = 'POM3/'
-filename = 'pom3a_bin.csv'
-NUM_FEATURES = 36
+folder = 'XOMO/'
+filename = ''
+eval_file = ''
+NUM_FEATURES = 108
 HUMAN_WEIGHT = 1.5
 
 random.seed(datetime.now())
@@ -27,10 +28,11 @@ class IO:
         file = open(filename)
         lines = file.readlines()
         names = []
-        for line in lines[:1044]:
+        for line in lines[:NUM_FEATURES]:
             names.append(line.split(' ')[2][:-1])
-        dimacs = lines[1045:]
-        cnf = [[int(s) for s in line.split(' ') if int(s) != 0] for line in dimacs]
+        dimacs = lines[NUM_FEATURES+1:]
+        cnf = [[int(s) for s in line.split(' ') if int(s) != 0]
+               for line in dimacs]
         return names, cnf
 
     @staticmethod
@@ -63,10 +65,11 @@ class Item:
         self.totalcost = sum(np.multiply(item, self.costs))
         self.knowndefects = sum(np.multiply(item, self.defective))
         self.featuresused = sum(np.multiply(item, self.used))
-        self.completionrate = eval[0]
-        self.idlerate = eval[1]
-        self.overallcost = eval[2]
-
+        self.risk = eval[0]
+        self.effort = eval[1]
+        self.defects = eval[2]
+        self.months = eval[3]
+        self.zitler_rank = eval[4]
 
     @staticmethod
     def calc_staticfeatures(items):
@@ -229,7 +232,9 @@ class SATSolver:
 
     @staticmethod
     def get_solutions(cnf):
-        evals = pd.read_csv('POM3/pom3a_eval.csv').to_numpy()
+        global folder
+        global eval_file
+        evals = pd.read_csv(folder + eval_file).to_numpy()
 
         with open(cnf, 'r') as read_obj:
             binary_solutions = [[int(x) for x in rec]
@@ -459,7 +464,8 @@ class Method:
         self.names = []
         self.rank = Ranker.level_rank_features(self.tree, self.weights)
         self.cur_best_node = Ranker.rank_nodes(self.tree, self.rank)
-        self.questions = []#IO.get_question_text('terms_sentence_map.csv', 'sentence')
+        # IO.get_question_text('terms_sentence_map.csv', 'sentence')
+        self.questions = []
 
     def find_node(self):
         return Search.bfs(self.tree, self.cur_best_node)
@@ -572,8 +578,9 @@ class Method:
         sumsq = lambda *args: sum([i ** 2 for i in args])
         all_items = Search.get_all_leaves(self.tree)
         scores = list(
-            map(lambda x: sumsq(1 - x.completionrate, x.idlerate, x.overallcost, HUMAN_WEIGHT * (1 - (x.selectedpoints/100))), solutions))
-        total_scores = list(map(lambda x: sumsq(1 - x.completionrate, x.idlerate, x.overallcost, HUMAN_WEIGHT * (1 - (x.selectedpoints/100))), all_items))
+            map(lambda x: sumsq(x.risk, x.effort, x.defects, x.months, HUMAN_WEIGHT * (1 - (x.selectedpoints/100))), solutions))
+        total_scores = list(map(lambda x: sumsq(x.risk, x.effort, x.defects,
+                            x.months, HUMAN_WEIGHT * (1 - (x.selectedpoints/100))), all_items))
         minimizer = np.argmin(scores)
         solutions[minimizer].score = st.percentileofscore(
             total_scores, scores[minimizer])
@@ -584,7 +591,7 @@ def main():
     global filename
     global folder
     print(folder + filename)
-    a, p, c, s, d, u, scores, t = [], [], [], [], [], [], [], []
+    a, p, c, s, d, u, scores, t, x, e = [], [], [], [], [], [], [], [], [], []
     for i in range(100):
         print("--------------------RUN", i+1, '------------------------')
         start_time = time.time()
@@ -611,6 +618,8 @@ def main():
                     s.append(-1)
                     d.append(-1)
                     u.append(-1)
+                    x.append(-1)
+                    e.append(-1)
                     scores.append(-1)
                     t.append(time.time() - start_time)
                     break
@@ -621,10 +630,12 @@ def main():
                 print("Found a solution.")
                 a.append(asked)
                 p.append(np.sum(o.picked))
-                c.append(best.overallcost)
-                s.append(best.selectedpoints)
-                d.append(best.completionrate)
-                u.append(best.idlerate)
+                c.append(best.effort)
+                s.append(best.selectedpoints/100)
+                d.append(best.risk)
+                u.append(best.defects)
+                x.append(best.months)
+                e.append(best.zitler_rank/20000)
                 scores.append(best.score)
                 t.append(time.time() - start_time)
                 break
@@ -633,11 +644,13 @@ def main():
         {
             'Asked': a,
             'User Picked': p,
-            'Cost': c,
+            'Effort': c,
             'Selected Points': s,
-            'Completion Rate': d,
-            'Idle Rate': u,
+            'Risk': d,
+            'Defects': u,
+            'Months': x,
             'Score': scores,
+            'Pure Score': e,
             'Time': t
         }).T
     df.to_csv('Scores/Score'+filename)
@@ -645,7 +658,9 @@ def main():
 
 
 if __name__ == "__main__":
-    filenames = ['pom3a_bin.csv']
-    for f in filenames:
+    filenames = ['ground_bin.csv']
+    eval_files = ['ground_eval.csv']
+    for f, e in zip(filenames, eval_files):
         filename = f
+        eval_file = e
         main()
