@@ -1,4 +1,5 @@
 whunparams = {
     "NUM_FEATURES": 108,
-    "FOLDER": 'XOMO/'
+    "FOLDER": 'XOMO/',
+    "HUMAN_WEIGHT": 1.5
 }
