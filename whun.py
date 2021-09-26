@@ -10,8 +10,11 @@ from csv import reader
 from itertools import count
 from datetime import datetime
 import time
+from utils import sway
 
 # SETUP VARIABLES
+
+
 folder = 'XOMO/'
 filename = ''
 eval_file = ''
@@ -30,7 +33,7 @@ class IO:
         names = []
         for line in lines[:NUM_FEATURES]:
             names.append(line.split(' ')[2][:-1])
-        dimacs = lines[NUM_FEATURES+1:]
+        dimacs = lines[NUM_FEATURES + 1:]
         cnf = [[int(s) for s in line.split(' ') if int(s) != 0]
                for line in dimacs]
         return names, cnf
@@ -198,7 +201,7 @@ class Ranker:
             p = q[0]
             q.pop(0)
             if p[0].west is not None and p[0].east is not None:
-                tree_lvl.append((p[1], p[0].difference()))
+                tree_lvl.append((p[1], p[0].TreeNode.difference()))
             if p[0].west_node:
                 q.append([p[0].west_node, p[1] + 1])
             if p[0].east_node:
@@ -375,46 +378,6 @@ class Search:
             return cur.west[0].item
 
 
-class TreeNode:
-    _ids = count(0)
-
-    def __init__(self, east, west, east_node, west_node, leaf):
-        self.id = next(self._ids)
-        self.east = east
-        self.west = west
-        self.east_id = -1
-        self.west_id = -1
-        self.east_node = east_node
-        self.west_node = west_node
-        self.score = 0
-        self.weight = 1
-        self.asked = 0
-        self.leaf = leaf
-
-    def difference(self):
-        w = np.array(self.west[0].item)
-        e = np.array(self.east[0].item)
-        res = np.logical_xor(w, e)
-        return np.sum(res)
-
-    def diff_array(self):
-        w = np.array(self.west[0].item)
-        e = np.array(self.east[0].item)
-        res = np.logical_xor(w, e)
-        return res
-
-
-def sway(items, enough):
-    if len(items) < enough:
-        return TreeNode(items, None, None, None, True)
-    west, east, west_items, east_items = split_bin(items, 10)
-    east_node = sway(east_items, enough)
-    west_node = sway(west_items, enough)
-    root = TreeNode(east, west, east_node, west_node, False)
-    root.east_id = east_node.id
-    root.west_id = west_node.id
-    return root
-
 
 def split_bin(items, total_group):
     west = []
@@ -460,7 +423,7 @@ class Method:
         sys.setrecursionlimit(x)
         self.items = SATSolver.get_solutions(filename)
         self.weights = [1] * len(self.items)
-        self.tree = sway(self.items, 100)
+        self.tree = sway.sway(self.items, 100)
         self.names = []
         self.rank = Ranker.level_rank_features(self.tree, self.weights)
         self.cur_best_node = Ranker.rank_nodes(self.tree, self.rank)
@@ -578,9 +541,10 @@ class Method:
         sumsq = lambda *args: sum([i ** 2 for i in args])
         all_items = Search.get_all_leaves(self.tree)
         scores = list(
-            map(lambda x: sumsq(x.risk, x.effort, x.defects, x.months, HUMAN_WEIGHT * (1 - (x.selectedpoints/100))), solutions))
+            map(lambda x: sumsq(x.risk, x.effort, x.defects, x.months, HUMAN_WEIGHT * (1 - (x.selectedpoints / 100))),
+                solutions))
         total_scores = list(map(lambda x: sumsq(x.risk, x.effort, x.defects,
-                            x.months, HUMAN_WEIGHT * (1 - (x.selectedpoints/100))), all_items))
+                                                x.months, HUMAN_WEIGHT * (1 - (x.selectedpoints / 100))), all_items))
         minimizer = np.argmin(scores)
         solutions[minimizer].score = st.percentileofscore(
             total_scores, scores[minimizer])
@@ -593,9 +557,9 @@ def main():
     print(folder + filename)
     a, p, c, s, d, u, scores, t, x, e = [], [], [], [], [], [], [], [], [], []
     for i in range(100):
-        print("--------------------RUN", i+1, '------------------------')
+        print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
-        m = Method(folder+filename)
+        m = Method(folder + filename)
         o = Oracle(len(m.rank))
         asked = 0
         first_qidx = set()
@@ -631,11 +595,11 @@ def main():
                 a.append(asked)
                 p.append(np.sum(o.picked))
                 c.append(best.effort)
-                s.append(best.selectedpoints/100)
+                s.append(best.selectedpoints / 100)
                 d.append(best.risk)
                 u.append(best.defects)
                 x.append(best.months)
-                e.append(best.zitler_rank/20000)
+                e.append(best.zitler_rank / 20000)
                 scores.append(best.score)
                 t.append(time.time() - start_time)
                 break
@@ -653,13 +617,13 @@ def main():
             'Pure Score': e,
             'Time': t
         }).T
-    df.to_csv('Scores/Score'+filename)
+    df.to_csv('Scores/Score' + filename)
     return
 
 
 if __name__ == "__main__":
-    filenames = ['ground_bin.csv']
-    eval_files = ['ground_eval.csv']
+    filenames = ['flight_bin.csv']
+    eval_files = ['flight_eval.csv']
     for f, e in zip(filenames, eval_files):
         filename = f
         eval_file = e
