@@ -13,6 +13,7 @@ import time
 from utils import sway
 from whun_helper.Item import Item
 sys.path.append('/whun_helper')
+from whun_helper.SATSolver import SATSolver
 
 
 # SETUP VARIABLES
@@ -148,21 +149,7 @@ class Ranker:
         return None
 
 
-class SATSolver:
 
-    @staticmethod
-    def get_solutions(cnf):
-        global folder
-        global eval_file
-        evals = pd.read_csv(folder + eval_file).to_numpy()
-
-        with open(cnf, 'r') as read_obj:
-            binary_solutions = [[int(x) for x in rec]
-                                for rec in reader(read_obj, delimiter=',')]
-            items = []
-            for i, item in enumerate(binary_solutions):
-                items.append(Item(item, evals[i]))
-            return items
 
 
 class Search:
@@ -338,7 +325,7 @@ class Method:
     def __init__(self, filename):
         x = 5000
         sys.setrecursionlimit(x)
-        self.items = SATSolver.get_solutions(filename)
+        self.items = SATSolver.get_solutions(filename, eval_file)
         self.weights = [1] * len(self.items)
         self.tree = sway.sway(self.items, 100)
         self.names = []
