@@ -1,6 +1,10 @@
 import numpy as np
 
 
+# This class is used for the following tasks:
+# 1. Ranking all the solutions
+# 2. Finding the current best node to ask further questions to the user
+# 3. Checking for the best solutions,
 class Ranker:
 
     @staticmethod

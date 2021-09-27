@@ -1,6 +1,9 @@
 import random
 
 
+# This class is used to perform the human interaction automatically.
+# Oracle is presented with the questions and the preferences for those questions.
+# It will randomly choose the preferences everytime. This way it is used as a replacement for human interaction.
 class Oracle:
     def __init__(self, size):
         self.picked = [0] * size
