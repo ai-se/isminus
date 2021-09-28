@@ -1,19 +1,23 @@
+"""This module is related to Ranker Class"""
+# pylint: disable=import-error,invalid-name
 import numpy as np
 
 
-# This class is used for the following tasks:
-# 1. Ranking all the solutions
-# 2. Finding the current best node to ask further questions to the user
-# 3. Checking for the best solutions,
 class Ranker:
+    """This class is used for the following tasks:
+    1. Ranking all the solutions
+    2. Finding the current best node to ask further questions to the user
+    3. Checking for the best solutions"""
 
     @staticmethod
     def level_rank_features(root, weights):
+        """Function to build solutions tree"""
         if not root:
-            return
+            return None
         items_rank = np.zeros(len(root.west[0].item))
         q = [[root, 1]]
-        while len(q):
+        q_len = len(q)
+        while q_len:
             p = q[0]
             q.pop(0)
             if p[0].west is not None and p[0].east is not None:
@@ -25,17 +29,20 @@ class Ranker:
                 q.append([p[0].west_node, p[1] + 1])
             if p[0].east_node:
                 q.append([p[0].east_node, p[1] + 1])
+            q_len = len(q)
         print(int(np.sum([1 for x in items_rank if x > 0])),
               "Total number of important questions")
         return items_rank
 
     @staticmethod
     def rank_nodes(root, rank):
+        """Function to find out the current best node to ask human preferences"""
         if not root:
-            return
+            return None
         largest = -100000000
         q = [[root, 1]]
-        while len(q):
+        q_len = len(q)
+        while q_len:
             p = q[0]
             q.pop(0)
             if p[0].west is not None and p[0].east is not None:
@@ -48,15 +55,18 @@ class Ranker:
                 q.append([p[0].west_node, p[1] + 1])
             if p[0].east_node:
                 q.append([p[0].east_node, p[1] + 1])
+            q_len = len(q)
         return largest
 
     @staticmethod
     def pr_level(root):
+        """Function to find the preference level"""
         tree_lvl = []
         if not root:
-            return
+            return None
         q = [[root, 1]]
-        while len(q):
+        q_len = len(q)
+        while q_len:
             p = q[0]
             q.pop(0)
             if p[0].west is not None and p[0].east is not None:
@@ -65,15 +75,18 @@ class Ranker:
                 q.append([p[0].west_node, p[1] + 1])
             if p[0].east_node:
                 q.append([p[0].east_node, p[1] + 1])
+            q_len = len(q)
         return tree_lvl
 
     @staticmethod
     def check_solution(root):
+        """Function to check the solution"""
         count = 0
         if not root:
-            return
+            return None
         q = [[root, 1]]
-        while len(q):
+        q_len = len(q)
+        while q_len:
             p = q[0]
             q.pop(0)
             if p[0].weight == 1 and p[0].leaf:
@@ -82,6 +95,7 @@ class Ranker:
                 q.append([p[0].west_node, p[1] + 1])
             if p[0].east_node:
                 q.append([p[0].east_node, p[1] + 1])
+            q_len = len(q)
         print("Count =", count)
         if count == 1:
             return 1

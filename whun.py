@@ -1,5 +1,5 @@
 from whun_helper.Method import Method
-from whun_helper.Oracle import Oracle
+from whun_helper.oraclehelper import Oracle
 import numpy as np
 import pandas as pd
 import random
