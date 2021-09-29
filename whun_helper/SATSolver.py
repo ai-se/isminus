@@ -1,7 +1,7 @@
 from csv import reader
 import sys
 sys.path.append('/whun_helper')
-from whun_helper.itemhelper import Item
+from whun_helper.item import Item
 import pandas as pd
 import configparams as cfg
 class SATSolver:

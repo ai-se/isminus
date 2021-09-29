@@ -4,15 +4,23 @@ import pandas as pd
 import configparams as cfg
 
 
-class InputOutputHelper:
+class InputOutput:
     """
-    The io_helper_class is used to perform the below mentioned IO stream related operations:
+    The InputOutput is used to perform the below mentioned IO stream related operations:
     1. Convert dimacs input to CNF format.
     2. Read the question text input from the csv file.
     """
     @staticmethod
     def read_dimacs(filename):
-        """This function is created to read dimac format input and convert it to CNF form"""
+        """
+        Function: read_dimacs
+        Description: This function is created to read dimac format input and convert it to CNF form
+        Input:
+            - filename : File
+        Output:
+            - names : Array of features
+            - cnf : Solution in CNF form
+        """
         file = open(filename)
         lines = file.readlines()
         names = []
@@ -25,6 +33,14 @@ class InputOutputHelper:
 
     @staticmethod
     def get_question_text(filename, column):
-        """This function is created to read text input regarding questions"""
+        """
+        Function : get_question_text
+        Description : This function is created to read text input regarding questions
+        Input:
+            - filename : File
+            - column : int
+        Output:
+            - column of dataframe : DataFrame
+        """
         df = pd.read_csv(filename)
         return df[column].tolist()
