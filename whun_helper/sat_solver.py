@@ -9,7 +9,7 @@ from whun_helper.item import Item
 sys.path.append('/whun_helper')
 
 class sat_solver:
-    """This class is used for getting """
+    """This class is used for getting Items"""
     @staticmethod
     def get_solutions(cnf, eval_file):
         """
@@ -19,7 +19,7 @@ class sat_solver:
             -cnf:String
             -eval_file:String
         Output:
-            -items :Item
+            -items:Item
         """
         #global folder
         #global eval_file
