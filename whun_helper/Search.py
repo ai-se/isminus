@@ -1,7 +1,18 @@
+"""This module is related to Search Class"""
 class Search:
-
+    """This class is used for searching the tree"""
     @staticmethod
     def bfs(tree, target):
+        """
+        Function: bfs
+        Description: Takes tree and target and creates a queue of trees and returns path_id and node
+        Inputs:
+            -tree: String
+            -target:String
+        Output:
+            -path_id: path
+            -node: last node in the path
+        """
         # maintain a queue of paths
         queue = [[tree]]
         # push the first path into the queue
@@ -27,7 +38,17 @@ class Search:
                     queue.append(new_path)
 
     @staticmethod
-    def bfsFinal(tree, target):
+    def bfs_final(tree, target):
+        """
+        Function: bfs_final
+        Description: Takes tree and target and creates a queue of trees and returns path_id and node
+        Inputs:
+            -tree: String
+            -target:String
+        Output:
+            -path_id: path
+            -node: last node in the path
+        """
         # maintain a queue of paths
         queue = [[tree]]
         # push the first path into the queue
@@ -54,6 +75,14 @@ class Search:
 
     @staticmethod
     def get_all_items(tree):
+        """
+        Function: get_all_items
+        Description: Takes tree and returns results
+        Inputs:
+            -tree: TreeNode
+        Output:
+            -results: results
+        """
         # maintain a queue of paths
         queue = [[tree]]
         results = []
@@ -61,7 +90,7 @@ class Search:
         while queue:
             # get the first path from the queue
             path = queue.pop(0)
-            path_id = [x.id for x in path]
+            # path_id = [x.id for x in path]
             # get the last node from the path
             node = path[-1]
             if node.east:
@@ -84,6 +113,14 @@ class Search:
 
     @staticmethod
     def get_all_leaves(tree):
+        """
+        Function: get_all_leaves
+        Description: Takes tree and returns leaves
+        Inputs:
+            -tree: TreeNode
+        Output:
+            -results: results with leaves
+        """
         # maintain a queue of paths
         queue = [[tree]]
         results = []
@@ -91,7 +128,7 @@ class Search:
         while queue:
             # get the first path from the queue
             path = queue.pop(0)
-            path_id = [x.id for x in path]
+            # path_id = [x.id for x in path]
             # get the last node from the path
             node = path[-1]
             if node.east:
@@ -114,6 +151,15 @@ class Search:
 
     @staticmethod
     def get_item(tree, path):
+        """
+        Function: get_item
+        Description: Takes tree and path, and returns item
+        Inputs:
+            -tree: TreeNode
+            -path: array
+        Output:
+            -item: either from the west of the east side
+        """
         # maintain a queue of paths
         cur = tree
         for val in path[1:-1]:
