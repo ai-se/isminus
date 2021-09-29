@@ -1,3 +1,6 @@
+[![GitHub license](https://img.shields.io/github/license/ai-se/whun)](https://github.com/ai-se/whun/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/ai-se/whun)](https://github.com/ai-se/whun/issues)
+
 # **About WHUN**
 This repository is the official implementation of [Preference Discovery in Large Product Lines](https://arxiv.org/pdf/2106.03792.pdf "Preference Discovery in Large Product Lines")
 
@@ -61,9 +64,9 @@ fr
 ### **Group 37 Details:**
 
 1.) Akhil Gangarpu Sudhakar (<agangar@ncsu.edu>)<br />
-2.) Jaydeep Patel (<>)<br />
+2.) Jaydeep Patel (<jpatel33@ncsu.edu>)<br />
 3.) Shubham Waghe(<swaghe@ncsu.edu>)<br />
-4.) Venkata Sai Teja Malapati(<>)<br />
+4.) Venkata Sai Teja Malapati(<vmalapa@ncsu.edu>)<br />
 5.) Vijaya Durga Kona(<>)<br />
 
 ### **Feature tracking**
