@@ -1,9 +1,11 @@
+"""This module is related to TreeNode class"""
 from itertools import count
 
 import numpy as np
 
 
 class TreeNode:
+    """ This class is to initialise the TreeNode and to perform difference operations """
     _ids = count(0)
 
     def __init__(self, east, west, east_node, west_node, leaf):
