@@ -7,6 +7,18 @@ class TreeNode:
     _ids = count(0)
 
     def __init__(self, east, west, east_node, west_node, leaf):
+        """
+        Function: __init__
+        Description: Initialises the attributes of the TreeNode
+        Inputs:
+                east :Item
+                west :Item
+                east_node :TreeNode
+                west_node  :treeNode
+                leaf : boolean
+        Output:
+                self initialised with attributes
+        """
         self.id = next(self._ids)
         self.east = east
         self.west = west
@@ -20,12 +32,28 @@ class TreeNode:
         self.leaf = leaf
 
     def difference(self):
+        """
+        Function: difference
+        Description: Returns the difference of east and west items
+        Inputs:
+                self :TreeNode
+        Output:
+                np.sum(res) :Sum of elements in res,Numpy array
+        """
         w = np.array(self.west[0].item)
         e = np.array(self.east[0].item)
         res = np.logical_xor(w, e)
         return np.sum(res)
 
     def diff_array(self):
+        """
+        Function: diff_array
+        Description: Returns the difference array of east and west items
+        Inputs:
+                self :TreeNode
+        Output:
+                res :Numpy Array
+        """
         w = np.array(self.west[0].item)
         e = np.array(self.east[0].item)
         res = np.logical_xor(w, e)

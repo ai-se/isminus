@@ -44,6 +44,16 @@ def split_bin(items, total_group):
 
 
 def sway(items, enough):
+    """
+    Function: sway
+    Description: Takes a specific number of items of type Item and returns the root after calculating the west,east,
+    east_node and west_node
+    Inputs:
+        -items:Item
+        -enough:integer
+    Output:
+        -root :TreeNode
+    """
     if len(items) < enough:
         return TreeNode(items, None, None, None, True)
     west, east, west_items, east_items = split_bin(items, 10)
