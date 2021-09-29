@@ -21,7 +21,7 @@ def main():
     global filename
     global eval_file
     a, p, c, s, d, u, scores, t, x, e = [], [], [], [], [], [], [], [], [], []
-    for i in range(5):
+    for i in range(100):
         print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
         m = Method(cfg.whunparams["FOLDER"] + filename, eval_file)
