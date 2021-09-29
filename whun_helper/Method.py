@@ -6,7 +6,7 @@ from csv import reader
 from whun_helper.item import Item
 from utils.utils import sway, split_bin
 from whun_helper.ranker import Ranker
-from whun_helper.Search import Search
+from whun_helper.search import search
 from whun_helper.sat_solver import sat_solver
 import pandas as pd
 import configparams as cfg
@@ -25,7 +25,7 @@ class Method:
         self.questions = []
 
     def find_node(self):
-        return Search.bfs(self.tree, self.cur_best_node)
+        return search.bfs(self.tree, self.cur_best_node)
 
     def pick_questions(self, node):
         diff = node.diff_array()
@@ -120,20 +120,20 @@ class Method:
 
     def check_solution(self):
         if sum(self.rank) == 0:
-            return Search.get_all_items(self.tree)
+            return search.get_all_items(self.tree)
         value = Ranker.check_solution(self.tree)
         if value is None:
             return None
         if value == -1:
             return -1
-        return Search.get_all_items(self.tree)
+        return search.get_all_items(self.tree)
 
     def get_item(self, path):
-        return Search.get_item(self.tree, path)
+        return search.get_item(self.tree, path)
 
     def pick_best(self, solutions):
         sumsq = lambda *args: sum([i ** 2 for i in args])
-        all_items = Search.get_all_leaves(self.tree)
+        all_items = search.get_all_leaves(self.tree)
         scores = list(
             map(lambda x: sumsq(x.risk, x.effort, x.defects, x.months, cfg.whunparams["HUMAN_WEIGHT"] * (1 - (x.selectedpoints / 100))),
                 solutions))

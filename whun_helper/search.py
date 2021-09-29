@@ -1,5 +1,5 @@
 """This module is related to Search Class"""
-class Search:
+class search:
     """This class is used for searching the tree"""
     @staticmethod
     def bfs(tree, target):
