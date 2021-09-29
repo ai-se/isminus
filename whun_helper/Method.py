@@ -7,7 +7,7 @@ from whun_helper.item import Item
 from utils.utils import sway, split_bin
 from whun_helper.ranker import Ranker
 from whun_helper.Search import Search
-from whun_helper.SATSolver import SATSolver
+from whun_helper.sat_solver import sat_solver
 import pandas as pd
 import configparams as cfg
 
@@ -15,7 +15,7 @@ class Method:
     def __init__(self, filename, eval_file):
         x = 5000
         sys.setrecursionlimit(x)
-        self.items = SATSolver.get_solutions(filename, eval_file)
+        self.items = sat_solver.get_solutions(filename, eval_file)
         self.weights = [1] * len(self.items)
         self.tree = sway(self.items, 100)
         self.names = []
