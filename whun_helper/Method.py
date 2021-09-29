@@ -1,21 +1,19 @@
-import scipy.stats as st
+"""This module is related to Method Class"""
+# pylint: disable=import-error,invalid-name
 import sys
+import scipy.stats as st
 import numpy as np
-sys.path.append('/whun_helper')
-from csv import reader
-from whun_helper.item import Item
-from utils.utils import sway, split_bin
-from whun_helper.ranker import Ranker
-from whun_helper.search import search
-from whun_helper.sat_solver import sat_solver
-import pandas as pd
 import configparams as cfg
+from whun_helper.SATSolver import SATSolver
+from whun_helper.search import search
+from whun_helper.ranker import Ranker
+from utils.utils import sway
+sys.path.append('/whun_helper')
 
-class Method:
+class Method((object)):
     def __init__(self, filename, eval_file):
-        x = 5000
-        sys.setrecursionlimit(x)
-        self.items = sat_solver.get_solutions(filename, eval_file)
+        sys.setrecursionlimit(cfg.whunparams["RECURSION_LIMIT"])
+        self.items = SATSolver.get_solutions(filename, eval_file)
         self.weights = [1] * len(self.items)
         self.tree = sway(self.items, 100)
         self.names = []
@@ -25,6 +23,7 @@ class Method:
         self.questions = []
 
     def find_node(self):
+        #"""A dummy docstring."""
         return search.bfs(self.tree, self.cur_best_node)
 
     def pick_questions(self, node):
@@ -51,50 +50,49 @@ class Method:
 
     def get_index(self, diff, ranks):
         questions = []
-        for r in ranks:
-            for i in range(len(diff)):
-                if r == self.rank[i] and diff[i]:
+        for rank in ranks:
+            for i, value in enumerate(diff):
+                if rank == self.rank[i] and value:
                     questions.append(i)
         return questions
-
     def ask_questions(self, q_idx, node):
         east_options, west_options = [], []
-        for i in range(len(q_idx)):
-            if node.east[0].item[q_idx[i]]:
-                east_options.append(self.questions[q_idx[i]])
-            elif node.west[0].item[q_idx[i]]:
-                west_options.append(self.questions[q_idx[i]])
+        for _, value in enumerate(q_idx):
+            if node.east[0].item[value]:
+                east_options.append(self.questions[value])
+            elif node.west[0].item[value]:
+                west_options.append(self.questions[value])
 
         len_east = len(east_options)
         len_west = len(west_options)
         diff = abs(len_east - len_west)
         if len_east > len_west:
-            for i in range(diff):
+            for _ in range(diff):
                 west_options.append('           ')
         else:
-            for i in range(diff):
+            for _ in range(diff):
                 east_options.append('           ')
-        print('Would you rather')
-        print('Option 1 \t Option 2')
-        for e, w in zip(east_options, west_options):
-            print('1 -', e, '\t', '2 -', w)
+        print ('Would you rather')
+        print ('Option 1 \t Option 2')
+        for east_option, west_option in zip(east_options, west_options):
+            print('1 -', east_option, '\t', '2 -', west_option)
 
     def adjust_weights(self, node, picked, q_idx):
         node.asked += 1
         east_options, west_options = [], []
-        for i in range(len(q_idx)):
-            if node.east[0].item[q_idx[i]]:
-                east_options.append(q_idx[i])
-            elif node.west[0].item[q_idx[i]]:
-                west_options.append(q_idx[i])
+        for _, value in enumerate(q_idx):
+            if node.east[0].item[value]:
+                east_options.append(value)
+            elif node.west[0].item[value]:
+                west_options.append(value)
         if picked == 0:  # EAST
-            for i in range(len(q_idx)):
-                self.weights[q_idx[i]] = 0
+            for _, value in enumerate(q_idx):
+                self.weights[value] = 0
             self.adjust_down(node.west_node)
             self.adjust_tree(self.tree, west_options)
         if picked == 1:  # WEST
-            for i in range(len(q_idx)):
-                self.weights[q_idx[i]] = 0
+            for _, value in enumerate(q_idx):
+                self.weights[value] = 0
             self.adjust_down(node.east_node)
             self.adjust_tree(self.tree, east_options)
 
@@ -135,12 +133,16 @@ class Method:
         sumsq = lambda *args: sum([i ** 2 for i in args])
         all_items = search.get_all_leaves(self.tree)
         scores = list(
-            map(lambda x: sumsq(x.risk, x.effort, x.defects, x.months, cfg.whunparams["HUMAN_WEIGHT"] * (1 - (x.selectedpoints / 100))),
+            map(lambda x: sumsq(x.risk, x.effort,
+                                x.defects, x.months,
+                                cfg.whunparams["HUMAN_WEIGHT"] * (1 - (x.selectedpoints / 100))),
                 solutions))
-        total_scores = list(map(lambda x: sumsq(x.risk, x.effort, x.defects,
-                                                x.months, cfg.whunparams["HUMAN_WEIGHT"] * (1 - (x.selectedpoints / 100))), all_items))
+        total_scores = list(
+            map(lambda x: sumsq(x.risk, x.effort, x.defects,
+                                x.months,
+                                cfg.whunparams["HUMAN_WEIGHT"] * (1 - (x.selectedpoints / 100))),
+                all_items))
         minimizer = np.argmin(scores)
         solutions[minimizer].score = st.percentileofscore(
             total_scores, scores[minimizer])
         return solutions[minimizer]
-

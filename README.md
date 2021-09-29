@@ -50,15 +50,56 @@ pip install -r requirements.txt
 python3 whun.py
 ```
 ### **Static Analysis Report**
+
+Run pylint checker to perform style checking
+In order to run the pylint package, first make sure the virtual environment is up and running and then check if the pylint package is installed in the virtual environment or not.
+To install pylint in the virtual environment, run the command 
 ```
+pip install --upgrade pylint
+ ```
+in the virtual environment session.
+Then, run the below command, which will give you the list of pylint errors if any.
 ```
+pylint <filename>
+```
+If you want the save the lint errors then run the following command : 
+```
+pylint <SourceFileName> >> <LintErrorsOutputFIleName>
+```
+
+Run following command to get the WHUN static analyzer report in sa_reports directory: 
+```
+sh run_sa.sh
+```
+After fixing the lint issues you can run back the command to check if the issues are resolved or not.
+
 ### **Virtual Env**
+This is a one time setup of a virtual environment that is needed to perform subsequent linting and formatting checkers.
+Install virtualenv with : 
 ```
-vir
+pip install virtualenv
 ```
+Now to create a virtual environment run following command where whunenv is the name of the virtual environment in your local.
+```
+python -m venv .\whunenv
+```
+
+Now go into the whunenv folder and run the following command to start the virtual env and to keep it running in the terminal session.
+This step needs to be done every time you want to start your virtual environment.
+```
+. Scripts/activate
+```
+We need to perform following command in the virtual environment as it will not have the references to the packages that are already installed in your machine and it needs the local copies of the packages to be present in the virtual environment itself.
+```
+pip install <PackageName>
+```
+
 ### **Code Formater**
+Run autopep8 to perform formatter checking
+In order to run the autopep8 package, first make sure the virtual environment is up and running and then check if the autopep8 package is installed in the virtual environment or not.
+To install autopep8 in the virtual environment, run the following command in the virtual environment session :
 ```
-fr
+pip install --upgrade  autopep8
 ```
 
 ### **Group 37 Details:**
