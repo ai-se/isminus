@@ -4,7 +4,7 @@ from itertools import count
 import numpy as np
 
 
-class TreeNode:
+class tree_node:
     """ This class is to initialise the TreeNode and to perform difference operations """
     _ids = count(0)
 
