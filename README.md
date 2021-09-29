@@ -67,7 +67,7 @@ fr
 2.) Jaydeep Patel (<jpatel33@ncsu.edu>)<br />
 3.) Shubham Waghe(<swaghe@ncsu.edu>)<br />
 4.) Venkata Sai Teja Malapati(<vmalapa@ncsu.edu>)<br />
-5.) Vijaya Durga Kona(<>)<br />
+5.) Vijaya Durga Kona(<vkona@ncsu.edu>)<br />
 
 ### **Feature tracking**
 [Jira Board](https://se2021-group37.atlassian.net/secure/RapidBoard.jspa?rapidView=1&selectedIssue=SEWE-37 "Jira Board")
