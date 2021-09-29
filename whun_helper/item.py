@@ -21,7 +21,13 @@ class Item:
     used = [bool(secrets.randbelow(2)) for _ in range(cfg.whunparams["NUM_FEATURES"])]
 
     def __init__(self, item, eval):
-        """This is the constructor for item_helper_class class"""
+        """
+        Function : __init__
+        Description : This is the constructor for item_helper_class class
+        Input :
+            - item : item
+            - eval : Array
+        """
         self.r = -1
         self.d = -1
         self.theta = -1
@@ -40,7 +46,14 @@ class Item:
 
     @staticmethod
     def calc_staticfeatures(items):
-        """This function updates the parameters related to static features"""
+        """
+        Function : calc_staticfeatures
+        Description : This function updates the parameters related to static features
+        Input:
+            - items : item[]
+        Output:
+            - none
+        """
         for x in items:
             if x.features > Item.max_features:
                 Item.max_features = x.features
@@ -61,7 +74,16 @@ class Item:
 
     @staticmethod
     def rank_features(items, names):
-        """This function is used to update the ranking parameters of all the features"""
+        """
+        Function : rank_features
+        Description :  This function is used to update the ranking parameters of all the features
+        Input:
+            - items : item[]
+            - names : Array of attribute names
+        Output:
+            - count : int
+            - rank : int
+       """
         count = np.zeros(len(items[0].item))
         for item in items:
             count = np.add(count, item.item)
