@@ -1,14 +1,27 @@
-from csv import reader
+"""This module is related to SAT Solver Class"""
+# pylint: disable=import-error,invalid-name
 import sys
-sys.path.append('/whun_helper')
-from whun_helper.itemhelper import Item
+from csv import reader
 import pandas as pd
 import configparams as cfg
-class SATSolver:
+from whun_helper.itemhelper import Item
 
+sys.path.append('/whun_helper')
+
+class SATSolver:
+    """This class is used for getting """
     @staticmethod
     def get_solutions(cnf, eval_file):
-        global folder
+        """
+        Function: get_solutions
+        Description: Takes CNF and evaluation metrics and returns list of Item class objects
+        Inputs:
+            -cnf:String
+            -eval_file:String
+        Output:
+            -items :Item
+        """
+        #global folder
         #global eval_file
         evals = pd.read_csv(cfg.whunparams["FOLDER"] + eval_file).to_numpy()
 
@@ -19,4 +32,3 @@ class SATSolver:
             for i, item in enumerate(binary_solutions):
                 items.append(Item(item, evals[i]))
             return items
-
