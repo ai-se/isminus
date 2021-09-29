@@ -11,11 +11,26 @@ class Oracle:
     """
 
     def __init__(self, size):
-        """Constructor for oracle class"""
+        """
+            Function: constructor
+            Description: Initializes the class object attributes with initial values
+            Inputs:
+                -size: number
+            Output:
+                None
+        """
         self.picked = [0] * size
 
     def pick(self, q_idx, node):
-        """Function to find a random preference value for a question"""
+        """
+            Function: pick
+            Description: Function to find a random preference value for a question inorder to do the human interaction automatically
+            Inputs:
+                -q_idx: List of indices of questions
+                -node: TreeNode
+            Output:
+                -selected : Either 1 or 0 based on the condition if the preference is selected or not.
+        """
         west_points = 0
         east_points = 0
         # Check how many of these questions I have picked before

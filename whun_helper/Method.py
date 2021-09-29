@@ -5,7 +5,7 @@ sys.path.append('/whun_helper')
 from csv import reader
 from whun_helper.itemhelper import Item
 from utils.utils import sway, split_bin
-from whun_helper.rankerhelper import Ranker
+from whun_helper.ranker import Ranker
 from whun_helper.Search import Search
 from whun_helper.SATSolver import SATSolver
 import pandas as pd

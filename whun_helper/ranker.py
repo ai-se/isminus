@@ -11,7 +11,15 @@ class Ranker:
 
     @staticmethod
     def level_rank_features(root, weights):
-        """Function to build solutions tree"""
+        """
+            Function: level_rank_features
+            Description: Function to build a tree of all the solutions
+            Inputs:
+                -root: TreeNode
+                -weights: Array of weights from Method class object.
+            Output:
+                -items_rank : Solutions tree based on the ranking
+        """
         if not root:
             return None
         items_rank = np.zeros(len(root.west[0].item))
@@ -36,7 +44,15 @@ class Ranker:
 
     @staticmethod
     def rank_nodes(root, rank):
-        """Function to find out the current best node to ask human preferences"""
+        """
+            Function: rank_nodes
+            Description: Function to find out the current best node to ask human preferences
+            Inputs:
+                -root: TreeNode
+                -rank: Rank value from Method class object.
+            Output:
+                -largest : Largest score among the questions
+        """
         if not root:
             return None
         largest = -100000000
@@ -60,7 +76,14 @@ class Ranker:
 
     @staticmethod
     def pr_level(root):
-        """Function to find the preference level"""
+        """
+            Function: pr_level
+            Description: Function to find the preference level
+            Inputs:
+                -root: TreeNode
+            Output:
+                -tree_lvl : Array
+        """
         tree_lvl = []
         if not root:
             return None
@@ -80,7 +103,14 @@ class Ranker:
 
     @staticmethod
     def check_solution(root):
-        """Function to check the solution"""
+        """
+            Function: pr_level
+            Description: Function to check the solution
+            Inputs:
+                -root: TreeNode
+            Output:
+                -number : Return 1/-1 values
+        """
         count = 0
         if not root:
             return None
