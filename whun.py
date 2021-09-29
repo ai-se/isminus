@@ -23,7 +23,7 @@ def main():
     global eval_file
     print(folder + filename)
     a, p, c, s, d, u, scores, t, x, e = [], [], [], [], [], [], [], [], [], []
-    for i in range(100):
+    for i in range(5):
         print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
         m = Method(folder + filename, eval_file)

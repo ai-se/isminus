@@ -1,12 +1,13 @@
+"""This module is related to item_helper_class"""
+# pylint: disable=import-error,invalid-name,too-many-instance-attributes
 import math
 import secrets
-
 import numpy as np
-
 import configparams as cfg
 
 
 class Item:
+    """This class has the structure for each solution with all required parameters"""
     max_features = -math.inf
     min_features = math.inf
     max_totalcost = -math.inf
@@ -20,6 +21,7 @@ class Item:
     used = [bool(secrets.randbelow(2)) for _ in range(cfg.whunparams["NUM_FEATURES"])]
 
     def __init__(self, item, eval):
+        """This is the constructor for item_helper_class class"""
         self.r = -1
         self.d = -1
         self.theta = -1
@@ -38,6 +40,7 @@ class Item:
 
     @staticmethod
     def calc_staticfeatures(items):
+        """This function updates the parameters related to static features"""
         for x in items:
             if x.features > Item.max_features:
                 Item.max_features = x.features
@@ -58,6 +61,7 @@ class Item:
 
     @staticmethod
     def rank_features(items, names):
+        """This function is used to update the ranking parameters of all the features"""
         count = np.zeros(len(items[0].item))
         for item in items:
             count = np.add(count, item.item)
