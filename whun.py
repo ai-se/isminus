@@ -1,17 +1,17 @@
-from whun_helper.Method import Method
-from whun_helper.oracle import Oracle
-import numpy as np
-import pandas as pd
 import random
 import sys
-from datetime import datetime
 import time
+from datetime import datetime
+import numpy as np
+import pandas as pd
+import configparams as cfg
+from whun_helper.Method import Method
+from whun_helper.oracle import Oracle
 sys.path.append('/whun_helper')
 
 # SETUP VARIABLES
 
 # TODO: to be removed after all the refactor
-folder = 'XOMO/'
 filename = ''
 eval_file = ''
 
@@ -19,14 +19,12 @@ random.seed(datetime.now())
 
 def main():
     global filename
-    global folder
     global eval_file
-    print(folder + filename)
     a, p, c, s, d, u, scores, t, x, e = [], [], [], [], [], [], [], [], [], []
-    for i in range(100):
+    for i in range(5):
         print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
-        m = Method(folder + filename, eval_file)
+        m = Method(cfg.whunparams["FOLDER"] + filename, eval_file)
         o = Oracle(len(m.rank))
         asked = 0
         first_qidx = set()
