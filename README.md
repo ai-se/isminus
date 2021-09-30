@@ -1,8 +1,9 @@
-[![GitHub license](https://img.shields.io/github/license/ai-se/whun)](https://github.com/ai-se/whun/blob/main/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/ai-se/whun)](https://github.com/ai-se/whun/blob/main/LICENSE) 
 [![GitHub issues](https://img.shields.io/github/issues/ai-se/whun)](https://github.com/ai-se/whun/issues)
+[![arXiv](https://img.shields.io/badge/arXiv-2106.03792-orange.svg)](https://arxiv.org/abs/2106.03792)
 
 # **About WHUN**
-This repository is the official implementation of [Preference Discovery in Large Product Lines](https://arxiv.org/pdf/2106.03792.pdf "Preference Discovery in Large Product Lines")
+This repository is the official implementation of [Preference Discovery in Large Product Lines](https://arxiv.org/pdf/2106.03792.pdf "Preference Discovery in Large Product Lines") **
 
 AI tools can generate many solutions, some human preference must be applied to determine which solution is
 relevant to the current project.One way to find those preferences is interactive search-based software engineering (iSBSE) where
@@ -112,3 +113,7 @@ pip install --upgrade  autopep8
 
 ### **Feature tracking**
 [Jira Board](https://se2021-group37.atlassian.net/secure/RapidBoard.jspa?rapidView=1&selectedIssue=SEWE-37 "Jira Board")
+
+### **References**
+** Authors for [Preference Discovery in Large Product Lines](https://arxiv.org/pdf/2106.03792.pdf "Preference Discovery in Large Product Lines") : Andre Lustosa, Tim Menzies
+
