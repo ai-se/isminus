@@ -107,9 +107,7 @@ pip install --upgrade  autopep8
 WHUN algorithm is meant to be a substitute for existing iSBSE algorithms which are not as effective as WHUN algorithm.
 Therefore, WHUN can be used in any large product lines that need effective and efficient iSBSE products.
 
-### **Users of WHUN
-
-### **Version Release --- add release dates
+### **Version Release
 
 ### **Group 37 Details:**
 
