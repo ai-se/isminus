@@ -2,6 +2,8 @@
 [![GitHub issues](https://img.shields.io/github/issues/ai-se/whun)](https://github.com/ai-se/whun/issues)
 [![arXiv](https://img.shields.io/badge/arXiv-2106.03792-orange.svg)](https://arxiv.org/abs/2106.03792)
 
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/ai-se/whun)
+
 # **About WHUN**
 This repository is the official implementation of [Preference Discovery in Large Product Lines](https://arxiv.org/pdf/2106.03792.pdf "Preference Discovery in Large Product Lines") **
 
