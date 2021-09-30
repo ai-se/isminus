@@ -103,6 +103,10 @@ To install autopep8 in the virtual environment, run the following command in the
 pip install --upgrade  autopep8
 ```
 
+### **Potential Users**
+WHUN algorithm is meant to be a substitute for existing iSBSE algorithms which are not as effective as WHUN algorithm.
+Therefore, WHUN can be used in any large product lines that need effective and efficient iSBSE products.
+
 ### **Group 37 Details:**
 
 1.) Akhil Gangarpu Sudhakar (<agangar@ncsu.edu>)<br />
