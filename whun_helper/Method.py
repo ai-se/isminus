@@ -4,7 +4,7 @@ import sys
 import scipy.stats as st
 import numpy as np
 import configparams as cfg
-from whun_helper.SATSolver import SATSolver
+from whun_helper.sat_solver import sat_solver
 from whun_helper.search import search
 from whun_helper.ranker import Ranker
 from utils.utils import sway
@@ -13,7 +13,7 @@ sys.path.append('/whun_helper')
 class Method((object)):
     def __init__(self, filename, eval_file):
         sys.setrecursionlimit(cfg.whunparams["RECURSION_LIMIT"])
-        self.items = SATSolver.get_solutions(filename, eval_file)
+        self.items = sat_solver.get_solutions(filename, eval_file)
         self.weights = [1] * len(self.items)
         self.tree = sway(self.items, 100)
         self.names = []
