@@ -1,3 +1,4 @@
+"""This module is related to WHUN implementation"""
 import random
 import sys
 import time
@@ -5,31 +6,34 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 import configparams as cfg
-from whun_helper.Method import Method
+from whun_helper.method import Method
 from whun_helper.oracle import Oracle
 sys.path.append('/whun_helper')
 
 # SETUP VARIABLES
 
-# TODO: to be removed after all the refactor
-filename = ''
-eval_file = ''
+FILE_NAME = ''
+EVAL_FILE = ''
 
 random.seed(datetime.now())
 
 def main():
-    global filename
-    global eval_file
+    """
+    Function: main
+    Description: implements the whun algorithm
+    Inputs:
+    Output:
+    """
     a, p, c, s, d, u, scores, t, x, e = [], [], [], [], [], [], [], [], [], []
     for i in range(100):
         print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
-        m = Method(cfg.whunparams["FOLDER"] + filename, eval_file)
+        m = Method(cfg.whunparams["FOLDER"] + FILE_NAME, EVAL_FILE)
         o = Oracle(len(m.rank))
         asked = 0
         first_qidx = set()
         while True:
-            path, node = m.find_node()
+            _, node = m.find_node()
             q_idx = m.pick_questions(node)
             for q in q_idx:
                 first_qidx.add(q)
@@ -82,14 +86,13 @@ def main():
             'Pure Score': e,
             'Time': t
         }).T
-    df.to_csv('Scores/Score' + filename)
-    return
+    df.to_csv('Scores/Score' + FILE_NAME)
 
 
 if __name__ == "__main__":
     filenames = ['flight_bin.csv']
     eval_files = ['flight_eval.csv']
-    for f, e in zip(filenames, eval_files):
-        filename = f
-        eval_file = e
+    for file, e_file in zip(filenames, eval_files):
+        FILE_NAME = file
+        EVAL_FILE = e_file
         main()
