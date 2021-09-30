@@ -55,6 +55,7 @@ class Method((object)):
                 if rank == self.rank[i] and value:
                     questions.append(i)
         return questions
+
     def ask_questions(self, q_idx, node):
         east_options, west_options = [], []
         for _, value in enumerate(q_idx):
@@ -72,8 +73,8 @@ class Method((object)):
         else:
             for _ in range(diff):
                 east_options.append('           ')
-        print ('Would you rather')
-        print ('Option 1 \t Option 2')
+        print('Would you rather')
+        print('Option 1 \t Option 2')
         for east_option, west_option in zip(east_options, west_options):
             print('1 -', east_option, '\t', '2 -', west_option)
 
