@@ -4,7 +4,7 @@ Static Code Analysis Report Before and After code fixes
 | ---------------- | ----------------------------- | ---------------------------- |
 | input\_output.py | 7                             | 3                            |
 | item.py          | 20                            | 1                            |
-| method.py        | 49                            |                              |
+| method.py        | 49                            | 10                             |
 | oracle.py        | 7                             | 2                            |
 | ranker.py        | 24                            | 0                            |
 | sat\_solver.py   | 14                            | 2                            |
