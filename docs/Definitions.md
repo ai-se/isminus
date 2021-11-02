@@ -6,7 +6,7 @@ The InputOutput is used to perform the below mentioned IO stream related operati
 1. Convert dimacs input to CNF format.
 2. Read the question text input from the csv file.
 
-####Member functions:
+#### Member functions:
 ```
 Function: read_dimacs
         Description: This function is created to read dimac format input and convert it to CNF form
@@ -29,7 +29,7 @@ Function : get_question_text
 ### Class item
 This class has the structure for each solution with all required parameters
 
-####Member functions:
+#### Member functions:
 
 ```
 Function : __init__
