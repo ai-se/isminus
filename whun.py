@@ -6,7 +6,7 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 import configparams as cfg
-from whun_helper.Method import Method
+from whun_helper.method import Method
 from whun_helper.oracle import Oracle
 sys.path.append('/whun_helper')
 
