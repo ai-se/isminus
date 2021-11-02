@@ -104,7 +104,7 @@ class Ranker:
     @staticmethod
     def check_solution(root):
         """
-            Function: pr_level
+            Function: check_solution
             Description: Function to check the solution
             Inputs:
                 -root: TreeNode
