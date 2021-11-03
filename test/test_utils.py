@@ -57,8 +57,14 @@ class test_utils(unittest.TestCase):
              0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0,
              0], [0, 1, 0, 0, 0, 0])
         output_result = sway([item1, item2, item3, item4, item5, item6, item7, item8, item9, item10], 10)
-        expected_east_id = 0
-        expected_west_id = 1
+        expected_east_id = 3
+        expected_west_id = 4
+        print("Actual: ")
+        print(output_result.east_id)
+        print(output_result.west_id)
+        print("Expected: ")
+        print(expected_east_id)
+        print(expected_west_id)
         self.assertEqual(output_result.east_id, expected_east_id)
         self.assertEqual(output_result.west_id, expected_west_id)
 
@@ -119,6 +125,12 @@ class test_utils(unittest.TestCase):
         output_east_items = len(east_items)
         expected_west_items = 6
         expected_east_items = 4
+        print("Actual: ")
+        print(output_east_items)
+        print(output_west_items)
+        print("Expected: ")
+        print(expected_east_items)
+        print(expected_west_items)
         self.assertEqual(output_east_items, expected_east_items)
         self.assertEqual(output_west_items, expected_west_items)  # add assertion her
 
