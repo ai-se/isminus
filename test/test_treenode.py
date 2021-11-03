@@ -7,6 +7,10 @@ from whun_helper.tree_node import tree_node
 
 
 class test_tree_node(unittest.TestCase):
+    def test__init__(self):
+        node = tree_node(None, None, None, None, True)
+        result_expected = True
+        self.assertEqual(node.leaf, result_expected)
 
     def test_difference(self):
         item1 = Item(
