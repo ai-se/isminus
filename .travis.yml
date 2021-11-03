@@ -10,7 +10,7 @@ install:
   - pip install -r requirements.txt
 #Run Tests
 script:
-  - coverage run --source=./whun_helper test/* pytest && coverage report
+  - coverage run --source=./whun_helper -m pytest && coverage report
 after_success:
   - coveralls
 notifications:
