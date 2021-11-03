@@ -59,12 +59,6 @@ class test_utils(unittest.TestCase):
         output_result = sway([item1, item2, item3, item4, item5, item6, item7, item8, item9, item10], 10)
         expected_east_id = 3
         expected_west_id = 4
-        print("Actual: ")
-        print(output_result.east_id)
-        print(output_result.west_id)
-        print("Expected: ")
-        print(expected_east_id)
-        print(expected_west_id)
         self.assertEqual(output_result.east_id, expected_east_id)
         self.assertEqual(output_result.west_id, expected_west_id)
 
