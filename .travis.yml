@@ -11,3 +11,10 @@ install:
 #Run Tests
 script:
   - coverage run --source=./whun_helper test/* pytest && coverage report
+after_success:
+  - coveralls
+notifications:
+  email:
+    recipients:
+      - jpatel33@ncsu.edu
+      - vmalapa@ncsu.edu
