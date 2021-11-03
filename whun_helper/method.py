@@ -8,7 +8,9 @@ from utils.utils import sway
 from whun_helper.sat_solver import sat_solver
 from whun_helper.search import search
 from whun_helper.ranker import Ranker
+
 sys.path.append('/whun_helper')
+
 
 class Method:
     """
@@ -17,16 +19,21 @@ class Method:
     re-ranking tree based on the user preferences and finding the corresponding
     solutions.
     """
+
     def __init__(self, filename, eval_file):
-        sys.setrecursionlimit(cfg.whunparams["RECURSION_LIMIT"])
-        self.items = sat_solver.get_solutions(filename, eval_file)
-        self.weights = [1] * len(self.items)
-        self.tree = sway(self.items, 100)
-        self.names = []
-        self.rank = Ranker.level_rank_features(self.tree, self.weights)
-        self.cur_best_node = Ranker.rank_nodes(self.tree, self.rank)
-        # IO.get_question_text('terms_sentence_map.csv', 'sentence')
-        self.questions = []
+        try:
+            sys.setrecursionlimit(cfg.whunparams["RECURSION_LIMIT"])
+            self.items = sat_solver.get_solutions(filename, eval_file)
+            self.weights = [1] * len(self.items)
+            self.tree = sway(self.items, 100)
+            self.names = []
+            self.rank = Ranker.level_rank_features(self.tree, self.weights)
+            self.cur_best_node = Ranker.rank_nodes(self.tree, self.rank)
+            # IO.get_question_text('terms_sentence_map.csv', 'sentence')
+            self.questions = []
+        except Exception as e:
+            print(e)
+            raise e
 
     def find_node(self):
         """
@@ -158,7 +165,7 @@ class Method:
             self.adjust_down(node.east_node)
             self.adjust_tree(self.tree, east_options)
 
-   # OBSOLETE
+    # OBSOLETE
     def adjust_up(self, node, depth=0, growth_factor=1.1):
         """
         Function: adjust_up
