@@ -11,3 +11,8 @@ def test_none_root():
     print("The result is " + result)
     assert result is None
 
+
+def test_none_root():
+    result = Ranker.level_rank_features({}, {})
+    print(result)
+    assert result is None
