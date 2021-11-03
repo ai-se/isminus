@@ -3,7 +3,6 @@ branches:
   - feature-se2021
 language: python
 python:
- - "3.6"
  - "3.7"
  - "3.8"
  - "3.9"
@@ -11,4 +10,4 @@ install:
   - pip install -r requirements.txt
 #Run Tests
 script:
-  - coverage run --source=./whun_helper test/* pytest && coverage html
+  - coverage run --source=./whun_helper test/* pytest && coverage report
