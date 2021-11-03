@@ -1,0 +1,11 @@
+branches:
+  only:
+  - feature-se2021
+language: python
+python:
+ - "3.6"
+install:
+  - pip install -r requirements.txt
+#Run Tests
+script:
+  - coverage run --source=./whun_helper test/* pytest && coverage report

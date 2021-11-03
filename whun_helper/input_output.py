@@ -3,7 +3,6 @@
 import pandas as pd
 import configparams as cfg
 
-
 class InputOutput:
     """
     The InputOutput is used to perform the below mentioned IO stream related operations:
