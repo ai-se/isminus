@@ -4,7 +4,7 @@ cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 from unittest import TestCase
 from src.whun.whun_helper.method import Method
-
+from src.whun.whun_helper.oracle import Oracle
 
 class TestMethod(TestCase):
     def test_no_file_error(self):
@@ -42,5 +42,15 @@ class TestMethod(TestCase):
         questions = method.pick_questions(node)
         t.assertIsNotNone(questions)
 
-
-
+    def test_adjust_weights(self):
+        method = Method(cur_dir+'/test/test_resources/method_bin.csv', cur_dir+'/test/test_resources/method_eval.csv')
+        t = TestCase()
+        print(method.tree)
+        o = Oracle(len(method.rank))
+        _, node = method.find_node()
+        q_idx = method.pick_questions(node)
+        picked = o.pick(q_idx, node)
+        asked = node.asked
+        method.adjust_weights(node, picked, q_idx)
+        t.assertEqual(asked+1, node.asked)
+        
