@@ -108,36 +108,36 @@ class Method:
                     questions.append(i)
         return questions
 
-    def ask_questions(self, q_idx, node):
-        """
-        Function: ask_questions
-        Description:
-        Inputs:
-            -self: method object
-            -q_idx: picked questions
-            -node: item node
-        Output:
-        """
-        east_options, west_options = [], []
-        for _, value in enumerate(q_idx):
-            if node.east[0].item[value]:
-                east_options.append(self.questions[value])
-            elif node.west[0].item[value]:
-                west_options.append(self.questions[value])
+    #def ask_questions(self, q_idx, node):
+    #    """
+    #    Function: ask_questions
+    #    Description:
+    #    Inputs:
+    #        -self: method object
+    #        -q_idx: picked questions
+    #        -node: item node
+    #    Output:
+    #    """
+    #    east_options, west_options = [], []
+    #    for _, value in enumerate(q_idx):
+    #        if node.east[0].item[value]:
+    #            east_options.append(self.questions[value])
+    #        elif node.west[0].item[value]:
+    #            west_options.append(self.questions[value])
 
-        len_east = len(east_options)
-        len_west = len(west_options)
-        diff = abs(len_east - len_west)
-        if len_east > len_west:
-            for _ in range(diff):
-                west_options.append('           ')
-        else:
-            for _ in range(diff):
-                east_options.append('           ')
-        print('Would you rather')
-        print('Option 1 \t Option 2')
-        for east_option, west_option in zip(east_options, west_options):
-            print('1 -', east_option, '\t', '2 -', west_option)
+    #    len_east = len(east_options)
+    #   len_west = len(west_options)
+    #    diff = abs(len_east - len_west)
+    #    if len_east > len_west:
+    #        for _ in range(diff):
+    #            west_options.append('           ')
+    #    else:
+    #        for _ in range(diff):
+    #            east_options.append('           ')
+    #    print('Would you rather')
+    #    print('Option 1 \t Option 2')
+    #    for east_option, west_option in zip(east_options, west_options):
+    #        print('1 -', east_option, '\t', '2 -', west_option)
 
     def adjust_weights(self, node, picked, q_idx):
         """
