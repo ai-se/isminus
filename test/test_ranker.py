@@ -6,6 +6,8 @@ cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 from src.whun.whun_helper.ranker import Ranker
 from src.whun.whun_helper.method import Method
+from src.whun.whun_helper.item import Item
+from src.whun.utils.utils import sway
 
 
 def test_none_root_none_data():
@@ -55,3 +57,8 @@ def test_non_empty_pr_level():
     result = Ranker.pr_level(m.tree)
     t = TestCase()
     t.assertIsNotNone(result)
+
+
+def test_none_check_solution_none_data():
+    result = Ranker.check_solution(None)
+    assert result is None
