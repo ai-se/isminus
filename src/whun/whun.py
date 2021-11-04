@@ -14,6 +14,7 @@ from whun_helper.oracle import Oracle
 
 random.seed(datetime.now())
 
+
 def main(file_name, eval_file):
     """
     Function: main
@@ -25,7 +26,7 @@ def main(file_name, eval_file):
     for i in range(100):
         print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
-        m = Method(cur_dir + '/' + cfg.whunparams["FOLDER"] + file_name, cur_dir + '/' + cfg.whunparams["FOLDER"] + eval_file)
+        m = Method(cur_dir + '/' + cfg.whunparams["FOLDER"] + file_name, cur_dir + '/' + cfg.whunparams["FOLDER"] + eval_file, cfg.whunparams["FOLDER"])
         o = Oracle(len(m.rank))
         asked = 0
         first_qidx = set()
@@ -91,6 +92,7 @@ if __name__ == "__main__":
     eval_files = ['flight_eval.csv']
     for file, e_file in zip(filenames, eval_files):
         main(file, e_file)
+
 
 def whun_run(file_names, eval_files):
     for file, e_file in zip(file_names, eval_files):

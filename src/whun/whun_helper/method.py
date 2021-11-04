@@ -23,10 +23,10 @@ class Method:
     solutions.
     """
 
-    def __init__(self, filename, eval_file):
+    def __init__(self, filename, eval_file, prefix_path=""):
         try:
             sys.setrecursionlimit(cfg.whunparams["RECURSION_LIMIT"])
-            self.items = sat_solver.get_solutions(filename, eval_file)
+            self.items = sat_solver.get_solutions(filename, eval_file, prefix_path)
             self.weights = [1] * len(self.items)
             self.tree = sway(self.items, 100)
             self.names = []

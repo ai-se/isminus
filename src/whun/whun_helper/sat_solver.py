@@ -10,10 +10,11 @@ from src.whun.whun_helper.item import Item
 
 sys.path.append('/whun_helper')
 
+
 class sat_solver:
     """This class is used for getting Items"""
     @staticmethod
-    def get_solutions(cnf, eval_file):
+    def get_solutions(cnf, eval_file, prefix_path=""):
         """
         Function: get_solutions
         Description: Takes CNF and evaluation metrics and returns list of Item class objects
@@ -25,7 +26,7 @@ class sat_solver:
         """
         #global folder
         #global eval_file
-        evals = pd.read_csv(eval_file).to_numpy()
+        evals = pd.read_csv(prefix_path + eval_file).to_numpy()
 
         with open(cnf, 'r') as read_obj:
             binary_solutions = [[int(x) for x in rec]
