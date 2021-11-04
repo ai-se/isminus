@@ -173,3 +173,106 @@ This is the utility class and is used for the following tasks
         -west_items: all the others items except the representative
         -east_items: all the others items except the representative
 ```
+###Class Method
+This class is used store the sat solver solutions in form of a tree,
+    ranking of each node down to its feature and then handles the weight adjustments,
+    re-ranking tree based on the user preferences and finding the corresponding
+    solutions.
+
+####Member functions:
+```
+    Function: pick_questions
+        Description: returns questions associated with this node
+        Inputs:
+            -self: method object
+            -node: item node
+        Output:
+            -questions: array of questions
+```
+```
+    Function: find_node
+        Description: creates a queue of trees and returns path_id and
+        node based on tree and current best node
+        Inputs:
+        Output:
+            -path_id: path
+            -node: last node in the path
+```
+```
+    Function: adjust_tree
+        Description: adjusts the current node of tree based on picked questions
+        Inputs:
+            -self: method object
+            -node: item node
+            -q_idx: picked questions
+        Output:
+```
+```
+    Function: get_index
+        Description:
+        Inputs:
+            -self: method object
+            -diff:
+            -ranks:
+        Output:
+            questions: questions specific to this nodes
+```
+```
+    Function: ask_questions
+        Description:
+        Inputs:
+            -self: method object
+            -q_idx: picked questions
+            -node: item node
+        Output:
+```
+```
+    Function: adjust_weights
+        Description: adjusts the weights in tree based on picked question
+        Inputs:
+            -self: method object
+            -node: item node
+            -picked: picked question
+            -q_idx: all questions related to node
+        Output:
+```
+```
+    Function: increment the depth of east_node and west_node if its not None
+        Description:
+        Inputs:
+            -self: method object
+            -node: item node
+            -depth: Integer, picked question
+        Output:
+```
+```
+    Function: re_rank
+        Description: rerank the tree based on current state of the method object
+        Inputs:
+            -self: method object
+        Output:
+```
+```
+    Function: check_solution
+        Description: finds all the possible solutions in the tree
+        Inputs:
+            -self: method object
+        Output:
+```
+```
+    Function: get_item
+        Description: return item based on the input path
+        Inputs:
+            -self: method object
+            -path: item node
+        Output:
+```
+```
+    Function: pick_best
+        Description: picks the best solution among all the possible solutions
+        Inputs:
+            -self: method object
+            -solutions: item node
+        Output:
+            solution:
+```
