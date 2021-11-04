@@ -93,7 +93,7 @@ class Ranker:
             p = q[0]
             q.pop(0)
             if p[0].west is not None and p[0].east is not None:
-                tree_lvl.append((p[1], p[0].TreeNode.difference()))
+                tree_lvl.append((p[1], p[0].difference()))
             if p[0].west_node:
                 q.append([p[0].west_node, p[1] + 1])
             if p[0].east_node:
