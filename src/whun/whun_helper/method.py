@@ -8,7 +8,7 @@ import scipy.stats as st
 import numpy as np
 from src.whun.config import configparams as cfg
 from src.whun.utils.utils import sway
-from src.whun.whun_helper.sat_solver import sat_solver
+from src.whun.whun_helper.sat_solver import SatSolver
 from src.whun.whun_helper.search import Search
 from src.whun.whun_helper.ranker import Ranker
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,7 +26,7 @@ class Method:
     def __init__(self, filename, eval_file, prefix_path=""):
         try:
             sys.setrecursionlimit(cfg.whunparams["RECURSION_LIMIT"])
-            self.items = sat_solver.get_solutions(filename, eval_file, prefix_path)
+            self.items = SatSolver.get_solutions(filename, eval_file, prefix_path)
             self.weights = [1] * len(self.items)
             self.tree = sway(self.items, 100)
             self.names = []

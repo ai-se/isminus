@@ -11,7 +11,7 @@ from src.whun.whun_helper.item import Item
 sys.path.append('/whun_helper')
 
 
-class sat_solver:
+class SatSolver:
     """This class is used for getting Items"""
     @staticmethod
     def get_solutions(cnf, eval_file, prefix_path=""):
