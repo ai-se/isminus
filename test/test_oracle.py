@@ -15,26 +15,27 @@ def test_non_empty_init():
 
 
 def test_pick():
-    m = Method(cur_dir + "/src/whun/XOMO/flight_bin.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
-    o = Oracle(len(m.rank))
-    asked = 0
-    first_qidx = set()
-    t = TestCase()
-    while True:
-        _, node = m.find_node()
-        q_idx = m.pick_questions(node)
-        for q in q_idx:
-            first_qidx.add(q)
-        asked += 1
-        picked = o.pick(q_idx, node)
-        t.assertIn(picked, [0, 1])
-        m.adjust_weights(node, picked, q_idx)
-        m.re_rank()
-        solutions = m.check_solution()
-        if solutions is not None:
-            if solutions == -1:
+    for i in range(5):
+        m = Method(cur_dir + "/src/whun/XOMO/flight_bin.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
+        o = Oracle(len(m.rank))
+        asked = 0
+        first_qidx = set()
+        t = TestCase()
+        while True:
+            _, node = m.find_node()
+            q_idx = m.pick_questions(node)
+            for q in q_idx:
+                first_qidx.add(q)
+            asked += 1
+            picked = o.pick(q_idx, node)
+            t.assertIn(picked, [0, 1])
+            m.adjust_weights(node, picked, q_idx)
+            m.re_rank()
+            solutions = m.check_solution()
+            if solutions is not None:
+                if solutions == -1:
+                    break
+                for item in solutions:
+                    item.selectedpoints = np.sum(np.multiply(
+                        item.item, o.picked)) / np.sum(o.picked) * 100
                 break
-            for item in solutions:
-                item.selectedpoints = np.sum(np.multiply(
-                    item.item, o.picked)) / np.sum(o.picked) * 100
-            break
