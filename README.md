@@ -124,6 +124,23 @@ Therefore, WHUN can be used in any large product lines that need effective and e
 ### **Feature tracking**
 [Jira Board](https://se2021-group37.atlassian.net/secure/RapidBoard.jspa?rapidView=1&selectedIssue=SEWE-37 "Jira Board")
 
+### Release 1.0
+1. Study of the research work
+2. Modularization
+3. Refactoring
+4. Styler and Formatter
+5. Kernel best practices
+6. Initial Documentation
+
+### Release 2.0
+
+1. Packaging
+2. Unit testing and code coverage
+3. Travis integration
+4. Short releases
+5. No regression rule
+6. Short Video
+
 ### **References**
 ** Authors for [Preference Discovery in Large Product Lines](https://arxiv.org/pdf/2106.03792.pdf "Preference Discovery in Large Product Lines") : Andre Lustosa, Tim Menzies
 
