@@ -1,9 +1,13 @@
 """This module is related to item_helper_class"""
 # pylint: disable=import-error,invalid-name,too-many-instance-attributes
+import os
+import sys
 import math
 import secrets
 import numpy as np
 import configparams as cfg
+cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(cur_dir)
 
 
 class Item:
