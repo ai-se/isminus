@@ -16,7 +16,9 @@ class Search:
             -node: last node in the path
         """
         # maintain a queue of paths
-        queue = [[tree]]
+        queue = []
+        if tree != None:
+            queue = [[tree]]
         # push the first path into the queue
         while queue:
             # get the first path from the queue
@@ -38,6 +40,7 @@ class Search:
                     new_path = list(path)
                     new_path.append(adjacent)
                     queue.append(new_path)
+        return None, None
 
     @staticmethod
     def bfs_final(tree, target):
