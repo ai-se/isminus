@@ -1,7 +1,12 @@
 """This Module is related to io_helper_class"""
 #pylint: disable=import-error
 import pandas as pd
-import configparams as cfg
+import os
+import sys
+cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(cur_dir)
+import src.whun.config.configparams as cfg
+
 
 class InputOutput:
     """

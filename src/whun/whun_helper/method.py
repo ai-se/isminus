@@ -2,13 +2,15 @@
 # pylint: disable=import-error
 import os
 import sys
+cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(cur_dir)
 import scipy.stats as st
 import numpy as np
-from config import configparams as cfg
-from utils.utils import sway
-from whun_helper.sat_solver import sat_solver
-from whun_helper.search import search
-from whun_helper.ranker import Ranker
+from src.whun.config import configparams as cfg
+from src.whun.utils.utils import sway
+from src.whun.whun_helper.sat_solver import sat_solver
+from src.whun.whun_helper.search import Search
+from src.whun.whun_helper.ranker import Ranker
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 
@@ -46,7 +48,7 @@ class Method:
             -path_id: path
             -node: last node in the path
         """
-        return search.bfs(self.tree, self.cur_best_node)
+        return Search.bfs(self.tree, self.cur_best_node)
 
     def pick_questions(self, node):
         """
@@ -222,13 +224,13 @@ class Method:
         Output:
         """
         if sum(self.rank) == 0:
-            return search.get_all_items(self.tree)
+            return Search.get_all_items(self.tree)
         value = Ranker.check_solution(self.tree)
         if value is None:
             return None
         if value == -1:
             return -1
-        return search.get_all_items(self.tree)
+        return Search.get_all_items(self.tree)
 
     def get_item(self, path):
         """
@@ -239,7 +241,7 @@ class Method:
             -path: item node
         Output:
         """
-        return search.get_item(self.tree, path)
+        return Search.get_item(self.tree, path)
 
     def pick_best(self, solutions):
         """
@@ -252,7 +254,7 @@ class Method:
             solution:
         """
         sumsq = lambda *args: sum([i ** 2 for i in args])
-        all_items = search.get_all_leaves(self.tree)
+        all_items = Search.get_all_leaves(self.tree)
         scores = list(
             map(lambda x: sumsq(x.risk, x.effort,
                                 x.defects, x.months,

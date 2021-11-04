@@ -2,11 +2,12 @@
 # pylint: disable=import-error,too-few-public-methods,
 import os
 import sys
+cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(cur_dir)
 from math import pi
 import secrets
-from whun_helper.tree_node import tree_node
-cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(cur_dir)
+from src.whun.whun_helper.tree_node import TreeNode
+
 
 def split_bin(items, total_group):
     """
@@ -73,11 +74,11 @@ def sway(items, enough):
         -root :TreeNode
     """
     if len(items) < enough:
-        return tree_node(items, None, None, None, True)
+        return TreeNode(items, None, None, None, True)
     west, east, west_items, east_items = split_bin(items, 10)
     east_node = sway(east_items, enough)
     west_node = sway(west_items, enough)
-    root = tree_node(east, west, east_node, west_node, False)
+    root = TreeNode(east, west, east_node, west_node, False)
     root.east_id = east_node.id
     root.west_id = west_node.id
     return root

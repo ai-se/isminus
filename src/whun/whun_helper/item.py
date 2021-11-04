@@ -2,12 +2,13 @@
 # pylint: disable=import-error,invalid-name,too-many-instance-attributes
 import os
 import sys
+cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(cur_dir)
 import math
 import secrets
 import numpy as np
-from config import configparams as cfg
-cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(cur_dir)
+from src.whun.config import configparams as cfg
+
 
 
 class Item:

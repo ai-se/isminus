@@ -1,9 +1,12 @@
 """This module is related to SAT Solver Class"""
 # pylint: disable=import-error,invalid-name
+import os
 import sys
+cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(cur_dir)
 from csv import reader
 import pandas as pd
-from whun_helper.item import Item
+from src.whun.whun_helper.item import Item
 
 sys.path.append('/whun_helper')
 
