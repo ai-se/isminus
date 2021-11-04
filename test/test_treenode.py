@@ -1,14 +1,16 @@
 import unittest
-
 import numpy as np
+import os
+import sys
+cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(cur_dir)
+from src.whun.whun_helper.item import Item
+from src.whun.whun_helper.tree_node import TreeNode
 
-from whun_helper.item import Item
-from whun_helper.tree_node import tree_node
 
-
-class test_tree_node(unittest.TestCase):
+class TestTreeNode(unittest.TestCase):
     def test__init__(self):
-        node = tree_node(None, None, None, None, True)
+        node = TreeNode(None, None, None, None, True)
         result_expected = True
         self.assertEqual(node.leaf, result_expected)
 
@@ -25,7 +27,7 @@ class test_tree_node(unittest.TestCase):
              0], [0, 1, 0, 0, 0, 0])
         east_item = [item1, [1, 2], [3, 4]]
         west_item = [item2, [1, 2], [3, 4]]
-        node = tree_node(east_item, west_item, None, None, None)
+        node = TreeNode(east_item, west_item, None, None, None)
         result_expected = 1  # difference between items is 1 in the first position
         self.assertEqual(node.difference(), result_expected)  # add assertion here
 
@@ -42,7 +44,7 @@ class test_tree_node(unittest.TestCase):
              0], [0, 1, 0, 0, 0, 0])
         east_item = [item1, [1, 2], [3, 4]]
         west_item = [item2, [1, 2], [3, 4]]
-        node = tree_node(east_item, west_item, None, None, None)
+        node = TreeNode(east_item, west_item, None, None, None)
         result_expected = [1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0,
                            1, 0, 0, 0, 1,
                            0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0,
