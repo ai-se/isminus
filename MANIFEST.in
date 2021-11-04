@@ -1,0 +1,2 @@
+include src/whun/XOMO/*.csv
+include src/whun/Scores/*.csv
