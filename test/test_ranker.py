@@ -75,3 +75,15 @@ def test_non_empty_check_solution():
     result = Ranker.check_solution(m.tree)
     t = TestCase()
     t.assertIn(result, [None, -1, 1])
+
+
+def test_leaf_check_solution():
+    item_val = Item(
+        [1, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1,
+         0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0,
+         0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0,
+         0], [0, 1, 0, 0, 0, 0])
+    tree_node_root = sway([item_val], 100)
+    result = Ranker.check_solution(tree_node_root)
+    t = TestCase()
+    t.assertIn(result, [None, -1, 1])
