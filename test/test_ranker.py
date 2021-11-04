@@ -1,5 +1,6 @@
 import os
 import sys
+import pytest
 from unittest import TestCase
 
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -61,4 +62,9 @@ def test_non_empty_pr_level():
 
 def test_none_check_solution_none_data():
     result = Ranker.check_solution(None)
+    assert result is None
+
+
+def test_none_check_solution_empty_data():
+    result = Ranker.check_solution({})
     assert result is None
