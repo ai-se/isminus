@@ -1,23 +1,20 @@
 """This module is related to WHUN implementation"""
+import os
 import random
 import sys
 import time
 from datetime import datetime
 import numpy as np
 import pandas as pd
+cur_dir = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(cur_dir)
 import configparams as cfg
 from whun_helper.method import Method
 from whun_helper.oracle import Oracle
-sys.path.append('/whun_helper')
-
-# SETUP VARIABLES
-
-FILE_NAME = ''
-EVAL_FILE = ''
 
 random.seed(datetime.now())
 
-def main():
+def main(file_name, eval_file):
     """
     Function: main
     Description: implements the whun algorithm
@@ -28,7 +25,7 @@ def main():
     for i in range(100):
         print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
-        m = Method(cfg.whunparams["FOLDER"] + FILE_NAME, EVAL_FILE)
+        m = Method(cur_dir + '/' + cfg.whunparams["FOLDER"] + file_name, cur_dir + '/' + cfg.whunparams["FOLDER"] + eval_file)
         o = Oracle(len(m.rank))
         asked = 0
         first_qidx = set()
@@ -86,13 +83,15 @@ def main():
             'Pure Score': e,
             'Time': t
         }).T
-    df.to_csv('Scores/Score' + FILE_NAME)
+    df.to_csv(cur_dir + '/' + 'Scores/Score' + file_name)
 
 
 if __name__ == "__main__":
     filenames = ['flight_bin.csv']
     eval_files = ['flight_eval.csv']
     for file, e_file in zip(filenames, eval_files):
-        FILE_NAME = file
-        EVAL_FILE = e_file
-        main()
+        main(file, e_file)
+
+def whun_run(file_names, eval_files):
+    for file, e_file in zip(file_names, eval_files):
+        main(file, e_file)
