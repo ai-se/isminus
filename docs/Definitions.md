@@ -107,3 +107,69 @@ Function: rank_nodes
             Output:
                 -largest : Largest score among the questions
 ```
+###Class tree_node
+This class is used for the following tasks:
+1. Initialising the tree node
+2. Finding the difference between east and west nodes
+3. Finding the difference array between east and west nodes
+
+####Member functions:
+```
+        Function: __init__
+        Description: Initialises the attributes of the TreeNode
+        Inputs:
+                east :Item
+                west :Item
+                east_node :TreeNode
+                west_node  :treeNode
+                leaf : boolean
+        Output:
+                self initialised with attributes
+```
+```
+        Function: difference
+        Description: Returns the difference of east and west items
+        Inputs:
+                self :TreeNode
+        Output:
+                np.sum(res) :Sum of elements in res,Numpy array
+```
+```
+        Function: diff_array
+        Description: Returns the difference array of east and west items
+        Inputs:
+                self :TreeNode
+        Output:
+                res :Numpy Array
+```
+###Class utils
+This is the utility class and is used for the following tasks
+1. Split the east and west items
+2. To find the tree node after splitting
+
+####Member functions:
+```
+    Function: sway
+    Description: Takes a specific number of items of type Item and returns
+    the root after calculating the west,east,east_node and west_node
+    Inputs:
+        -items:Item
+        -enough:integer
+    Output:
+        -root :TreeNode
+```
+```
+    Function: sway
+    Description: Takes a items of type Item and total groups,
+    calcultes radius, take each item and put them in their radius
+    and sort them by distance in reverse and converted all the items
+    to the polar coordinate system and divide them into east and west.
+    Inputs:
+        -items:Item
+        -total_group:integer
+    Output:
+        -west: representative of the group
+        -east: representative of the group
+        -west_items: all the others items except the representative
+        -east_items: all the others items except the representative
+```
