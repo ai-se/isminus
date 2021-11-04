@@ -3,7 +3,6 @@
 import sys
 from csv import reader
 import pandas as pd
-import configparams as cfg
 from whun_helper.item import Item
 
 sys.path.append('/whun_helper')
@@ -23,7 +22,7 @@ class sat_solver:
         """
         #global folder
         #global eval_file
-        evals = pd.read_csv(cfg.whunparams["FOLDER"] + eval_file).to_numpy()
+        evals = pd.read_csv(eval_file).to_numpy()
 
         with open(cnf, 'r') as read_obj:
             binary_solutions = [[int(x) for x in rec]
