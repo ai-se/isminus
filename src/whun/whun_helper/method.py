@@ -169,24 +169,24 @@ class Method:
             self.adjust_tree(self.tree, east_options)
 
     # OBSOLETE
-    def adjust_up(self, node, depth=0, growth_factor=1.1):
-        """
-        Function: adjust_up
-        Description: increment the depth of east_node and west_node if its not None
-                        and update the weight with growth factor
-        Inputs:
-            -self: method object
-            -node: item node
-            -depth: Integer
-            -growth_factor: Float
-        Output:
-        """
-        # check for presence of no answers. If so
-        node.weight *= growth_factor
-        growth_factor *= (0.9 ** depth)
-        if node.east_node is not None and node.west_node is not None:
-            self.adjust_up(node.east_node, depth + 1, growth_factor)
-            self.adjust_up(node.west_node, depth + 1, growth_factor)
+    #def adjust_up(self, node, depth=0, growth_factor=1.1):
+    #    """
+    #    Function: adjust_up
+    #    Description: increment the depth of east_node and west_node if its not None
+    #                    and update the weight with growth factor
+    #    Inputs:
+    #        -self: method object
+    #        -node: item node
+    #        -depth: Integer
+    #        -growth_factor: Float
+    #    Output:
+    #    """
+    #    # check for presence of no answers. If so
+    #    node.weight *= growth_factor
+    #    growth_factor *= (0.9 ** depth)
+    #    if node.east_node is not None and node.west_node is not None:
+    #        self.adjust_up(node.east_node, depth + 1, growth_factor)
+    #        self.adjust_up(node.west_node, depth + 1, growth_factor)
 
     def adjust_down(self, node, depth=0):
         """
