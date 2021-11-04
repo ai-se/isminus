@@ -1,8 +1,12 @@
 """This module is related to utils"""
 # pylint: disable=import-error,too-few-public-methods,
+import os
+import sys
 from math import pi
 import secrets
 from whun_helper.tree_node import tree_node
+cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(cur_dir)
 
 def split_bin(items, total_group):
     """
