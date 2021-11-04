@@ -68,3 +68,10 @@ def test_none_check_solution_none_data():
 def test_none_check_solution_empty_data():
     result = Ranker.check_solution({})
     assert result is None
+
+
+def test_non_empty_check_solution():
+    m = Method(cur_dir + "/src/whun/XOMO/flight_bin.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
+    result = Ranker.check_solution(m.tree)
+    t = TestCase()
+    t.assertIn(result, [None, -1, 1])
