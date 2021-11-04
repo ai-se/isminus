@@ -240,6 +240,7 @@ class Method:
             -self: method object
             -path: item node
         Output:
+            -item: item object
         """
         return Search.get_item(self.tree, path)
 
