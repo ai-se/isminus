@@ -276,3 +276,65 @@ This class is used store the sat solver solutions in form of a tree,
         Output:
             solution:
 ```
+###Class SatSolver
+This class is used for getting Items
+
+####Member functions:
+```
+    Function: get_solutions
+    Description: Takes CNF and evaluation metrics and returns list of Item class objects
+        Inputs:
+            -cnf:String
+            -eval_file:String
+        Output:
+            -items:Item
+```
+###Class Search
+This class is used for searching the tree
+
+####Member functions:
+```
+    Function: bfs
+    Description: Takes tree and target and creates a queue of trees and returns path_id and node
+        Inputs:
+            -tree: String
+            -target:String
+        Output:
+            -path_id: path
+            -node: last node in the path
+```
+```
+    Function: bfs_final
+    Description: Takes tree and target and creates a queue of trees and returns path_id and node
+        Inputs:
+            -tree: String
+            -target:String
+        Output:
+            -path_id: path
+            -node: last node in the path
+```
+```
+    Function: get_all_items
+    Description: Takes tree and returns results
+        Inputs:
+            -tree: TreeNode
+        Output:
+            -results: results
+```
+```
+    Function: get_all_leaves
+    Description: Takes tree and returns leaves
+        Inputs:
+            -tree: TreeNode
+        Output:
+            -results: results with leaves
+```
+```
+    Function: get_item
+    Description: Takes tree and path, and returns item
+        Inputs:
+            -tree: TreeNode
+            -path: array
+        Output:
+            -item: either from the west of the east side
+```
