@@ -54,6 +54,6 @@ The following is a short high level video describing the research and use case.
 It summarises the details of the first and second release, and the expected future work.
 
 <video style="width:70%" controls>
-  <source src="https://app.animaker.com/video/VOSL7A6ONJOVJSG3">
+  <source src="VOSL7A6ONJOVJSG3.mp4">
   Your browser does not support the video tag.
 </video>
