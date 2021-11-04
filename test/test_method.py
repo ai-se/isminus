@@ -29,7 +29,6 @@ class TestMethod(TestCase):
     def test_find_node(self):
         method = Method(cur_dir+'/test/test_resources/method_bin.csv', cur_dir+'/test/test_resources/method_eval.csv')
         t = TestCase()
-        print(method.tree)
         path, node = method.find_node()
         t.assertIsNotNone(path)
         t.assertIsNotNone(node)
@@ -37,7 +36,6 @@ class TestMethod(TestCase):
     def test_pick_questions(self):
         method = Method(cur_dir+'/test/test_resources/method_bin.csv', cur_dir+'/test/test_resources/method_eval.csv')
         t = TestCase()
-        print(method.tree)
         _, node = method.find_node()
         questions = method.pick_questions(node)
         t.assertIsNotNone(questions)
@@ -45,7 +43,6 @@ class TestMethod(TestCase):
     def test_adjust_weights(self):
         method = Method(cur_dir+'/test/test_resources/method_bin.csv', cur_dir+'/test/test_resources/method_eval.csv')
         t = TestCase()
-        print(method.tree)
         o = Oracle(len(method.rank))
         _, node = method.find_node()
         q_idx = method.pick_questions(node)
@@ -57,7 +54,6 @@ class TestMethod(TestCase):
     def test_get_item(self):
         method = Method(cur_dir+'/test/test_resources/method_bin.csv', cur_dir+'/test/test_resources/method_eval.csv')
         t = TestCase()
-        print(method.tree)
         path_id, _ = method.find_node()
         item = method.get_item(path_id)
         t.assertIsNotNone(item)
