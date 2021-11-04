@@ -26,7 +26,7 @@ def main(file_name, eval_file):
     for i in range(100):
         print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
-        m = Method(cur_dir + '/' + cfg.whunparams["FOLDER"] + file_name, cur_dir + '/' + cfg.whunparams["FOLDER"] + eval_file, cfg.whunparams["FOLDER"])
+        m = Method(cur_dir + '/' + cfg.whunparams["FOLDER"] + file_name, cur_dir + '/' + cfg.whunparams["FOLDER"] + eval_file)
         o = Oracle(len(m.rank))
         asked = 0
         first_qidx = set()
