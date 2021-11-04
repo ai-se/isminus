@@ -1,5 +1,6 @@
 """This module is related to Method Class"""
 # pylint: disable=import-error
+import os
 import sys
 import scipy.stats as st
 import numpy as np
@@ -8,8 +9,8 @@ from utils.utils import sway
 from whun_helper.sat_solver import sat_solver
 from whun_helper.search import search
 from whun_helper.ranker import Ranker
-
-sys.path.append('/whun_helper')
+cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(cur_dir)
 
 
 class Method:
