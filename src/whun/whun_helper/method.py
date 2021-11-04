@@ -4,7 +4,7 @@ import os
 import sys
 import scipy.stats as st
 import numpy as np
-import configparams as cfg
+from config import configparams as cfg
 from utils.utils import sway
 from whun_helper.sat_solver import sat_solver
 from whun_helper.search import search

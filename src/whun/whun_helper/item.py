@@ -5,7 +5,7 @@ import sys
 import math
 import secrets
 import numpy as np
-import configparams as cfg
+from config import configparams as cfg
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 

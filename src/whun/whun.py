@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(cur_dir)
-import configparams as cfg
+from config import configparams as cfg
 from whun_helper.method import Method
 from whun_helper.oracle import Oracle
 
