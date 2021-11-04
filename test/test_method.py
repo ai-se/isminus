@@ -53,4 +53,11 @@ class TestMethod(TestCase):
         asked = node.asked
         method.adjust_weights(node, picked, q_idx)
         t.assertEqual(asked+1, node.asked)
-        
+
+    def test_get_item(self):
+        method = Method(cur_dir+'/test/test_resources/method_bin.csv', cur_dir+'/test/test_resources/method_eval.csv')
+        t = TestCase()
+        print(method.tree)
+        path_id, _ = method.find_node()
+        item = method.get_item(path_id)
+        t.assertIsNotNone(item)
