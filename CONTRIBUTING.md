@@ -59,8 +59,8 @@ already been filed.<br>
 If you cannot find an existing enhancement that describes your feature, create a new issue using the guidelines below.
 For creating any enhancement report,please fill out [the required template](https://github.com/ai-se/whun/blob/feature-se2021/template.md)
 
-- Please include **FEATURE-BRANCH-ENHANCEMENT** in the title and then give the description of the enhancement <br/>
-  Example for Issue Name : FEATURE-BRANCH-ENHANCEMENT:description of the enhancement
+- Please include **FEATURE-BRANCH-SE2021-ENHANCEMENT** in the title and then give the description of the enhancement <br/>
+  Example for Issue Name : FEATURE-BRANCH-SE2021-ENHANCEMENT:description of the enhancement
 - Provide a detailed description of the enhancement.
 - Highlight the expected outcomes so that the feature is easily understandable.
 - Provide specific examples to explain the enhancement. 
