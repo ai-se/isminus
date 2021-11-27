@@ -1,4 +1,4 @@
-# *****THANK YOU FOR CHOOSING OUR PROJECT TO CONTRIBUTE ***** 
+#  THANK YOU FOR CHOOSING OUR PROJECT TO CONTRIBUTE 
 
 The following is a set of guidelines for contributing to this project and its packages.
 These are not rules but few guidelines to make sure the project is well-maintained.
