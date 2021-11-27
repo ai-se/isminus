@@ -29,7 +29,7 @@ Please feel free to propose any changes to this document by a pull request
 If you notice any bugs, please let us know. <br>
 Please follow the below guidelines that helps maintainers and the community understand your report, reproduce the <br/>
 behavior and find related reports.
-For creating any bug report,please fill out [the required template](https://github.com/ai-se/whun/issues) 
+For creating any bug report,please fill out [the required template](https://github.com/ai-se/whun/blob/feature-se2021/template.md) 
 
 Before you create a new issue, 
 - Debug the code using [debugger](https://atom.io/packages/ide-python) 
@@ -57,7 +57,7 @@ For reporting bug, please follow the below guidelines
 Before you suggest a new enhancement, please do a search in open enhancements to see if there is a request that has<br/>
 already been filed.<br>
 If you cannot find an existing enhancement that describes your feature, create a new issue using the guidelines below.
-For creating any enhancement report,please fill out [the required template](https://github.com/ai-se/whun/issues)
+For creating any enhancement report,please fill out [the required template](https://github.com/ai-se/whun/blob/feature-se2021/template.md)
 
 - Please include **FEATURE-BRANCH-ENHANCEMENT** in the title and then give the description of the enhancement 
   Example for Issue Name : FEATURE-BRANCH-ISSUE:<<description of the enhancement>>
