@@ -5,7 +5,7 @@
 
 ## BUG REPORT
 ### Title Name
-- Please include **FEATURE-BRANCH-ISSUE** in the title <br/>
+- Please include **FEATURE-BRANCH-SE2021-ISSUE** in the title <br/>
 - Format of the title should be  **_FEATURE-BRANCH-SE2021-ISSUE: Description of the bug_**
 
 ### Description
