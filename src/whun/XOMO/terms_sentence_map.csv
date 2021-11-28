@@ -1,0 +1,125 @@
+text,sentence
+Experienced_professionals, Effort estimate based on the experience of the professionals
+r_5_minutes, 5 minute sprint review meeting
+Presence_d, Presence on scrum meetings required
+r_8_hours, 8 hours sprint review day
+PO_alone, Only the Product Owner does prioritization
+Two_half_weeks, 17 day sprint
+Google_docs, Option for virtual presence on daily meetings
+PB_ID, Progress by product backlog id
+Physical, Physical presence on scrum meetings required
+SM_DevTeam, Effort estimate based on the Development Team that takes the role of Scrum Master
+Daily, Daily meeting every day
+Three_weeks, 21 day sprint
+Status, How to classify the status of an item in the Sprint Backlog
+Story_points_and_points_of_value, Effort estimate based on story points and points of value
+From_6_to_8, 6 to 8 developers in team size
+Google_Group, Option for virtual presence on daily meetings
+Apo6, Activity 6 of the Product owner
+Apo5, Activity 5 of the Product owner
+Roles, The Roles used in this scrum adaptation
+Apo4, Activity 4 of the Product owner
+Apo3, Activity 3 of the Product owner
+Apo2, Activity 2 of the Product owner
+Two, Two Product owners for the project
+Apo1, Activity 1 of the Product owner
+Artifacts, Definitions of the Product and Sprint backlog
+Many_times_a_day, Daily meeting more than once a day
+t_15_to_35_minutes, 15 to 35 minutes Daily meeting
+Estimated_Time, Progress by estimated time
+Sprint, Definitions of the Sprint
+Planning, Definitions of the Sprint Planning 
+Blocked, Status Option for an item on the Sprint Backlog
+RP, Definitions for the Review Planning meeting
+Estimate, Definitions for effort estimates on the Product Backlog
+Selection, Who selects the items on the Sprint Backlog and allocates them
+One, One Product owner for the project
+Twice_a_week, Daily meeting twice a week
+Equal_9, 9 developers in team size
+SB, Definitions of the Sprint backlog
+More_two, More than Two Product owners for the project
+DevTeam2, The development team selects the items to be worked on the Sprint backlog
+Events, The events of Scrum
+Less_3, Less than three developers per team
+Chat, Option for virtual presence on daily meetings
+SM, The option to have a Scrum Master
+Progress, Definitions on how to track Sprint Progress 
+Num_persons, Definition of the number of Product Owners
+Rules, Root Node Scrum Definitions
+lenght, Definition of the Sprint lenght
+Planning_Poker, Effort estimate using the Planning Poker technique
+Composing_dt, What roles are there in the development team
+Frequency, Definition on Daily meeting frequency
+One_week, 7 days Sprint 
+PO_DevTeam, Prioritization done by the Development Team in the absence of a Product Owner
+Online, Option for virtual presence on daily meetings
+User_Stories, Representation of the items on the Product Backlog by User Stories
+Email, Option for virtual presence on daily meetings
+three_hours, Three hours long sprint planning
+Three_times_week, Daily meeting three times a week
+one_week_p, Sprint Planning one week prior
+PO_DevTeam2, Estimate made by the Development Team in the absence of a Product Owner
+Atd12, Activity 12 of the Development team
+One_week_1, 7 days Sprint
+In_progress, Status Option for an item on the Sprint Backlog
+Atd10, Activity 10 of the Development team
+Atd11, Activity 11 of the Development team
+more_9, More than 9 developers in team size
+Representation, Representation of the items in the product backlog
+Composing, Composition of the Product Owner
+LOEs, Prioritization done using Level of Effort points
+physical_dt, physical development team presence
+Presence_dt, Type of presence of the development team
+Num_person_dt, Number of people in the development team
+Time_d, Time of the Daily Meeting
+Cpo10, Composition 10 of the Product owner
+Prioritization, Definitions on how to prioritize the Product Backlog
+Time, Time of the Review Planning
+Review, Definitions of the Sprint Review Meeting
+sixteen_hours, Sixteen hours long sprint planning
+Cpo1, Composition 1 of the Product owner
+Time_p, Time of the Sprint Planning Meeting
+Four_weeks, 28 days Sprint 
+Cpo2, Composition 2 of the Product owner
+two_hours, Two hours long sprint planning
+Cpo4, Composition 4 of the Product owner
+Cpo5, Composition 5 of the Product owner
+Cpo6, Composition 6 of the Product owner
+DevTeam, Definitions of the Development Team
+Cpo7, Composition 7 of the Product owner
+Cpo8, Composition 8 of the Product owner
+Cpo9, Composition 9 of the Product owner
+From_4_to_5,  4 to 5 developers in team size
+Increment, Increment as an Artifact
+SCRUMTeam, Definitions of the Scrum Team
+Presence, Definitions on Project Owner Presence
+DailySCRUM, Option of a daily meeting to discuss what has been achieved
+Eight_weeks, 56 days Sprint 
+SCRUM_SML, Root Node Mandatory
+t_5_minutes, 5 minutes Daily meeting
+Activities, Activities of the Project Owner
+Two_weeks, 14 days Sprint 
+Activities_dt, Activities of the Development Team
+Ppo1, Presence 1 of the Product owner
+Use_Cases, Representation of the items on the Product Backlog by Use Cases
+Ppo2, Presence 2 of the Product owner
+Apo11, Activity 11 of the Product owner
+Not_Started, Status Option for an item on the Sprint Backlog
+Apo13, Activity 13 of the Product owner
+Virtual, Type of presence in the meetings
+Apo14, Activity 14 of the Product owner
+t_15_minutes, 15 minutes Daily meeting
+Time_r, Time of the Review
+t_15_to_20_minutes, 15 to 20 minutes Daily meeting
+PB, Definitons of the Product Backlog
+PO_SM_DevTeam, Prioritization done by the Development Team in the absence of a Product Owner and Scrum Master
+Atd8, Activity 8 of the Development team
+Completed, Status Option for an item on the Sprint Backlog
+Atd7, Activity 7 of the Development team
+developer, role on the development team
+Atd6, Activity 6 of the Development team
+Refinery_Requirements, Prioritization done by the Requirements Refinement strategy
+Atd5, Activity 5 of the Development team
+Atd3, Activity 3 of the Development team
+Atd2, Activity 2 of the Development team
+PO, Definitions on the Role of the Product Owner
