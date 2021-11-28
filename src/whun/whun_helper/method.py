@@ -11,6 +11,7 @@ from src.whun.utils.utils import sway
 from src.whun.whun_helper.sat_solver import SatSolver
 from src.whun.whun_helper.search import Search
 from src.whun.whun_helper.ranker import Ranker
+from src.whun.whun_helper.input_output import InputOutput
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 
@@ -33,7 +34,7 @@ class Method:
             self.rank = Ranker.level_rank_features(self.tree, self.weights)
             self.cur_best_node = Ranker.rank_nodes(self.tree, self.rank)
             # IO.get_question_text('terms_sentence_map.csv', 'sentence')
-            self.questions = []
+            self.questions = InputOutput.get_question_text(cur_dir + '/' + cfg.whunparams["FOLDER"] + 'terms_sentence_map.csv', 'sentence')
         except Exception as e:
             print(e)
             raise e
@@ -108,36 +109,36 @@ class Method:
                     questions.append(i)
         return questions
 
-    #def ask_questions(self, q_idx, node):
-    #    """
-    #    Function: ask_questions
-    #    Description:
-    #    Inputs:
-    #        -self: method object
-    #        -q_idx: picked questions
-    #        -node: item node
-    #    Output:
-    #    """
-    #    east_options, west_options = [], []
-    #    for _, value in enumerate(q_idx):
-    #        if node.east[0].item[value]:
-    #            east_options.append(self.questions[value])
-    #        elif node.west[0].item[value]:
-    #            west_options.append(self.questions[value])
+    def ask_questions(self, q_idx, node):
+       """
+       Function: ask_questions
+       Description:
+       Inputs:
+           -self: method object
+           -q_idx: picked questions
+           -node: item node
+       Output:
+       """
+       east_options, west_options = [], []
+       for _, value in enumerate(q_idx):
+           if node.east[0].item[value]:
+               east_options.append(self.questions[value])
+           elif node.west[0].item[value]:
+               west_options.append(self.questions[value])
 
-    #    len_east = len(east_options)
-    #   len_west = len(west_options)
-    #    diff = abs(len_east - len_west)
-    #    if len_east > len_west:
-    #        for _ in range(diff):
-    #            west_options.append('           ')
-    #    else:
-    #        for _ in range(diff):
-    #            east_options.append('           ')
-    #    print('Would you rather')
-    #    print('Option 1 \t Option 2')
-    #    for east_option, west_option in zip(east_options, west_options):
-    #        print('1 -', east_option, '\t', '2 -', west_option)
+       len_east = len(east_options)
+       len_west = len(west_options)
+       diff = abs(len_east - len_west)
+       if len_east > len_west:
+           for _ in range(diff):
+               west_options.append('           ')
+       else:
+           for _ in range(diff):
+               east_options.append('           ')
+       print('Would you rather')
+       print('Option 1 \t Option 2')
+       for east_option, west_option in zip(east_options, west_options):
+           print('1 -', east_option, '\t', '2 -', west_option)
 
     def adjust_weights(self, node, picked, q_idx):
         """
@@ -257,16 +258,12 @@ class Method:
         sumsq = lambda *args: sum([i ** 2 for i in args])
         all_items = Search.get_all_leaves(self.tree)
         scores = list(
-            map(lambda x: sumsq(x.risk, x.effort,
-                                x.defects, x.months,
-                                cfg.whunparams["HUMAN_WEIGHT"] * (1 - (x.selectedpoints / 100))),
-                solutions))
-        total_scores = list(
-            map(lambda x: sumsq(x.risk, x.effort, x.defects,
-                                x.months,
-                                cfg.whunparams["HUMAN_WEIGHT"] * (1 - (x.selectedpoints / 100))),
-                all_items))
+            map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused,
+                                cfg.whunparams["HUMAN_WEIGHT"] * (100 - x.selectedpoints))
+                , solutions))
+        total_scores = list(map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused, cfg.whunparams["HUMAN_WEIGHT"] * (100 -
+                                                                                                                   x.selectedpoints))
+                                , all_items))
         minimizer = np.argmin(scores)
-        solutions[minimizer].score = st.percentileofscore(
-            total_scores, scores[minimizer])
+        solutions[minimizer].score = st.percentileofscore(total_scores, scores[minimizer])
         return solutions[minimizer]
