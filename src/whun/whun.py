@@ -22,7 +22,7 @@ def main(file_name, eval_file):
     Inputs:
     Output:
     """
-    a, p, c, s, d, u, scores, t, x, e = [], [], [], [], [], [], [], [], [], []
+    a, p, c, s, d, u, scores, t, x, e, total_cost, known_defects, features_used = [], [], [], [], [], [], [], [], [], [], [], [], []
     for i in range(100):
         print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
@@ -45,12 +45,15 @@ def main(file_name, eval_file):
                     print("No solutions were found matching your preferences.")
                     a.append(asked)
                     p.append(np.sum(o.picked))
-                    c.append(-1)
+                    # c.append(-1)
                     s.append(-1)
-                    d.append(-1)
-                    u.append(-1)
-                    x.append(-1)
-                    e.append(-1)
+                    # d.append(-1)
+                    # u.append(-1)
+                    # x.append(-1)
+                    # e.append(-1)
+                    total_cost.append(-1)
+                    known_defects.append(-1)
+                    features_used.append(-1)
                     scores.append(-1)
                     t.append(time.time() - start_time)
                     break
@@ -61,12 +64,15 @@ def main(file_name, eval_file):
                 print("Found a solution.")
                 a.append(asked)
                 p.append(np.sum(o.picked))
-                c.append(best.effort)
+                #c.append(best.effort)
                 s.append(best.selectedpoints / 100)
-                d.append(best.risk)
-                u.append(best.defects)
-                x.append(best.months)
-                e.append(best.zitler_rank / 20000)
+                #d.append(best.risk)
+                #u.append(best.defects)
+                #x.append(best.months)
+                #e.append(best.zitler_rank / 20000)
+                total_cost.append(best.totalcost)
+                known_defects.append(best.knowndefects)
+                features_used.append(best.featuresused)
                 scores.append(best.score)
                 t.append(time.time() - start_time)
                 break
@@ -75,20 +81,23 @@ def main(file_name, eval_file):
         {
             'Asked': a,
             'User Picked': p,
-            'Effort': c,
+            # 'Effort': c,
+            'Total Cost': total_cost,
             'Selected Points': s,
-            'Risk': d,
-            'Defects': u,
-            'Months': x,
+            'Known Defects': known_defects,
+            #'Risk': d,
+            # 'Defects': u,
+            #'Months': x,
+            'Features Used': features_used,
             'Score': scores,
-            'Pure Score': e,
+            # 'Pure Score': e,
             'Time': t
         }).T
     df.to_csv(cur_dir + '/' + 'Scores/Score' + file_name)
 
 
 if __name__ == "__main__":
-    filenames = ['flight_bin.csv']
+    filenames = ['Scrum10k.csv']
     eval_files = ['flight_eval.csv']
     for file, e_file in zip(filenames, eval_files):
         main(file, e_file)
