@@ -43,11 +43,11 @@ class Item:
         self.totalcost = sum(np.multiply(item, self.costs))
         self.knowndefects = sum(np.multiply(item, self.defective))
         self.featuresused = sum(np.multiply(item, self.used))
-        self.risk = eval[0]
-        self.effort = eval[1]
-        self.defects = eval[2]
-        self.months = eval[3]
-        self.zitler_rank = eval[4]
+        # self.risk = eval[0]
+        # self.effort = eval[1]
+        # self.defects = eval[2]
+        # self.months = eval[3]
+        # self.zitler_rank = eval[4]
 
     @staticmethod
     def calc_staticfeatures(items):
