@@ -36,6 +36,7 @@ def main(file_name, eval_file):
             for q in q_idx:
                 first_qidx.add(q)
             asked += 1
+            m.ask_questions(q_idx, node)
             picked = o.pick(q_idx, node)
             m.adjust_weights(node, picked, q_idx)
             m.re_rank()
