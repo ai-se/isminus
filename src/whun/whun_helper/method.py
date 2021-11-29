@@ -2,6 +2,7 @@
 # pylint: disable=import-error
 import os
 import sys
+from PyQt5.QtWidgets import QInputDialog
 cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.append(cur_dir)
 import scipy.stats as st
@@ -34,7 +35,8 @@ class Method:
             self.rank = Ranker.level_rank_features(self.tree, self.weights)
             self.cur_best_node = Ranker.rank_nodes(self.tree, self.rank)
             # IO.get_question_text('terms_sentence_map.csv', 'sentence')
-            self.questions = InputOutput.get_question_text(cur_dir + '/' + cfg.whunparams["FOLDER"] + 'terms_sentence_map.csv', 'sentence')
+            self.questions = InputOutput.get_question_text(
+                cur_dir + '/' + cfg.whunparams["FOLDER"] + 'terms_sentence_map.csv', 'sentence')
         except Exception as e:
             print(e)
             raise e
@@ -109,8 +111,23 @@ class Method:
                     questions.append(i)
         return questions
 
-    def ask_questions(self, q_idx, node):
-       """
+    def process_options(self, left_branch, right_branch):
+        count = 0
+        for item in left_branch:
+            if len(item) == item.count(" "):
+                count += 1
+        if count == len(left_branch):
+            return 0
+        count = 0
+        for item in right_branch:
+            if len(item) == item.count(" "):
+                count += 1
+        if count == len(right_branch):
+            return 1
+        return -1
+
+    def ask_questions(self, q_idx, node, ui_obj):
+        """
        Function: ask_questions
        Description:
        Inputs:
@@ -118,27 +135,38 @@ class Method:
            -q_idx: picked questions
            -node: item node
        Output:
+            None
        """
-       east_options, west_options = [], []
-       for _, value in enumerate(q_idx):
-           if node.east[0].item[value]:
-               east_options.append(self.questions[value])
-           elif node.west[0].item[value]:
-               west_options.append(self.questions[value])
+        east_options, west_options = [], []
+        for _, value in enumerate(q_idx):
+            if node.east[0].item[value]:
+                east_options.append(self.questions[value])
+            elif node.west[0].item[value]:
+                west_options.append(self.questions[value])
 
-       len_east = len(east_options)
-       len_west = len(west_options)
-       diff = abs(len_east - len_west)
-       if len_east > len_west:
-           for _ in range(diff):
-               west_options.append('           ')
-       else:
-           for _ in range(diff):
-               east_options.append('           ')
-       print('Would you rather')
-       print('Option 1 \t Option 2')
-       for east_option, west_option in zip(east_options, west_options):
-           print('1 -', east_option, '\t', '2 -', west_option)
+        len_east = len(east_options)
+        len_west = len(west_options)
+        diff = abs(len_east - len_west)
+        if len_east > len_west:
+            for _ in range(diff):
+                west_options.append('           ')
+        else:
+            for _ in range(diff):
+                east_options.append('           ')
+        print('Would you rather')
+        print('Option 1 \t Option 2')
+        for east_option, west_option in zip(east_options, west_options):
+            print('1 -', east_option, '\t', '2 -', west_option)
+        processed_value = self.process_options(east_options, west_options)
+        if processed_value >= 0:
+            return processed_value
+        return ui_obj.show_options_dialog(east_options, west_options)
+        # text, ok = QInputDialog.getText(ui_obj.wait_widget, 'input dialog', 'Is this ok?')
+        # if ok:
+        #     return 1
+        # else:
+        #     return 0
+        # return 1
 
     def adjust_weights(self, node, picked, q_idx):
         """
@@ -170,7 +198,7 @@ class Method:
             self.adjust_tree(self.tree, east_options)
 
     # OBSOLETE
-    #def adjust_up(self, node, depth=0, growth_factor=1.1):
+    # def adjust_up(self, node, depth=0, growth_factor=1.1):
     #    """
     #    Function: adjust_up
     #    Description: increment the depth of east_node and west_node if its not None
@@ -261,8 +289,9 @@ class Method:
             map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused,
                                 cfg.whunparams["HUMAN_WEIGHT"] * (100 - x.selectedpoints))
                 , solutions))
-        total_scores = list(map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused, cfg.whunparams["HUMAN_WEIGHT"] * (100 -
-                                                                                                                   x.selectedpoints))
+        total_scores = list(map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused,
+                                                cfg.whunparams["HUMAN_WEIGHT"] * (100 -
+                                                                                  x.selectedpoints))
                                 , all_items))
         minimizer = np.argmin(scores)
         solutions[minimizer].score = st.percentileofscore(total_scores, scores[minimizer])
