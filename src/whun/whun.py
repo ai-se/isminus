@@ -11,11 +11,15 @@ sys.path.append(cur_dir)
 from config import configparams as cfg
 from whun_helper.method import Method
 from whun_helper.oracle import Oracle
+from whun_helper.ui_helper import UIHelper
+from PyQt5.QtWidgets import *
 
 random.seed(datetime.now())
+ui_obj = None
+picked_array = []
 
 
-def main(file_name, eval_file):
+def main(file_name, eval_file, is_oracle_enabled):
     """
     Function: main
     Description: implements the whun algorithm
@@ -23,7 +27,7 @@ def main(file_name, eval_file):
     Output:
     """
     a, p, c, s, d, u, scores, t, x, e, total_cost, known_defects, features_used = [], [], [], [], [], [], [], [], [], [], [], [], []
-    for i in range(100):
+    for i in range(1):
         print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
         m = Method(cur_dir + '/' + cfg.whunparams["FOLDER"] + file_name, cur_dir + '/' + cfg.whunparams["FOLDER"] + eval_file)
@@ -36,8 +40,12 @@ def main(file_name, eval_file):
             for q in q_idx:
                 first_qidx.add(q)
             asked += 1
-            m.ask_questions(q_idx, node)
-            picked = o.pick(q_idx, node)
+            if not is_oracle_enabled:
+                global picked_array
+                picked = m.ask_questions(q_idx, node, ui_obj)
+                picked_array = o.update_picked_array(picked, q_idx, node)
+            else:
+                picked = o.pick(q_idx, node)
             m.adjust_weights(node, picked, q_idx)
             m.re_rank()
             solutions = m.check_solution()
@@ -77,6 +85,10 @@ def main(file_name, eval_file):
                 scores.append(best.score)
                 t.append(time.time() - start_time)
                 break
+        if not is_oracle_enabled:
+            result_label = prepare_result_label(m)
+            ui_obj.update_result_label(result_label)
+            ui_obj.update_widget("ITERATION")
 
     df = pd.DataFrame(
         {
@@ -97,13 +109,27 @@ def main(file_name, eval_file):
     df.to_csv(cur_dir + '/' + 'Scores/Score' + file_name)
 
 
-if __name__ == "__main__":
-    filenames = ['Scrum10k.csv']
-    eval_files = ['flight_eval.csv']
-    for file, e_file in zip(filenames, eval_files):
-        main(file, e_file)
+def prepare_result_label(method_obj):
+    result_label = ""
+    for i in range(len(picked_array)):
+        if picked_array[i] == 1:
+            if not len(result_label) == 0:
+                result_label+= "-> " + method_obj.questions[i] + "\n"
+            else:
+                result_label = "-> " + method_obj.questions[i] + "\n"
+    return result_label
 
 
-def whun_run(file_names, eval_files):
+def whun_run(file_names, eval_files, is_oracle_enabled=True):
     for file, e_file in zip(file_names, eval_files):
-        main(file, e_file)
+        main(file, e_file, is_oracle_enabled)
+
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    app.setApplicationName('WhunWindow')
+    ui_obj = UIHelper(app, whun_run)
+    ui_obj.show()
+    sys.exit(app.exec())
+
+
