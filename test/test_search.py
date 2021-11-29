@@ -8,7 +8,7 @@ from src.whun.whun_helper.search import Search
 
 
 def test_bfs():
-    m = Method(cur_dir + "/src/whun/XOMO/flight_bin.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
+    m = Method(cur_dir + "/src/whun/XOMO/Scrum10k.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
     t = TestCase()
     path, node = Search.bfs(m.tree, m.cur_best_node)
     t.assertIsNotNone(path)
@@ -16,14 +16,14 @@ def test_bfs():
 
 
 def test_bfs_final():
-    m = Method(cur_dir + "/src/whun/XOMO/flight_bin.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
+    m = Method(cur_dir + "/src/whun/XOMO/Scrum10k.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
     t = TestCase()
     result = Search.bfs_final(m.tree, m.cur_best_node)
     t.assertIsNone(result)
 
 
 def test_get_all_items():
-    m = Method(cur_dir + "/src/whun/XOMO/flight_bin.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
+    m = Method(cur_dir + "/src/whun/XOMO/Scrum10k.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
     t = TestCase()
     result = Search.get_all_items(m.tree)
     print(result)
