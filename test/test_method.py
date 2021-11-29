@@ -13,7 +13,7 @@ class TestMethod(TestCase):
     def test_method_init(self):
         method = Method(cur_dir+'/test/test_resources/method_bin.csv', cur_dir+'/test/test_resources/method_eval.csv')
         t = TestCase()
-        t.assertEqual(len(method.rank), 108)
+        t.assertEqual(len(method.rank), 124)
         t.assertEqual(len(method.weights), 200)
         t.assertEqual(len(method.items), 200)
 
