@@ -51,10 +51,16 @@ class Oracle:
         else:
             selected = 1
         # Update my vector of picked options
+        self.update_picked_array(selected, q_idx, node)
+        # Return selected {0 = East, 1 = West}
+        return selected
+
+    def update_picked_array(self, selected, q_idx, node):
+        # Update my vector of picked options
         for i in range(min(len(q_idx), 4)):
             if selected and self.picked[q_idx[i]] == 0:
                 self.picked[q_idx[i]] = node.east[0].item[q_idx[i]]
             elif not selected and self.picked[q_idx[i]] == 0:
                 self.picked[q_idx[i]] = node.west[0].item[q_idx[i]]
-        # Return selected {0 = East, 1 = West}
-        return selected
+        return self.picked
+
