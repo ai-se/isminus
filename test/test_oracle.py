@@ -9,14 +9,14 @@ from src.whun.whun_helper.method import Method
 
 
 def test_non_empty_init():
-    m = Method(cur_dir + "/src/whun/XOMO/flight_bin.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
+    m = Method(cur_dir + "/src/whun/XOMO/Scrum10k.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
     o = Oracle(len(m.rank))
     assert len(o.picked) == len(m.rank)
 
 
 def test_pick():
     for i in range(5):
-        m = Method(cur_dir + "/src/whun/XOMO/flight_bin.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
+        m = Method(cur_dir + "/src/whun/XOMO/Scrum10k.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
         o = Oracle(len(m.rank))
         asked = 0
         first_qidx = set()
