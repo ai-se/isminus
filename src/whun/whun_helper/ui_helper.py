@@ -212,7 +212,6 @@ class UIHelper(QMainWindow):
         self.q_app_ref.exec()
 
     def update_widget(self, next_widget=None):
-        print("Inside Update Method")
         if next_widget == "WAIT_SCREEN":
             self.landing_widget.hide()
             self.iteration_widget.hide()

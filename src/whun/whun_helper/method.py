@@ -153,10 +153,6 @@ class Method:
         else:
             for _ in range(diff):
                 east_options.append('           ')
-        print('Would you rather')
-        print('Option 1 \t Option 2')
-        for east_option, west_option in zip(east_options, west_options):
-            print('1 -', east_option, '\t', '2 -', west_option)
         processed_value = self.process_options(east_options, west_options)
         if processed_value >= 0:
             return processed_value
