@@ -111,6 +111,19 @@ class Method:
         return questions
 
     def process_options(self, left_branch, right_branch):
+        """
+            Function: process_options
+            Description: Given east and west branch, the method will check if both the branches have valid nodes or not.
+            If one of the branch doesn't have valid nodes it will return the other brancch as selectedd preference.
+            Inputs:
+                -self: method object
+                -left_branch: East Branch
+                -right_branch: West Branch
+            Output:
+                - 0: If east branch doesn't have any valid nodes, we send 0 signifying that west branch needs to be selected.
+                - 1: If west branch doesn't have any valid nodes, we send 1 signifying that east branch needs to be selected.
+                - -1: If both the branches have valid nodes, we send -1 signifying that human needs to select his preference.
+        """
         count = 0
         for item in left_branch:
             if len(item) == item.count(" "):
@@ -128,7 +141,7 @@ class Method:
     def ask_questions(self, q_idx, node, ui_obj):
         """
        Function: ask_questions
-       Description:
+       Description: Function to take human preference on whether to select east branch or west branch from the picked set of questions.
        Inputs:
            -self: method object
            -q_idx: picked questions
