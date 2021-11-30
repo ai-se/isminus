@@ -239,7 +239,7 @@ class UIHelper(QMainWindow):
     def show_options_dialog(self, left_branch, right_branch):
         dlg = CustomDialog(self.central_widget, left_branch, right_branch)
         if dlg.exec():
-            return 0
-        else:
             return 1
+        else:
+            return 0
 
