@@ -55,11 +55,14 @@ class UIHelper(QMainWindow):
     """
     current_active_widget = None
 
-    def __init__(self, q_app_ref, whun_run, parent=None):
+    def __init__(self, q_app_ref, whun_run, file_names, eval_files, is_oracle_enabled, parent=None):
         super(UIHelper, self).__init__(parent)
 
         self.result_label = QLabel("Result")
         self.q_app_ref = q_app_ref
+        self.file_names = file_names
+        self.eval_files = eval_files
+        self.is_oracle_enabled = is_oracle_enabled
 
         # Main Window
         self.setGeometry(0, 0, 840, 640)
@@ -214,7 +217,7 @@ class UIHelper(QMainWindow):
 
     def run_button_handler(self, whun_run):
         self.update_widget("WAIT_SCREEN")
-        whun_run(['Scrum10k.csv'], ['flight_eval.csv'], False)
+        whun_run(self.file_names, self.eval_files, self.is_oracle_enabled)
 
     def update_result_label(self, result):
         self.result_label.setText(result)
