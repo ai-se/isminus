@@ -200,17 +200,6 @@ class UIHelper(QMainWindow):
         widget_obj.setLayout(layout)
         return widget_obj
 
-    def exec_app_interface(self):
-        """
-            Function: exec_app_interface
-            Description: This function is used to execute the application interface and pass the control to the interface.
-            Inputs:
-                None
-            Outputs:
-                None
-        """
-        self.q_app_ref.exec()
-
     def update_widget(self, next_widget=None):
         if next_widget == "WAIT_SCREEN":
             self.landing_widget.hide()
@@ -224,14 +213,8 @@ class UIHelper(QMainWindow):
             self.current_active_widget = "ITERATION"
 
     def run_button_handler(self, whun_run):
-        # r = Timer(1.0, lambda: self.update_widget("WAIT_SCREEN") )
-        # s = Timer(2.0, whun_run, (['Scrum10k.csv'], ['flight_eval.csv'], False))
-        # r.start()
         self.update_widget("WAIT_SCREEN")
         whun_run(['Scrum10k.csv'], ['flight_eval.csv'], False)
-        # s.start()
-        # self.update_widget("WAIT_SCREEN")
-        # whun_run(['Scrum10k.csv'], ['flight_eval.csv'])
 
     def update_result_label(self, result):
         self.result_label.setText(result)

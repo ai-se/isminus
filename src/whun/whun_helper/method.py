@@ -2,7 +2,6 @@
 # pylint: disable=import-error
 import os
 import sys
-from PyQt5.QtWidgets import QInputDialog
 cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.append(cur_dir)
 import scipy.stats as st
@@ -157,12 +156,6 @@ class Method:
         if processed_value >= 0:
             return processed_value
         return ui_obj.show_options_dialog(east_options, west_options)
-        # text, ok = QInputDialog.getText(ui_obj.wait_widget, 'input dialog', 'Is this ok?')
-        # if ok:
-        #     return 1
-        # else:
-        #     return 0
-        # return 1
 
     def adjust_weights(self, node, picked, q_idx):
         """
