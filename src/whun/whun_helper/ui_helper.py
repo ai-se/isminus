@@ -128,7 +128,7 @@ class UIHelper(QMainWindow):
             Function: prepare_landing_screen
             Description: Function to initialize all the UI components of Landing Screen
             Inputs:
-                -whun_run: It is a method to initiate WHUN algorithm execution
+                -whun_run: Method to initiate WHUN algorithm execution. Will be invoked on clicking run button in GUI
             Output:
                 None
         """
@@ -229,6 +229,14 @@ class UIHelper(QMainWindow):
         return widget_obj
 
     def update_widget(self, next_widget=None):
+        """
+            Function: update_widget
+            Description: Function to change screens based on the flow of the code
+            Inputs:
+                -next_widget: Value of the next screen that needes to be shown
+            Output:
+                None
+        """
         if next_widget == "WAIT_SCREEN":
             self.landing_widget.hide()
             self.result_widget.hide()
@@ -241,13 +249,39 @@ class UIHelper(QMainWindow):
             self.current_active_widget = "ITERATION"
 
     def run_button_handler(self, whun_run):
+        """
+            Function: run_button_handler
+            Description: Function to handle the run button click on GUI
+            Inputs:
+                -whun_run: WHUN method to be invoked on clicking run button in GUI
+            Output:
+                None
+        """
         self.update_widget("WAIT_SCREEN")
         whun_run(self.file_names, self.eval_files, self.is_oracle_enabled)
 
     def update_result_label(self, result):
+        """
+            Function: update_result_label
+            Description: Function to update Result label in the GUI
+            Inputs:
+                -result: String that contains list of prefernces that WHUN has generated based on Human interaction
+            Output:
+                None
+        """
         self.result_label.setText(result)
 
     def show_options_dialog(self, left_branch, right_branch):
+        """
+            Function: show_options_dialog
+            Description: Function to show dialog box to the human inorder for the human to select his preferences
+            Inputs:
+                -left_branch: East branch nodes that contain attributes
+                -right_branch: West branch nodes that contain attributes
+            Output:
+                - 1: Return 1 if the user has selected the attributes of the east branch
+                - 0: Return 0 if the user has selected the attributes of the west branch
+        """
         dlg = CustomDialog(self.central_widget, left_branch, right_branch)
         if dlg.exec():
             return 1
