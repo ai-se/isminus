@@ -121,22 +121,23 @@ def prepare_result_label(method_obj):
 
 
 def whun_run(file_names, eval_files, is_oracle_enabled=True):
-    app = QApplication(sys.argv)
-    app.setApplicationName('WhunWindow')
-    ui_obj = UIHelper(app, init_process)
-    ui_obj.show()
-    sys.exit(app.exec())
+    if not is_oracle_enabled:
+        global ui_obj
+        app = QApplication(sys.argv)
+        app.setApplicationName('WhunWindow')
+        ui_obj = UIHelper(app, init_process, file_names, eval_files, is_oracle_enabled)
+        ui_obj.show()
+        sys.exit(app.exec())
+    else:
+        init_process(['Scrum10k.csv'], ['flight_eval.csv'], is_oracle_enabled)
 
 def init_process(file_names, eval_files, is_oracle_enabled=True):
     for file, e_file in zip(file_names, eval_files):
         main(file, e_file, is_oracle_enabled)
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    app.setApplicationName('WhunWindow')
-    ui_obj = UIHelper(app, init_process)
-    ui_obj.show()
-    sys.exit(app.exec())
+    whun_run(['Scrum10k.csv'], ['flight_eval.csv'], False)
+    # whun_run(['Scrum10k.csv'], ['flight_eval.csv'], True)
 
 
 
