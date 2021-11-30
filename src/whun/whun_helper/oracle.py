@@ -56,6 +56,16 @@ class Oracle:
         return selected
 
     def update_picked_array(self, selected, q_idx, node):
+        """
+            Function: update_picked_array
+            Description: Function to update picked array based on the corresponding attributes that are selected.
+            Inputs:
+                -selected: Value that determines if the east branch is selected or the west branch is selected.
+                -q_idx: List of indices of questions
+                -node: TreeNode
+            Output:
+                -selected : Either 1 or 0 based on the condition if the preference is selected or not.
+        """
         # Update my vector of picked options
         for i in range(min(len(q_idx), 4)):
             if selected and self.picked[q_idx[i]] == 0:
