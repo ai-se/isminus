@@ -74,13 +74,13 @@ class UIHelper(QMainWindow):
         self.landing_widget.show()
         self.wait_widget = self.prepare_wait_screen()
         self.wait_widget.hide()
-        self.iteration_widget = self.prepare_iterations_screen()
-        self.iteration_widget.hide()
+        self.result_widget = self.prepare_results_screen()
+        self.result_widget.hide()
 
         # Layout container for all widgets
         self.layout_for_widget.addWidget(self.landing_widget)
         self.layout_for_widget.addWidget(self.wait_widget)
-        self.layout_for_widget.addWidget(self.iteration_widget)
+        self.layout_for_widget.addWidget(self.result_widget)
 
         # Parent Layout
         self.central_widget.setLayout(self.layout_for_widget)
@@ -89,7 +89,7 @@ class UIHelper(QMainWindow):
         self.setCentralWidget(self.central_widget)
 
         self.landing_widget.show()
-        self.iteration_widget.hide()
+        self.result_widget.hide()
         self.wait_widget.hide()
 
         # Update current widget to Landing Screen
@@ -163,9 +163,9 @@ class UIHelper(QMainWindow):
         widget_obj.setLayout(layout)
         return widget_obj
 
-    def prepare_iterations_screen(self):
+    def prepare_results_screen(self):
         """
-            Function: prepare_iterations_screen
+            Function: prepare_results_screen
             Description: Function to initialize all the UI components of Iteration Screen
             Inputs:
                 None
@@ -203,13 +203,13 @@ class UIHelper(QMainWindow):
     def update_widget(self, next_widget=None):
         if next_widget == "WAIT_SCREEN":
             self.landing_widget.hide()
-            self.iteration_widget.hide()
+            self.result_widget.hide()
             self.wait_widget.show()
             self.current_active_widget = "WAIT_SCREEN"
         elif next_widget == "ITERATION":
             self.landing_widget.hide()
             self.wait_widget.hide()
-            self.iteration_widget.show()
+            self.result_widget.show()
             self.current_active_widget = "ITERATION"
 
     def run_button_handler(self, whun_run):
