@@ -71,6 +71,16 @@ class UIHelper(QMainWindow):
     current_active_widget = None
 
     def __init__(self, q_app_ref, whun_run, file_names, eval_files, is_oracle_enabled, parent=None):
+        """
+            Function: constructor
+            Description: Initializes the class object attributes with initial values
+            Inputs:
+                -q_app_ref: QApplication reference
+                -whun_run: Whun method to be invoked on clicking run button in GUI
+                -parent: Parent widget if any, default value is None
+            Output:
+                None
+        """
         super(UIHelper, self).__init__(parent)
 
         self.result_label = QLabel("Result")
