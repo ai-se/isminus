@@ -10,7 +10,22 @@ from PyQt5.QtGui import *
 
 
 class CustomDialog(QDialog):
+    """
+    This class is used to handle the dialog box that is presented to the Human to choose his preference.
+    """
+
     def __init__(self, center_widget, left_branch, right_branch, parent=None):
+        """
+            Function: constructor
+            Description: Initializes the class object attributes with initial values
+            Inputs:
+                -center_widget: Center Widget instance
+                -left_branch: East branch to show east branch node attributes
+                -right_branch: West branch to show west branch node attributes
+                -parent: Parent widget if any, default value is None
+            Output:
+                None
+        """
         super().__init__(parent)
 
         self.setWindowTitle("WHUN Preference")
