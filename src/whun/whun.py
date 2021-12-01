@@ -129,7 +129,7 @@ def whun_run(file_names, eval_files, is_oracle_enabled=True):
         ui_obj.show()
         sys.exit(app.exec())
     else:
-        init_process(['Scrum10k.csv'], ['flight_eval.csv'], is_oracle_enabled)
+        init_process(file_names, eval_files, is_oracle_enabled)
 
 def init_process(file_names, eval_files, is_oracle_enabled=True):
     for file, e_file in zip(file_names, eval_files):
