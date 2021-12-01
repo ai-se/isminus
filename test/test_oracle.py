@@ -6,6 +6,8 @@ sys.path.append(cur_dir)
 from unittest import TestCase
 from src.whun.whun_helper.oracle import Oracle
 from src.whun.whun_helper.method import Method
+from src.whun.whun_helper.item import Item
+from src.whun.whun_helper.tree_node import TreeNode
 
 
 def test_non_empty_init():
@@ -39,3 +41,24 @@ def test_pick():
                     item.selectedpoints = np.sum(np.multiply(
                         item.item, o.picked)) / np.sum(o.picked) * 100
                 break
+
+def test_update_picked_array():
+    m = Method(cur_dir + "/src/whun/XOMO/Scrum10k.csv", cur_dir + "/src/whun/XOMO/flight_eval.csv", "")
+    o = Oracle(len(m.rank))
+    item1 = Item(
+        [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 1, 0, 0, 0, 0])
+    item2 = Item(
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], [0, 1, 0, 0, 0, 0])
+    east_item = [item1, [1, 2], [3, 4]]
+    west_item = [item2, [1, 2], [3, 4]]
+    node = TreeNode(east_item, west_item, None, None, None)
+    q_idx = [1, 2, 3, 4]
+    t = TestCase()
+    result = o.update_picked_array(1, q_idx, node)
+    t.assertIsNotNone(result)
