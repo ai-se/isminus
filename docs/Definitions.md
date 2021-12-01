@@ -81,7 +81,16 @@ Function: pick
             Output:
                 -selected : Either 1 or 0 based on the condition if the preference is selected or not.
 ```
-
+```
+Function: update_picked_array
+            Description: Function to update picked array based on the corresponding attributes that are selected.
+            Inputs:
+                -selected: Value that determines if the east branch is selected or the west branch is selected.
+                -q_idx: List of indices of questions
+                -node: TreeNode
+            Output:
+                -selected : Either 1 or 0 based on the condition if the preference is selected or not.
+```
 ###Class ranker
 This class is used for the following tasks:
 1. Ranking all the solutions
@@ -218,6 +227,19 @@ This class is used store the sat solver solutions in form of a tree,
             questions: questions specific to this nodes
 ```
 ```
+    Function: process_options
+            Description: Given east and west branch, the method will check if both the branches have valid nodes or not.
+            If one of the branch doesn't have valid nodes it will return the other brancch as selectedd preference.
+            Inputs:
+                -self: method object
+                -left_branch: East Branch
+                -right_branch: West Branch
+            Output:
+                - 0: If east branch doesn't have any valid nodes, we send 0 signifying that west branch needs to be selected.
+                - 1: If west branch doesn't have any valid nodes, we send 1 signifying that east branch needs to be selected.
+                - -1: If both the branches have valid nodes, we send -1 signifying that human needs to select his preference.
+```
+```
     Function: ask_questions
         Description:
         Inputs:
@@ -337,4 +359,92 @@ This class is used for searching the tree
             -path: array
         Output:
             -item: either from the west of the east side
+```
+###Class CustomDialog
+This class is used to handle the dialog box that is presented to the Human to choose his preference.
+
+####Member functions:
+```
+     Function: constructor
+     Description: Initializes the class object attributes with initial values
+            Inputs:
+                -center_widget: Center Widget instance
+                -left_branch: East branch to show east branch node attributes
+                -right_branch: West branch to show west branch node attributes
+                -parent: Parent widget if any, default value is None
+            Output:
+                None
+
+```
+###Class UIHelper
+This class is used to create Graphical User Interface which can be used for human interaction purposes.
+
+####Member functions:
+```
+    Function: constructor
+    Description: Initializes the class object attributes with initial values
+            Inputs:
+                -q_app_ref: QApplication reference
+                -whun_run: Whun method to be invoked on clicking run button in GUI
+                -parent: Parent widget if any, default value is None
+            Output:
+                None
+```
+```
+    Function: prepare_landing_screen
+    Description: Function to initialize all the UI components of Landing Screen
+            Inputs:
+                -whun_run: Method to initiate WHUN algorithm execution. Will be invoked on clicking run button in GUI
+            Output:
+                None
+```
+```
+    Function: prepare_wait_screen
+    Description: Function to initialize all the UI components of Wait/Processing Screen
+            Inputs:
+                None
+            Output:
+                None
+```
+```
+    Function: prepare_results_screen
+    Description: Function to initialize all the UI components of Iteration Screen
+            Inputs:
+                None
+            Output:
+                None
+```
+```
+    Function: update_widget
+    Description: Function to change screens based on the flow of the code
+            Inputs:
+                -next_widget: Value of the next screen that needes to be shown
+            Output:
+                None
+```
+```
+    Function: run_button_handler
+    Description: Function to handle the run button click on GUI
+            Inputs:
+                -whun_run: WHUN method to be invoked on clicking run button in GUI
+            Output:
+                None
+```
+```
+    Function: update_result_label
+    Description: Function to update Result label in the GUI
+            Inputs:
+                -result: String that contains list of prefernces that WHUN has generated based on Human interaction
+            Output:
+                None
+```
+```
+    Function: show_options_dialog
+    Description: Function to show dialog box to the human inorder for the human to select his preferences
+            Inputs:
+                -left_branch: East branch nodes that contain attributes
+                -right_branch: West branch nodes that contain attributes
+            Output:
+                - 1: Return 1 if the user has selected the attributes of the east branch
+                - 0: Return 0 if the user has selected the attributes of the west branch
 ```
