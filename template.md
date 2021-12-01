@@ -4,9 +4,14 @@
 [ENHANCEMENT REQUEST](#enhancement-request)
 
 ## BUG REPORT
-### Title Name
-- Please include **FEATURE-BRANCH-SE2021-ISSUE** in the title <br/>
-- Format of the title should be  **_FEATURE-BRANCH-SE2021-ISSUE: Description of the bug_**
+### Name
+- Provide your full name
+
+### Email
+- Provide your email id
+
+### Short Title
+- Please include a short title for the bug<br/>
 
 ### Description
 - Give the description of the issue to identify the problem
@@ -24,10 +29,24 @@
 - Operating System 
 - OS version
 
+### Severity
+- Select a severity level for the bug from {High, Medium, Low}
+
+### Date
+- Date when the issue was first seen
+
+### When did it work last?
+- Last date when the application worked without any issues
+
 ## ENHANCEMENT REQUEST
-### Title Name
-- Please include **FEATURE-BRANCH-SE2021-ENHANCEMENT** in the title <br/>
-- Format of the title should be  **_FEATURE-BRANCH-SE2021-ENHANCEMENT: Description of the enhancement_**
+### Name
+- Provide your full name
+
+### Email
+- Provide your email id
+
+### Short Title
+- Please include a short title for the bug<br/>
 
 ### Description
 - Give the description of the enhancement to identify the problem
@@ -38,3 +57,12 @@
 - Provide the actual behaviour 
 - Provide the expected behavior
 - Instances for the enhancement
+
+### Severity
+- Select a severity level for this enhancement request from {High, Medium, Low}
+
+### Date
+- Date when the issue was first seen
+
+### When did it work last?
+- Last date when the application worked without any issues
