@@ -37,6 +37,7 @@ Before you create a new issue,
 
 Please follow [the required template](https://github.com/ai-se/whun/blob/feature-se2021/template.md) to report a bug
 For reporting bug, please follow the below guidelines
+- Go to [the google form](https://forms.gle/p265qYXY1A3Y6nHFA)
 - Please include a short title to describe the issue to identify the problem<br/>
 - Describe the issue in detail and provide all relevant information.
 - Describe the exact steps that reproduced problem in a detailed way
@@ -53,7 +54,8 @@ For reporting bug, please follow the below guidelines
 If you have a new feature request, create a new issue using the guidelines below.
 For creating any enhancement report,please fill out [the required template](https://github.com/ai-se/whun/blob/feature-se2021/template.md)
 
-- PPlease include a short title to describe the enhancement request<br/>
+- Go to [the google form](https://forms.gle/p265qYXY1A3Y6nHFA)
+- Please include a short title to describe the enhancement request<br/>
 - Provide a detailed description of the enhancement.
 - Highlight the expected outcomes so that the feature is easily understandable.
 - Provide specific examples to explain the enhancement. 
