@@ -33,19 +33,15 @@ For creating any bug report,please fill out [the required template](https://gith
 
 Before you create a new issue, 
 - Debug the code using [debugger](https://atom.io/packages/ide-python) 
-- Please do a search in open [issues](https://github.com/ai-se/whun/issues) to see if the issue or feature request <br/>
-  has already been filed.<br>
-- If you cannot find an existing issue that describes your bug or feature, create a new issue using the guidelines below
+- Please collect all the information required to describe the bug
 
 Please follow [the required template](https://github.com/ai-se/whun/blob/feature-se2021/template.md) to report a bug
 For reporting bug, please follow the below guidelines
-- Please include **FEATURE-BRANCH-SE2021-ISSUE** in the title and give the description of the issue to identify the problem<br/>
-  Example for Issue Name : FEATURE-BRANCH-SE2021-ISSUE:description of the issue
+- Please include a short title to describe the issue to identify the problem<br/>
 - Describe the issue in detail and provide all relevant information.
 - Describe the exact steps that reproduced problem in a detailed way
-- Include screenshots and animated GIFs which show you following the described steps and clearly demonstrate the problem. 
 - Provide specific examples to explain the issue.
-- If the problem is related to performance or memory, include supporting screenshots such as CPU usage.
+- If the problem is related to performance or memory, include details such as CPU usage.
 
 #### Additional Information
 - Please provide the additional context that helps us in reproducing the bug
@@ -54,13 +50,10 @@ For reporting bug, please follow the below guidelines
 
 ### ENHANCEMENT SUGGESTIONS
 
-Before you suggest a new enhancement, please do a search in open enhancements to see if there is a request that has<br/>
-already been filed.<br>
-If you cannot find an existing enhancement that describes your feature, create a new issue using the guidelines below.
+If you have a new feature request, create a new issue using the guidelines below.
 For creating any enhancement report,please fill out [the required template](https://github.com/ai-se/whun/blob/feature-se2021/template.md)
 
-- Please include **FEATURE-BRANCH-SE2021-ENHANCEMENT** in the title and then give the description of the enhancement <br/>
-  Example for Issue Name : FEATURE-BRANCH-SE2021-ENHANCEMENT:description of the enhancement
+- PPlease include a short title to describe the enhancement request<br/>
 - Provide a detailed description of the enhancement.
 - Highlight the expected outcomes so that the feature is easily understandable.
 - Provide specific examples to explain the enhancement. 
