@@ -86,7 +86,7 @@ def main(file_name, eval_file, is_oracle_enabled):
                 t.append(time.time() - start_time)
                 break
         if not is_oracle_enabled:
-            result_label = prepare_result_label(m)
+            result_label = prepare_result_label(m, best)
             ui_obj.update_result_label(result_label)
             ui_obj.update_widget("ITERATION")
 
@@ -109,10 +109,10 @@ def main(file_name, eval_file, is_oracle_enabled):
     df.to_csv(cur_dir + '/' + 'Scores/Score' + file_name)
 
 
-def prepare_result_label(method_obj):
+def prepare_result_label(method_obj, best_solution):
     result_label = ""
-    for i in range(len(picked_array)):
-        if picked_array[i] == 1:
+    for i in range(len(best_solution.item)):
+        if best_solution.item[i] == 1:
             if not len(result_label) == 0:
                 result_label+= "-> " + method_obj.questions[i] + "\n"
             else:
