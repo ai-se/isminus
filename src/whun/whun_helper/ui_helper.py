@@ -92,7 +92,7 @@ class UIHelper(QMainWindow):
         self.is_oracle_enabled = is_oracle_enabled
 
         # Main Window
-        self.setGeometry(0, 0, 1600, 1200)
+        self.setGeometry(0, 0, 1600, 800)
         self.setWindowTitle("WHUN")
 
         # Central Widget
@@ -139,7 +139,7 @@ class UIHelper(QMainWindow):
 
         # Widget properties initialization
         # self.wid1.setStyleSheet("""background: black;""")
-        widget_obj.setGeometry(0, 0, 1600, 1200)
+        widget_obj.setGeometry(0, 0, 1600, 800)
 
         # Layout Creation
         layout = QVBoxLayout()
@@ -176,7 +176,7 @@ class UIHelper(QMainWindow):
 
         # Widget properties initialization
         # self.wid1.setStyleSheet("""background: black;""")
-        widget_obj.setGeometry(0, 0, 1600, 1200)
+        widget_obj.setGeometry(0, 0, 1600, 800)
 
         # Layout Creation
         layout = QVBoxLayout()
@@ -205,7 +205,7 @@ class UIHelper(QMainWindow):
         # Widget creation
 
         widget_obj = QtWidgets.QWidget()
-        widget_obj.setGeometry(0, 0, 1600 , 1200)
+        widget_obj.setGeometry(0, 0, 1600 , 800)
 
         layout = QtWidgets.QHBoxLayout(widget_obj)
 
@@ -213,7 +213,7 @@ class UIHelper(QMainWindow):
         layout.addWidget(scrollArea)
 
         scrollAreaWidgetContents = QtWidgets.QWidget()
-        scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1600, 1200))
+        scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1600, 2000))
 
         scrollArea.setWidget(scrollAreaWidgetContents)
 
