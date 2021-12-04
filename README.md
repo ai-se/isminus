@@ -151,7 +151,17 @@ coverage run --source=./src/whun/whun_helper,./src/whun/utils --omit=./src/whun/
 # Run this to see the coverage in html format with line by line details of each file
 coverage run --source=./src/whun/whun_helper,./src/whun/utils --omit=./src/whun/whun_helper/ui_helper.py -m pytest && coverage html
 ```
-
+### **Steps to create WHUN Package**
+```
+python3 -m build
+python3 -m twine upload --repository testpypi dist/*
+pip install -i https://test.pypi.org/simple/ whun
+```
+### **Steps to use WHUN Package**
+```
+from whun import whun
+whun.whun_run(['flight_bin.csv'],['flight_eval.csv'])
+```
 ### **GUI for Human Interaction**
 Inorder to run WHUN with human interaction you need to execute the "whun_run" method with the required file name attributes and "is_oracle_method" flag as False.
 
