@@ -125,6 +125,16 @@ coverage run --source=./src/whun/whun_helper,./src/whun/utils --omit=./src/whun/
 coverage run --source=./src/whun/whun_helper,./src/whun/utils --omit=./src/whun/whun_helper/ui_helper.py -m pytest && coverage html
 ```
 
+### **GUI for Human Interaction**
+Inorder to run WHUN with human interaction you need to execute the "whun_run" method with the required file name attributes and "is_oracle_method" flag as False.
+
+When the whun_run method executes it will open a window with user interface. User can proceed using the GUI to run WHUN and choose his/her preferences accordingly.
+
+Below is a sample snippet on how to execute the whun_run method.
+```
+whun_run(['Scrum10k.csv'], ['flight_eval.csv'], False)
+```
+
 ### **Potential Users**
 WHUN algorithm is meant to be a substitute for existing iSBSE algorithms which are not as effective as WHUN algorithm.
 Therefore, WHUN can be used in any large product lines that need effective and efficient iSBSE products.
