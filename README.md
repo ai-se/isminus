@@ -34,15 +34,42 @@ Code Refactoring :
 1. Code Modularization to remove tight coupling.
 2. Removal of unused packages
 3. Made hardcoded variables configurable
-4. Static code analyser report before and after code refactoring 
+4. Static code analyser report before and after code refactoring
 
+Packaging :
+
+1. Created a python package out of whun called as "whun" which can be downloaded using pipy.
+2. This package can be used to wun whun by calling whun_run method with appropriate arguments.
+3. Example command to run whun_run: whun_run(['Scrum10k.csv'], ['flight_eval.csv'])
+
+Unit Testing:
+
+1. Added unit test cases for all the method of helper classes.
+2. Code coverage increased to 85%.
+
+CI Pipeline:
+
+1. Integrated whun with Travis.
+
+GUI Support For Human Interaction:
+
+1. Created support for human interaction using system based User Interface.
+2. Implemented GUI using PyQT5.
+3. Provided support to run whun with human interaction or with oracle.
+
+Bug Reporting
+
+1. Integrated with google forms and zapier for service reporting.
+2. A user can report bugs using the google form which would create a bug in the jira board.
+3. Google Form Link: https://forms.gle/p265qYXY1A3Y6nHFA
+
+Flight Model To Scrum
+
+1. Migrated from flight model to scrum model.
 ### **Future work on WHUN**
 
-1.) Adding test suite<br />
-2.) Packaging - pip install whun<br />
-3.) Currently human interaction in WHUN is automated using Oracle. Oracle is presented with the questions and it randomly chooses the human preference. We plan to replace Oracle with actual human interaction, We will provide a user interface which will take the human preference from User. Moreover, based on user preference UI will show possible solutions.<br />
-4.) Visual repreentation of the whun product line.<br />
-5.) Testing model with human inputs
+1. Update python package to support GUI Human Interaction.
+2. Identifying the relationship among features in order to sequence the question.
 
 ## **Developer Guide**
 
@@ -140,7 +167,9 @@ WHUN algorithm is meant to be a substitute for existing iSBSE algorithms which a
 Therefore, WHUN can be used in any large product lines that need effective and efficient iSBSE products.
 
 ### **Version Release Timeline**
-  Release v1.0.1 on 10/30/2021
+Release v1.0.1 on 09/30/2021<br/>
+Release v2.0.1 on 11/04/2021<br/>
+Release v3.0.1 on 12/04/2021
 
 ### **Group 37 Details:**
 
@@ -169,6 +198,13 @@ Therefore, WHUN can be used in any large product lines that need effective and e
 4. Short releases
 5. No regression rule
 6. Short Video
+
+### Release 3.0
+1. GUI for Human Interaction support
+2. Fixing test cases and maintaining code coverage
+3. Service reporting
+4. Migrated flight model to scrum model
+5. Created a demo video with UI interaction
 
 ### **References**
 ** Authors for [Preference Discovery in Large Product Lines](https://arxiv.org/pdf/2106.03792.pdf "Preference Discovery in Large Product Lines") : Andre Lustosa, Tim Menzies
