@@ -110,6 +110,21 @@ To install autopep8 in the virtual environment, run the following command in the
 pip install --upgrade  autopep8
 ```
 
+### **Unit Testing**
+Every time a method is being changed or a new method is being added, we need to write Unit test cases inorder to maintain the code coverage and to follow best practices.
+We have a folder called as test in the root directory where we have a python test file for each class we have created.
+Each test file will have test methods testing different methods of the class that test file belongs to.
+If you want to add a new test file for new class then create a file inside test folder whose name should start with a suffix "test_".
+If you want to add a new test method for new method in class then create a new method inside test file whose name should start with a suffix "test_".
+TO check the current coverage run the below commands in the terminal in the root folder.
+```
+python3
+# Run this to see the coverage in command line
+coverage run --source=./src/whun/whun_helper,./src/whun/utils --omit=./src/whun/whun_helper/ui_helper.py -m pytest && coverage report
+# Run this to see the coverage in html format with line by line details of each file
+coverage run --source=./src/whun/whun_helper,./src/whun/utils --omit=./src/whun/whun_helper/ui_helper.py -m pytest && coverage html
+```
+
 ### **Potential Users**
 WHUN algorithm is meant to be a substitute for existing iSBSE algorithms which are not as effective as WHUN algorithm.
 Therefore, WHUN can be used in any large product lines that need effective and efficient iSBSE products.
