@@ -2,6 +2,8 @@
 import os
 import sys
 
+from PyQt5 import QtWidgets, QtCore
+
 cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.append(cur_dir)
 from PyQt5.QtWidgets import *
@@ -90,7 +92,7 @@ class UIHelper(QMainWindow):
         self.is_oracle_enabled = is_oracle_enabled
 
         # Main Window
-        self.setGeometry(0, 0, 840, 640)
+        self.setGeometry(0, 0, 1600, 1200)
         self.setWindowTitle("WHUN")
 
         # Central Widget
@@ -137,7 +139,7 @@ class UIHelper(QMainWindow):
 
         # Widget properties initialization
         # self.wid1.setStyleSheet("""background: black;""")
-        widget_obj.setGeometry(0, 0, 840, 640)
+        widget_obj.setGeometry(0, 0, 1600, 1200)
 
         # Layout Creation
         layout = QVBoxLayout()
@@ -174,7 +176,7 @@ class UIHelper(QMainWindow):
 
         # Widget properties initialization
         # self.wid1.setStyleSheet("""background: black;""")
-        widget_obj.setGeometry(0, 0, 840, 640)
+        widget_obj.setGeometry(0, 0, 1600, 1200)
 
         # Layout Creation
         layout = QVBoxLayout()
@@ -201,19 +203,29 @@ class UIHelper(QMainWindow):
                 None
         """
         # Widget creation
-        widget_obj = QWidget()
 
-        # Widget properties initialization
-        # self.wid1.setStyleSheet("""background: black;""")
-        widget_obj.setGeometry(0, 0, 840, 640)
+        widget_obj = QtWidgets.QWidget()
+        widget_obj.setGeometry(0, 0, 1600 , 1200)
+
+        layout = QtWidgets.QHBoxLayout(widget_obj)
+
+        scrollArea = QtWidgets.QScrollArea(widget_obj)
+        layout.addWidget(scrollArea)
+
+        scrollAreaWidgetContents = QtWidgets.QWidget()
+        scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1600, 1200))
+
+        scrollArea.setWidget(scrollAreaWidgetContents)
+
+        layout = QtWidgets.QHBoxLayout(scrollAreaWidgetContents)
 
         # Layout Creation
-        layout = QVBoxLayout()
+        # layout = QVBoxLayout()
 
         # Header Label Creation
         header_label = QLabel()
         header_label.setText("Thanks for using WHUN! Below is the result that WHUN has come up with based on your preferences")
-        header_label.setAlignment(Qt.AlignCenter)
+        header_label.setAlignment(Qt.AlignTop)
         header_label.setFont(QFont('Arial', 25))
         header_label.setWordWrap(True)
 
