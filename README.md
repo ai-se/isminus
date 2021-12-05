@@ -1,3 +1,5 @@
+Demo for 3rd Iteration: [![DEMO Video for 3rd Iteration](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://youtu.be/FWYoTp2SbPk)
+
 [![GitHub license](https://img.shields.io/github/license/ai-se/whun)](https://github.com/ai-se/whun/blob/main/LICENSE) 
 [![GitHub issues](https://img.shields.io/github/issues/ai-se/whun)](https://github.com/ai-se/whun/issues)
 [![arXiv](https://img.shields.io/badge/arXiv-2106.03792-orange.svg)](https://arxiv.org/abs/2106.03792)
@@ -18,9 +20,7 @@ too many overly elaborate questions.WHUN is an iSBSE algorithm that avoids that 
 After Second release:
 https://app.animaker.com/video/VOSL7A6ONJOVJSG3
 
-Demo for 3rd Iteration:
 
-[![DEMO Video for 3rd Iteration](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://youtu.be/FWYoTp2SbPk)
 
 ### **WHUN Algorithm**
 
