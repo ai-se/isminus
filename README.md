@@ -1,4 +1,4 @@
-Demo for 3rd Iteration: [![DEMO Video for 3rd Iteration](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://youtu.be/FWYoTp2SbPk)
+[[DEMO Video for 3rd Iteration]](https://youtu.be/FWYoTp2SbPk)
 
 [![GitHub license](https://img.shields.io/github/license/ai-se/whun)](https://github.com/ai-se/whun/blob/main/LICENSE) 
 [![GitHub issues](https://img.shields.io/github/issues/ai-se/whun)](https://github.com/ai-se/whun/issues)
