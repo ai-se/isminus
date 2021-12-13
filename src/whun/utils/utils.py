@@ -82,3 +82,17 @@ def sway(items, enough):
     root.east_id = east_node.id
     root.west_id = west_node.id
     return root
+
+
+def semi_supervised_optimizer(items, enough):
+    if len(items) < enough:
+        return items
+    d1, d2 = [], []
+    west, east, west_items, east_items = split_bin(items, 10)
+    if west is not None:
+        if east is None or west[0].better(east[0]):
+            d1 = semi_supervised_optimizer(west_items, enough)
+    if east is not None:
+        if west is None or east[0].better(west[0]):
+            d2 = semi_supervised_optimizer(east_items, enough)
+    return d1 + d2

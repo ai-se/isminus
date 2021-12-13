@@ -6,12 +6,14 @@ import time
 from datetime import datetime
 import numpy as np
 import pandas as pd
+import math
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(cur_dir)
 from config import configparams as cfg
 from whun_helper.method import Method
 from whun_helper.oracle import Oracle
 from whun_helper.ui_helper import UIHelper
+from src.whun.utils.utils import semi_supervised_optimizer
 from PyQt5.QtWidgets import *
 
 random.seed(datetime.now())
@@ -69,7 +71,11 @@ def main(file_name, eval_file, is_oracle_enabled):
                 for item in solutions:
                     item.selectedpoints = np.sum(np.multiply(
                         item.item, o.picked)) / np.sum(o.picked) * 100
-                best = m.pick_best(solutions)
+                final_solutions = semi_supervised_optimizer(
+                    solutions, int(math.sqrt(len(solutions))))
+                best = m.pick_best(final_solutions)
+                # best = m.pick_best(solutions)
+                random_s = random.choice(solutions)
                 print("Found a solution.")
                 a.append(asked)
                 p.append(np.sum(o.picked))
@@ -79,44 +85,71 @@ def main(file_name, eval_file, is_oracle_enabled):
                 #u.append(best.defects)
                 #x.append(best.months)
                 #e.append(best.zitler_rank / 20000)
-                total_cost.append(best.totalcost)
-                known_defects.append(best.knowndefects)
-                features_used.append(best.featuresused)
-                scores.append(best.score)
+                #total_cost.append(best.totalcost)
+                #known_defects.append(best.knowndefects)
+                #features_used.append(best.featuresused)
+                #scores.append(best.score)
                 t.append(time.time() - start_time)
                 break
         if not is_oracle_enabled:
-            result_label = prepare_result_label(m, best)
-            ui_obj.update_result_label(result_label)
-            ui_obj.update_widget("ITERATION")
+            if(best != None):
+                result_label = prepare_result_label(m, best, random_s)
+                ui_obj.update_result_label(result_label)
+                ui_obj.update_widget("ITERATION")
 
-    df = pd.DataFrame(
-        {
-            'Asked': a,
-            'User Picked': p,
-            # 'Effort': c,
-            'Total Cost': total_cost,
-            'Selected Points': s,
-            'Known Defects': known_defects,
-            #'Risk': d,
-            # 'Defects': u,
-            #'Months': x,
-            'Features Used': features_used,
-            'Score': scores,
-            # 'Pure Score': e,
-            'Time': t
-        }).T
-    df.to_csv(cur_dir + '/' + 'Scores/Score' + file_name)
+    # df = pd.DataFrame(
+    #     {
+    #         'Asked': a,
+    #         'User Picked': p,
+    #         # 'Effort': c,
+    #         'Total Cost': total_cost,
+    #         'Selected Points': s,
+    #         'Known Defects': known_defects,
+    #         #'Risk': d,
+    #         # 'Defects': u,
+    #         #'Months': x,
+    #         'Features Used': features_used,
+    #         'Score': scores,
+    #         # 'Pure Score': e,
+    #         'Time': t
+    #     }).T
+    # df.to_csv(cur_dir + '/' + 'Scores/Score' + file_name)
 
 
-def prepare_result_label(method_obj, best_solution):
-    result_label = ""
-    for i in range(len(best_solution.item)):
-        if best_solution.item[i] == 1:
-            if not len(result_label) == 0:
-                result_label+= "-> " + method_obj.questions[i] + "\n"
-            else:
-                result_label = "-> " + method_obj.questions[i] + "\n"
+def prepare_result_label(method_obj, best_solution, random_solution):
+    
+    result_label = "Solution 1:\n"
+    t_variable = 0	# 0 or 1
+    if t_variable == 0:
+        for i in range(len(best_solution.item)):
+            if best_solution.item[i] == 1:
+                if not len(result_label) == 0:
+                    result_label+= "-> " + method_obj.questions[i] + "\n"
+                else:
+                    result_label = "-> " + method_obj.questions[i] + "\n"
+    else:
+        for i in range(len(random_solution.item)):
+            if random_solution.item[i] == 1:
+                if not len(result_label) == 0:
+                    result_label+= "-> " + method_obj.questions[i] + "\n"
+                else:
+                    result_label = "-> " + method_obj.questions[i] + "\n"
+    
+    result_label += "Solution 2:\n"
+    if t_variable == 1:
+        for i in range(len(best_solution.item)):
+            if best_solution.item[i] == 1:
+                if not len(result_label) == 0:
+                    result_label+= "-> " + method_obj.questions[i] + "\n"
+                else:
+                    result_label = "-> " + method_obj.questions[i] + "\n"
+    else:
+        for i in range(len(random_solution.item)):
+            if random_solution.item[i] == 1:
+                if not len(result_label) == 0:
+                    result_label+= "-> " + method_obj.questions[i] + "\n"
+                else:
+                    result_label = "-> " + method_obj.questions[i] + "\n"
     return result_label
 
 
@@ -136,7 +169,7 @@ def init_process(file_names, eval_files, is_oracle_enabled=True):
         main(file, e_file, is_oracle_enabled)
 
 if __name__ == "__main__":
-    whun_run(['Scrum10k.csv'], ['flight_eval.csv'], False)
+    whun_run(['pom3a_bin.csv'], ['pom3a_eval.csv'], False)
     # whun_run(['Scrum10k.csv'], ['flight_eval.csv'], True)
 
 

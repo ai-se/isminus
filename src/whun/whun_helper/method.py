@@ -285,16 +285,25 @@ class Method:
         Output:
             solution:
         """
-        sumsq = lambda *args: sum([i ** 2 for i in args])
+        # sumsq = lambda *args: sum([i ** 2 for i in args])
         all_items = Search.get_all_leaves(self.tree)
-        scores = list(
-            map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused,
-                                cfg.whunparams["HUMAN_WEIGHT"] * (100 - x.selectedpoints))
-                , solutions))
-        total_scores = list(map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused,
-                                                cfg.whunparams["HUMAN_WEIGHT"] * (100 -
-                                                                                  x.selectedpoints))
-                                , all_items))
-        minimizer = np.argmin(scores)
-        solutions[minimizer].score = st.percentileofscore(total_scores, scores[minimizer])
-        return solutions[minimizer]
+        # scores = list(
+        #     map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused,
+        #                         cfg.whunparams["HUMAN_WEIGHT"] * (100 - x.selectedpoints))
+        #         , solutions))
+        # total_scores = list(map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused,
+        #                                         cfg.whunparams["HUMAN_WEIGHT"] * (100 -
+        #                                                                           x.selectedpoints))
+        #                         , all_items))
+        # minimizer = np.argmin(scores)
+        # solutions[minimizer].score = st.percentileofscore(total_scores, scores[minimizer])
+        # return solutions[minimizer]
+        solutions.sort()
+        all_items.sort()
+        best = solutions[0]
+        best.score = 1
+        for index, item in enumerate(all_items):
+            if best == item:
+                best.score = index/float(len(all_items))
+
+        return best

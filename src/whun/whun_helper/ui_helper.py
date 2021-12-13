@@ -213,7 +213,7 @@ class UIHelper(QMainWindow):
         layout.addWidget(scrollArea)
 
         scrollAreaWidgetContents = QtWidgets.QWidget()
-        scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1600, 2000))
+        scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 1600, 3000))
 
         scrollArea.setWidget(scrollAreaWidgetContents)
 
@@ -224,7 +224,7 @@ class UIHelper(QMainWindow):
 
         # Header Label Creation
         header_label = QLabel()
-        header_label.setText("Thanks for using WHUN! Below is the result that WHUN has come up with based on your preferences")
+        header_label.setText("Thanks for using WHUN! To the right are two results that WHUN has come up with based on your preferences. Please rate the quality of each solution with respect to your requirements between 0 and 5\n(0 being the worst, 5 being the best).")
         header_label.setAlignment(Qt.AlignTop)
         header_label.setFont(QFont('Arial', 25))
         header_label.setWordWrap(True)

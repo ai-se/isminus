@@ -6,6 +6,7 @@ cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.pat
 sys.path.append(cur_dir)
 import math
 import secrets
+import random
 import numpy as np
 from src.whun.config import configparams as cfg
 
@@ -21,9 +22,9 @@ class Item:
     min_known = math.inf
     max_featuresused = -math.inf
     min_featuresused = math.inf
-    costs = [secrets.randbelow(10) for _ in range(cfg.whunparams["NUM_FEATURES"])]
-    defective = [bool(secrets.randbelow(2)) for _ in range(cfg.whunparams["NUM_FEATURES"])]
-    used = [bool(secrets.randbelow(2)) for _ in range(cfg.whunparams["NUM_FEATURES"])]
+    # costs = [secrets.randbelow(10) for _ in range(cfg.whunparams["NUM_FEATURES"])]
+    # defective = [bool(secrets.randbelow(2)) for _ in range(cfg.whunparams["NUM_FEATURES"])]
+    # used = [bool(secrets.randbelow(2)) for _ in range(cfg.whunparams["NUM_FEATURES"])]
 
     def __init__(self, item, eval):
         """
@@ -40,14 +41,37 @@ class Item:
         self.score = 0
         self.features = sum(item)
         self.selectedpoints = 0
-        self.totalcost = sum(np.multiply(item, self.costs))
-        self.knowndefects = sum(np.multiply(item, self.defective))
-        self.featuresused = sum(np.multiply(item, self.used))
-        # self.risk = eval[0]
-        # self.effort = eval[1]
-        # self.defects = eval[2]
-        # self.months = eval[3]
-        # self.zitler_rank = eval[4]
+        # self.totalcost = sum(np.multiply(item, self.costs))
+        # self.knowndefects = sum(np.multiply(item, self.defective))
+        # self.featuresused = sum(np.multiply(item, self.used))
+        self.completion = eval[0]
+        self.idle = eval[1]
+        self.cost = eval[2]
+
+    def better(self, other):
+        east_cols = [self.idle, self.cost, self.completion,
+                     self.selectedpoints/100]
+        west_cols = [other.idle, other.cost, other.completion,
+                     other.selectedpoints/100]
+        s1, s2, n = 0, 0, len(east_cols)
+        i = 0
+        for e_col, b_col in zip(east_cols, west_cols):
+            a = e_col
+            b = b_col
+            if i >= n-2:
+                s1 -= math.e**(1 * (a - b) / n)
+                s2 -= math.e**(1 * (b - a) / n)
+            else:
+                s1 -= math.e**(-1 * (a - b) / n)
+                s2 -= math.e**(-1 * (b - a) / n)
+            i += 1
+        return s1 / n < s2 / n
+
+    #def __eq__(self, other):
+    #    return self.item == other.item
+
+    def __lt__(self, other):
+        return self.better(other)
 
     @staticmethod
     def calc_staticfeatures(items):
