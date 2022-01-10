@@ -1,0 +1,38 @@
+text,sentence
+cult<25,Less than 25% of the requirements can change
+25<cult<50,Between 25% and 50% of the requirements can change
+50<cult<75,Between 50% and 75% of the requirements can change
+75<cult,More than 75(%) of the requirements can change
+crit<25,Cost effect of less than 1 times on requirements for safety critical systems
+25<crit<50,Cost effect between 1.1 and 1.15 on requirements for safety critical systems
+50<crit<75,Cost effect between 1.15 and 1.2 on requirements for safety critical systems
+75<crit,Cost effect of more than 1.2 times on requirements for safety critical systems
+crit_mod<25,Criticality modifier affects less than 4% of the teams
+25<crit_mod<50,Criticality modifier affects between 4% and 6% of the teams
+50<crit_mod<75,Criticality modifier affects between 6% and 8% of the teams
+75<crit_mod,Criticality modifier affects less than 8% of the teams
+prev_known<25,Less than 45% of the requirements are known from the beginning
+25<prev_known<50,Between 45% and 55% of the requirements are known from the beginning
+50<prev_known<75,Between 55% and 65% of the requirements are known from the beginning
+75<prev_known,More than 65(%) of the requirements are known from the beginning
+inter_d<25,Less than 25% of the requirements have inter dependencies with other teams
+25<inter_d<50,Between 25% and 50% of the requirements have inter dependencies with other teams
+50<inter_d<75,Between 50% and 75% of the requirements have inter dependencies with other teams
+75<inter_d,More than 75(%) of the requirements have inter dependencies with other teams
+dynamism<25,New requirements appear less than 12.5% of the time
+25<dynamism<50,New requirements appear between 15% and 25% of the time
+50<dynamism<75,New requirements appear between 25% and 32.5% of the time
+75<dynamism,New requirements appear more than 32.5% of the time
+size<25,Less than 45 requirements at project start
+25<size<50,Between 45 and 70 requirements at project start
+50<size<75,Between 70 and 85 requirements at project start
+75<size,More than 85 requirements at project start
+plan_1,Prioritization Strategy: Cost Ascending;
+plan_2,Prioritization Strategy: Value Ascending;
+plan_3,Prioritization Strategy: Value Descending;
+plan_4,Prioritization Strategy: Cost/Value Ascending;
+t_size<25,Less than 11 people on each team
+25<t_size<50,Between 11 and 22 people on each team
+50<t_size<75,Between 22 and 33 people on each team
+75<t_size,More than 33 people on each team
+

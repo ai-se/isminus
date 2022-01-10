@@ -1,0 +1,24 @@
+dist: bionic
+branches:
+  only:
+  - feature-se2021
+language: python
+python:
+ - "3.7"
+ - "3.8"
+ - "3.9"
+install:
+  - pip install -r requirements.txt
+#Run Tests
+script:
+  - coverage run --source=./src/whun/whun_helper,./src/whun/utils --omit=./src/whun/whun_helper/ui_helper.py -m pytest && coverage report
+after_success:
+  - coveralls
+notifications:
+  email:
+    recipients:
+      - jpatel33@ncsu.edu
+      - vmalapa@ncsu.edu
+      - vkona@ncsu.edu
+      - agangar@ncsu.edu
+      - swaghe@ncsu.edu
