@@ -13,7 +13,7 @@ from config import configparams as cfg
 from whun_helper.method import Method
 from whun_helper.oracle import Oracle
 from whun_helper.ui_helper import UIHelper
-from src.whun.utils.utils import semi_supervised_optimizer
+from src.sneak.utils.utils import semi_supervised_optimizer
 from PyQt5.QtWidgets import *
 
 random.seed(datetime.now())
@@ -85,10 +85,10 @@ def main(file_name, eval_file, is_oracle_enabled):
                 #u.append(best.defects)
                 #x.append(best.months)
                 #e.append(best.zitler_rank / 20000)
-                #total_cost.append(best.totalcost)
-                #known_defects.append(best.knowndefects)
-                #features_used.append(best.featuresused)
-                #scores.append(best.score)
+                total_cost.append(best.totalcost)
+                known_defects.append(best.knowndefects)
+                features_used.append(best.featuresused)
+                scores.append(best.score)
                 t.append(time.time() - start_time)
                 break
         if not is_oracle_enabled:
@@ -97,23 +97,23 @@ def main(file_name, eval_file, is_oracle_enabled):
                 ui_obj.update_result_label(result_label)
                 ui_obj.update_widget("ITERATION")
 
-    # df = pd.DataFrame(
-    #     {
-    #         'Asked': a,
-    #         'User Picked': p,
-    #         # 'Effort': c,
-    #         'Total Cost': total_cost,
-    #         'Selected Points': s,
-    #         'Known Defects': known_defects,
-    #         #'Risk': d,
-    #         # 'Defects': u,
-    #         #'Months': x,
-    #         'Features Used': features_used,
-    #         'Score': scores,
-    #         # 'Pure Score': e,
-    #         'Time': t
-    #     }).T
-    # df.to_csv(cur_dir + '/' + 'Scores/Score' + file_name)
+    df = pd.DataFrame(
+        {
+            'Asked': a,
+            'User Picked': p,
+            # 'Effort': c,
+            'Total Cost': total_cost,
+            'Selected Points': s,
+            'Known Defects': known_defects,
+            #'Risk': d,
+            # 'Defects': u,
+            #'Months': x,
+            'Features Used': features_used,
+            'Score': scores,
+            # 'Pure Score': e,
+            'Time': t
+        }).T
+    df.to_csv(cur_dir + '/' + 'Scores/Score' + file_name)
 
 
 def prepare_result_label(method_obj, best_solution, random_solution):
@@ -153,11 +153,11 @@ def prepare_result_label(method_obj, best_solution, random_solution):
     return result_label
 
 
-def whun_run(file_names, eval_files, is_oracle_enabled=True):
+def sneak_run(file_names, eval_files, is_oracle_enabled=True):
     if not is_oracle_enabled:
         global ui_obj
         app = QApplication(sys.argv)
-        app.setApplicationName('WhunWindow')
+        app.setApplicationName('SneakWindow')
         ui_obj = UIHelper(app, init_process, file_names, eval_files, is_oracle_enabled)
         ui_obj.show()
         sys.exit(app.exec())
@@ -169,8 +169,8 @@ def init_process(file_names, eval_files, is_oracle_enabled=True):
         main(file, e_file, is_oracle_enabled)
 
 if __name__ == "__main__":
-    whun_run(['pom3a_bin.csv'], ['pom3a_eval.csv'], False)
-    # whun_run(['Scrum10k.csv'], ['flight_eval.csv'], True)
+    #sneak_run(['pom3a_bin.csv'], ['pom3a_eval.csv'], False)
+    sneak_run(['Scrum10k.csv'], ['flight_eval.csv'], False)
 
 
 

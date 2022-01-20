@@ -5,10 +5,10 @@ from unittest import TestCase
 
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
-from src.whun.whun_helper.ranker import Ranker
-from src.whun.whun_helper.method import Method
-from src.whun.whun_helper.item import Item
-from src.whun.utils.utils import sway
+from src.sneak.whun_helper.ranker import Ranker
+from src.sneak.whun_helper.method import Method
+from src.sneak.whun_helper.item import Item
+from src.sneak.utils.utils import sway
 
 
 def test_none_root_none_data():

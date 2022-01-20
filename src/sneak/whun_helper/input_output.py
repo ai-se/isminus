@@ -5,7 +5,7 @@ import os
 import sys
 cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 sys.path.append(cur_dir)
-import src.whun.config.configparams as cfg
+import src.sneak.config.configparams as cfg
 
 
 class InputOutput:

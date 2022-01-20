@@ -6,7 +6,7 @@ cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.pat
 sys.path.append(cur_dir)
 from csv import reader
 import pandas as pd
-from src.whun.whun_helper.item import Item
+from src.sneak.whun_helper.item import Item
 
 sys.path.append('/whun_helper')
 

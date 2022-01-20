@@ -44,6 +44,12 @@ Below is a sample snippet on how to execute the SNEAK_run method.
 SNEAK_run(['Scrum10k.csv'], ['flight_eval.csv'], False)
 ```
 
+To run the method for users for the SCRUM model simply execute from the base folder
+```
+pip install -r 'requirements.txt'
+python \src\whun\sneak.py
+```
+
 ### **Potential Users**
 SNEAK algorithm is meant to be a new baseline for future iSBSE algorithms.
 

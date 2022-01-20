@@ -6,12 +6,12 @@ cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.pat
 sys.path.append(cur_dir)
 import scipy.stats as st
 import numpy as np
-from src.whun.config import configparams as cfg
-from src.whun.utils.utils import sway
-from src.whun.whun_helper.sat_solver import SatSolver
-from src.whun.whun_helper.search import Search
-from src.whun.whun_helper.ranker import Ranker
-from src.whun.whun_helper.input_output import InputOutput
+from src.sneak.config import configparams as cfg
+from src.sneak.utils.utils import sway
+from src.sneak.whun_helper.sat_solver import SatSolver
+from src.sneak.whun_helper.search import Search
+from src.sneak.whun_helper.ranker import Ranker
+from src.sneak.whun_helper.input_output import InputOutput
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 
@@ -199,26 +199,6 @@ class Method:
             self.adjust_down(node.east_node)
             self.adjust_tree(self.tree, east_options)
 
-    # OBSOLETE
-    # def adjust_up(self, node, depth=0, growth_factor=1.1):
-    #    """
-    #    Function: adjust_up
-    #    Description: increment the depth of east_node and west_node if its not None
-    #                    and update the weight with growth factor
-    #    Inputs:
-    #        -self: method object
-    #        -node: item node
-    #        -depth: Integer
-    #        -growth_factor: Float
-    #    Output:
-    #    """
-    #    # check for presence of no answers. If so
-    #    node.weight *= growth_factor
-    #    growth_factor *= (0.9 ** depth)
-    #    if node.east_node is not None and node.west_node is not None:
-    #        self.adjust_up(node.east_node, depth + 1, growth_factor)
-    #        self.adjust_up(node.west_node, depth + 1, growth_factor)
-
     def adjust_down(self, node, depth=0):
         """
         Function: increment the depth of east_node and west_node if its not None
@@ -285,19 +265,7 @@ class Method:
         Output:
             solution:
         """
-        # sumsq = lambda *args: sum([i ** 2 for i in args])
         all_items = Search.get_all_leaves(self.tree)
-        # scores = list(
-        #     map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused,
-        #                         cfg.whunparams["HUMAN_WEIGHT"] * (100 - x.selectedpoints))
-        #         , solutions))
-        # total_scores = list(map(lambda x: sumsq(x.totalcost, x.knowndefects, 124 - x.featuresused,
-        #                                         cfg.whunparams["HUMAN_WEIGHT"] * (100 -
-        #                                                                           x.selectedpoints))
-        #                         , all_items))
-        # minimizer = np.argmin(scores)
-        # solutions[minimizer].score = st.percentileofscore(total_scores, scores[minimizer])
-        # return solutions[minimizer]
         solutions.sort()
         all_items.sort()
         best = solutions[0]

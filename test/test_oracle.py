@@ -4,10 +4,10 @@ import numpy as np
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 from unittest import TestCase
-from src.whun.whun_helper.oracle import Oracle
-from src.whun.whun_helper.method import Method
-from src.whun.whun_helper.item import Item
-from src.whun.whun_helper.tree_node import TreeNode
+from src.sneak.whun_helper.oracle import Oracle
+from src.sneak.whun_helper.method import Method
+from src.sneak.whun_helper.item import Item
+from src.sneak.whun_helper.tree_node import TreeNode
 
 
 def test_non_empty_init():

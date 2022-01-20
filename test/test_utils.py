@@ -3,8 +3,8 @@ import sys
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 import unittest
-from src.whun.utils.utils import sway, split_bin
-from src.whun.whun_helper.item import Item
+from src.sneak.utils.utils import sway, split_bin
+from src.sneak.whun_helper.item import Item
 
 
 class TestUtils(unittest.TestCase):
