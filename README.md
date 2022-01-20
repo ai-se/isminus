@@ -24,7 +24,7 @@ For this the paper can apply different strategies towards finding this best poss
 
 ### **Flow Chart**
 <br />
-<img src="./images/WHUN_flow_chart.jpeg"
+<img src="./images/whun_flow_chart.jpeg"
      style="float: left; margin-right: 8px;" />
 <br />
 
