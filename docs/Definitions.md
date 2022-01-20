@@ -385,7 +385,7 @@ This class is used to create Graphical User Interface which can be used for huma
     Description: Initializes the class object attributes with initial values
             Inputs:
                 -q_app_ref: QApplication reference
-                -whun_run: Whun method to be invoked on clicking run button in GUI
+                -sneak_run: SNEAK method to be invoked on clicking run button in GUI
                 -parent: Parent widget if any, default value is None
             Output:
                 None
@@ -394,7 +394,7 @@ This class is used to create Graphical User Interface which can be used for huma
     Function: prepare_landing_screen
     Description: Function to initialize all the UI components of Landing Screen
             Inputs:
-                -whun_run: Method to initiate WHUN algorithm execution. Will be invoked on clicking run button in GUI
+                -sneak_run: Method to initiate SNEAK algorithm execution. Will be invoked on clicking run button in GUI
             Output:
                 None
 ```
@@ -426,7 +426,7 @@ This class is used to create Graphical User Interface which can be used for huma
     Function: run_button_handler
     Description: Function to handle the run button click on GUI
             Inputs:
-                -whun_run: WHUN method to be invoked on clicking run button in GUI
+                -sneak_run: SNEAK method to be invoked on clicking run button in GUI
             Output:
                 None
 ```
@@ -434,7 +434,7 @@ This class is used to create Graphical User Interface which can be used for huma
     Function: update_result_label
     Description: Function to update Result label in the GUI
             Inputs:
-                -result: String that contains list of prefernces that WHUN has generated based on Human interaction
+                -result: String that contains list of prefernces that SNEAK has generated based on Human interaction
             Output:
                 None
 ```

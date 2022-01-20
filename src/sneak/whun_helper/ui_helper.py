@@ -30,7 +30,7 @@ class CustomDialog(QDialog):
         """
         super().__init__(parent)
 
-        self.setWindowTitle("WHUN Preference")
+        self.setWindowTitle("SNEAK Preference")
         self.buttonBox = QDialogButtonBox(center_widget)
         self.buttonBox.addButton("Option A", QDialogButtonBox.YesRole)
         self.buttonBox.addButton("Option B", QDialogButtonBox.NoRole)
@@ -93,7 +93,7 @@ class UIHelper(QMainWindow):
 
         # Main Window
         self.setGeometry(0, 0, 1600, 800)
-        self.setWindowTitle("WHUN")
+        self.setWindowTitle("SNEAK")
 
         # Central Widget
         self.central_widget = QWidget()
@@ -130,7 +130,7 @@ class UIHelper(QMainWindow):
             Function: prepare_landing_screen
             Description: Function to initialize all the UI components of Landing Screen
             Inputs:
-                -whun_run: Method to initiate WHUN algorithm execution. Will be invoked on clicking run button in GUI
+                -whun_run: Method to initiate SNEAK algorithm execution. Will be invoked on clicking run button in GUI
             Output:
                 None
         """
@@ -146,7 +146,7 @@ class UIHelper(QMainWindow):
 
         # Header Label Creation
         header_label = QLabel()
-        header_label.setText("Get! Set!! WHUN!!!\n\n\nRun WHUN and find the solution that best fits your requirements")
+        header_label.setText("Run SNEAK and find a configuration that best fits your requirements")
         header_label.setAlignment(Qt.AlignCenter)
         header_label.setFont(QFont('Arial', 25))
         header_label.setWordWrap(True)
@@ -183,7 +183,7 @@ class UIHelper(QMainWindow):
 
         # Header Label Creation
         header_label = QLabel()
-        header_label.setText("Please wait while WHUN runs in background")
+        header_label.setText("Please wait while SNEAK runs in background")
         header_label.setAlignment(Qt.AlignCenter)
         header_label.setFont(QFont('Arial', 25))
         header_label.setWordWrap(True)
@@ -224,7 +224,7 @@ class UIHelper(QMainWindow):
 
         # Header Label Creation
         header_label = QLabel()
-        header_label.setText("Thanks for using WHUN! To the right are two results that WHUN has come up with based on your preferences. Please rate the quality of each solution with respect to your requirements between 0 and 5\n(0 being the worst, 5 being the best).")
+        header_label.setText("Thanks for using SNEAK! To the right are two results that SNEAK has come up with based on your preferences. Please rate the quality of each solution with respect to your requirements between 0 and 5\n(0 being the worst, 5 being the best).")
         header_label.setAlignment(Qt.AlignTop)
         header_label.setFont(QFont('Arial', 25))
         header_label.setWordWrap(True)
@@ -265,7 +265,7 @@ class UIHelper(QMainWindow):
             Function: run_button_handler
             Description: Function to handle the run button click on GUI
             Inputs:
-                -whun_run: WHUN method to be invoked on clicking run button in GUI
+                -whun_run: SNEAK method to be invoked on clicking run button in GUI
             Output:
                 None
         """
@@ -277,7 +277,7 @@ class UIHelper(QMainWindow):
             Function: update_result_label
             Description: Function to update Result label in the GUI
             Inputs:
-                -result: String that contains list of prefernces that WHUN has generated based on Human interaction
+                -result: String that contains list of prefernces that SNEAK has generated based on Human interaction
             Output:
                 None
         """
