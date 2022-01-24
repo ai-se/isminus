@@ -5,8 +5,8 @@ import sys
 
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
-from src.sneak.whun_helper.item import Item
-from src.sneak.whun_helper.tree_node import TreeNode
+from src.sneak.sneak_helper.item import Item
+from src.sneak.sneak_helper.tree_node import TreeNode
 
 
 class TestTreeNode(unittest.TestCase):

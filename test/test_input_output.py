@@ -3,7 +3,7 @@ import sys
 
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
-from src.sneak.whun_helper.input_output import InputOutput
+from src.sneak.sneak_helper.input_output import InputOutput
 
 def test_get_question_text():
     list_expected = ['a', 'b', 'c', 'd']

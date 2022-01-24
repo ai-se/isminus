@@ -10,9 +10,9 @@ import math
 cur_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(cur_dir)
 from config import configparams as cfg
-from whun_helper.method import Method
-from whun_helper.oracle import Oracle
-from whun_helper.ui_helper import UIHelper
+from sneak_helper.method import Method
+from sneak_helper.oracle import Oracle
+from sneak_helper.ui_helper import UIHelper
 from src.sneak.utils.utils import semi_supervised_optimizer
 from PyQt5.QtWidgets import *
 
@@ -29,7 +29,7 @@ def main(file_name, eval_file, is_oracle_enabled):
     Output:
     """
     a, p, c, s, d, u, scores, t, x, e, total_cost, known_defects, features_used = [], [], [], [], [], [], [], [], [], [], [], [], []
-    for i in range(1):
+    for i in range(20):
         print("--------------------RUN", i + 1, '------------------------')
         start_time = time.time()
         m = Method(cur_dir + '/' + cfg.whunparams["FOLDER"] + file_name, cur_dir + '/' + cfg.whunparams["FOLDER"] + eval_file)
@@ -58,7 +58,7 @@ def main(file_name, eval_file, is_oracle_enabled):
                     p.append(np.sum(o.picked))
                     # c.append(-1)
                     s.append(-1)
-                    # d.append(-1)
+                    d.append(-1)
                     # u.append(-1)
                     # x.append(-1)
                     # e.append(-1)
@@ -81,7 +81,7 @@ def main(file_name, eval_file, is_oracle_enabled):
                 p.append(np.sum(o.picked))
                 #c.append(best.effort)
                 s.append(best.selectedpoints / 100)
-                #d.append(best.risk)
+                d.append(np.sum(o.picked)/asked)
                 #u.append(best.defects)
                 #x.append(best.months)
                 #e.append(best.zitler_rank / 20000)
@@ -99,7 +99,8 @@ def main(file_name, eval_file, is_oracle_enabled):
 
     df = pd.DataFrame(
         {
-            'Asked': a,
+            'I': a,
+            'S': d,
             'User Picked': p,
             # 'Effort': c,
             'Total Cost': total_cost,
@@ -110,7 +111,6 @@ def main(file_name, eval_file, is_oracle_enabled):
             #'Months': x,
             'Features Used': features_used,
             'Score': scores,
-            # 'Pure Score': e,
             'Time': t
         }).T
     df.to_csv(cur_dir + '/' + 'Scores/Score' + file_name)

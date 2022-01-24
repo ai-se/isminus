@@ -1,9 +1,10 @@
-,0
-Asked,6.0
-User Picked,10.0
-Total Cost,252.0
-Selected Points,0.5
-Known Defects,30.0
-Features Used,36.0
-Score,0.0127
-Time,5.923229217529297
+,0,1,2
+I,5.0,5.0,6.0
+S,1.2,1.2,1.6666666666666667
+User Picked,6.0,6.0,10.0
+Total Cost,266.0,266.0,266.0
+Selected Points,0.16666666666666663,0.16666666666666663,0.6
+Known Defects,29.0,29.0,29.0
+Features Used,30.0,30.0,32.0
+Score,0.0187,0.0184,0.0084
+Time,1.9016618728637695,1.9502696990966797,1.9830055236816406

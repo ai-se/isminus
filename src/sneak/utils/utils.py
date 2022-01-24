@@ -6,7 +6,7 @@ cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.pat
 sys.path.append(cur_dir)
 from math import pi
 import secrets
-from src.sneak.whun_helper.tree_node import TreeNode
+from src.sneak.sneak_helper.tree_node import TreeNode
 
 
 def split_bin(items, total_group):

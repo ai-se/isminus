@@ -8,10 +8,10 @@ import scipy.stats as st
 import numpy as np
 from src.sneak.config import configparams as cfg
 from src.sneak.utils.utils import sway
-from src.sneak.whun_helper.sat_solver import SatSolver
-from src.sneak.whun_helper.search import Search
-from src.sneak.whun_helper.ranker import Ranker
-from src.sneak.whun_helper.input_output import InputOutput
+from src.sneak.sneak_helper.sat_solver import SatSolver
+from src.sneak.sneak_helper.search import Search
+from src.sneak.sneak_helper.ranker import Ranker
+from src.sneak.sneak_helper.input_output import InputOutput
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 

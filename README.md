@@ -8,7 +8,7 @@
 [![Build Status](https://app.travis-ci.com/ai-se/whun.svg?branch=feature-se2021)](https://app.travis-ci.com/ai-se/whun)
 [![Coverage Status](https://coveralls.io/repos/github/ai-se/whun/badge.svg?branch=feature-se2021)](https://coveralls.io/github/ai-se/whun?branch=feature-se2021)
 # **About SNEAK**
-This repository is the official implementation of  ~~Redacted~~
+This repository is the official implementation of  SNEAK
 
 AI tools can generate many solutions, some human preference must be applied to determine which solution is
 relevant to the current project.One way to find those preferences is interactive search-based software engineering (iSBSE) where
@@ -57,10 +57,28 @@ SNEAK can also be used in production code without any warranties and the code is
 
 
 
+## **Reproducing RQ1** 
 
+### To obtain the scoresheets for RQ1:
+
+Run the two jupyter notebooks as is 
+* BASELINE.ipynb 
+* NGA.ipynb
+
+also run:
+* ``python /src/sneak/rq1.py``
+
+## **Reproducing RQ2 and RQ3**
+
+To obtain the RQ2 and RQ3 results you would need to follow what is described under ``docs/pom3a_tutorial.md``
+
+This was obtained in human trials as described in our paper.
+
+The human experiments were performed in accordance to North Carolina State University's IRB protocol \#24233.
 
 
 ### **References**
 
-* Authors for ~~redacted~~
+* Authors for SNEAK
+* Andre Lustosa, Jaydeep Patel, Venkata Sai Teja Malapati, Tim Menzies, Fellow, IEEE
 

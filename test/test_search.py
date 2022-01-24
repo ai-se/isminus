@@ -3,8 +3,8 @@ import sys
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 from unittest import TestCase
-from src.sneak.whun_helper.method import Method
-from src.sneak.whun_helper.search import Search
+from src.sneak.sneak_helper.method import Method
+from src.sneak.sneak_helper.search import Search
 
 
 def test_bfs():

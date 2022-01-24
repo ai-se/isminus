@@ -3,8 +3,8 @@ import sys
 cur_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(cur_dir)
 from unittest import TestCase
-from src.sneak.whun_helper.sat_solver import SatSolver
-from src.sneak.whun_helper.oracle import Oracle
+from src.sneak.sneak_helper.sat_solver import SatSolver
+from src.sneak.sneak_helper.oracle import Oracle
 
 class TestRanker(TestCase):
     def test_no_file_error(self):

@@ -7,6 +7,7 @@ sys.path.append(cur_dir)
 import math
 import secrets
 import random
+import time
 import numpy as np
 from src.sneak.config import configparams as cfg
 
@@ -65,6 +66,8 @@ class Item:
                 s1 -= math.e**(-1 * (a - b) / n)
                 s2 -= math.e**(-1 * (b - a) / n)
             i += 1
+        # To simulate a 1 second or more eval function add line below
+        # time.sleep(1)
         return s1 / n < s2 / n
 
     #def __eq__(self, other):
