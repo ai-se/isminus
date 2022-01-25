@@ -1,4 +1,4 @@
-"""This module is related to WHUN implementation"""
+"""This module is related to SNEAK implementation"""
 import os
 import random
 import sys
@@ -24,7 +24,7 @@ picked_array = []
 def main(file_name, eval_file, is_oracle_enabled):
     """
     Function: main
-    Description: implements the whun algorithm
+    Description: implements the sneak algorithm
     Inputs:
     Output:
     """
