@@ -8,7 +8,7 @@ class TreeNode:
     """ This class is to initialise the TreeNode and to perform difference operations """
     _ids = count(0)
 
-    def __init__(self, east, west, east_node, west_node, leaf):
+    def __init__(self, east, west, east_table, west_table, east_node, west_node, leaf, header):
         """
         Function: __init__
         Description: Initialises the attributes of the TreeNode
@@ -26,12 +26,15 @@ class TreeNode:
         self.west = west
         self.east_id = -1
         self.west_id = -1
+        self.eastTable = east_table
+        self.westTable = west_table
         self.east_node = east_node
         self.west_node = west_node
         self.score = 0
         self.weight = 1
         self.asked = 0
         self.leaf = leaf
+        self.header = header
 
     def difference(self):
         """

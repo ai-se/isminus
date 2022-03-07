@@ -23,9 +23,9 @@ class Item:
     min_known = math.inf
     max_featuresused = -math.inf
     min_featuresused = math.inf
-    costs = [secrets.randbelow(10) for _ in range(cfg.whunparams["NUM_FEATURES"])]
-    defective = [bool(secrets.randbelow(2)) for _ in range(cfg.whunparams["NUM_FEATURES"])]
-    used = [bool(secrets.randbelow(2)) for _ in range(cfg.whunparams["NUM_FEATURES"])]
+    # costs = [secrets.randbelow(10) for _ in range(cfg.whunparams["NUM_FEATURES"])]
+    # defective = [bool(secrets.randbelow(2)) for _ in range(cfg.whunparams["NUM_FEATURES"])]
+    # used = [bool(secrets.randbelow(2)) for _ in range(cfg.whunparams["NUM_FEATURES"])]
 
     def __init__(self, item, eval):
         """
@@ -42,9 +42,9 @@ class Item:
         self.score = 0
         self.features = sum(item)
         self.selectedpoints = 0
-        self.totalcost = sum(np.multiply(item, self.costs))
-        self.knowndefects = sum(np.multiply(item, self.defective))
-        self.featuresused = sum(np.multiply(item, self.used))
+        # self.totalcost = sum(np.multiply(item, self.costs))
+        # self.knowndefects = sum(np.multiply(item, self.defective))
+        # self.featuresused = sum(np.multiply(item, self.used))
         # self.completion = eval[0]
         # self.idle = eval[1]
         # self.cost = eval[2]
