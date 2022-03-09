@@ -1,4 +1,3 @@
-
 [![GitHub license](https://img.shields.io/github/license/ai-se/whun)](https://github.com/ai-se/whun/blob/main/LICENSE) 
 [![GitHub issues](https://img.shields.io/github/issues/ai-se/whun)](https://github.com/ai-se/whun/issues)
 [![arXiv](https://img.shields.io/badge/arXiv-2106.03792-orange.svg)](https://arxiv.org/abs/2106.03792)
@@ -6,6 +5,14 @@
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ai-se/whun)
 [![Build Status](https://app.travis-ci.com/ai-se/whun.svg?branch=feature-se2021)](https://app.travis-ci.com/ai-se/whun)
 [![Coverage Status](https://coveralls.io/repos/github/ai-se/whun/badge.svg?branch=feature-se2021)](https://coveralls.io/github/ai-se/whun?branch=feature-se2021)
+
+# **WARNING**
+
+The main branch is currently being refacored-reworked:
+To use the version of SNEAK described in the SNEAK paper, and to reproduce the results please use this repo referencing this [Commit](https://github.com/ai-se/sneak/tree/72ae77c595f40b020a42a746034c41b6a173dc6a)
+
+
+
 # **About SNEAK**
 This repository is the official implementation of  SNEAK
 
