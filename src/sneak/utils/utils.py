@@ -25,8 +25,8 @@ def split_bin(items, total_group):
         -west_items: all the others items except the representative
         -east_items: all the others items except the representative
     """
-    west = []
-    east = []
+    east = None
+    west = None
     west_items = []
     east_items = []
     rand = secrets.choice(items)
@@ -52,8 +52,8 @@ def split_bin(items, total_group):
         group = [i for i in items if (g_value * thk) <= i.r <= ((g_value + 1) * thk)]
         group.sort(key=lambda x: x.theta)
         if len(group) > 0:
-            east.append(group[0])
-            west.append(group[len(group) - 1])
+            east = group[0]
+            west = group[len(group) - 1]
             for i in group:
                 if i.theta <= pi:
                     east_items.append(i)
@@ -84,15 +84,17 @@ def sway(items, enough):
     return root
 
 
-def semi_supervised_optimizer(items, enough):
+def semi_supervised_optimizer(items, enough, evals):
     if len(items) < enough:
-        return items
+        return items, evals
     d1, d2 = [], []
     west, east, west_items, east_items = split_bin(items, 10)
     if west is not None:
-        if east is None or west[0].better(east[0]):
-            d1 = semi_supervised_optimizer(west_items, enough)
+        if east is None or west.better(east):
+            evals += 1
+            d1, evals = semi_supervised_optimizer(west_items, enough, evals)
     if east is not None:
-        if west is None or east[0].better(west[0]):
-            d2 = semi_supervised_optimizer(east_items, enough)
-    return d1 + d2
+        if west is None or east.better(west):
+            evals += 1
+            d2, evals = semi_supervised_optimizer(east_items, enough, evals)
+    return d1 + d2, evals

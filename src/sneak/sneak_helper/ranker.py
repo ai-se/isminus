@@ -22,7 +22,7 @@ class Ranker:
         """
         if not root:
             return None
-        items_rank = np.zeros(len(root.west[0].item))
+        items_rank = np.zeros(len(root.west.item))
         q = [[root, 1]]
         q_len = len(q)
         while q_len:

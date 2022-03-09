@@ -36,9 +36,9 @@ class Oracle:
         # Check how many of these questions I have picked before
         q_idx_len = len(q_idx)
         for i in range(q_idx_len):
-            if node.east[0].item[q_idx[i]] and self.picked[q_idx[i]] == 1:
+            if node.east.item[q_idx[i]] and self.picked[q_idx[i]] == 1:
                 east_points += 1
-            elif node.west[0].item[q_idx[i]] and self.picked[q_idx[i]] == 1:
+            elif node.west.item[q_idx[i]] and self.picked[q_idx[i]] == 1:
                 west_points += 1
         # Random selection favoring the side i like the most
         if east_points + west_points > 0:
@@ -69,8 +69,19 @@ class Oracle:
         # Update my vector of picked options
         for i in range(min(len(q_idx), 4)):
             if selected and self.picked[q_idx[i]] == 0:
-                self.picked[q_idx[i]] = node.east[0].item[q_idx[i]]
+                self.picked[q_idx[i]] = node.east.item[q_idx[i]]
             elif not selected and self.picked[q_idx[i]] == 0:
-                self.picked[q_idx[i]] = node.west[0].item[q_idx[i]]
+                self.picked[q_idx[i]] = node.west.item[q_idx[i]]
         return self.picked
 
+    def evalItems(self, east, west):
+        """
+            Function: evalItems
+            Description: Function to evaluate the items based on their scores.
+            Inputs:
+                -east: Represents the east branch of the tree
+                -west: Represents the west branch of the tree
+            Output:
+                -selected : Either 1 or 0 based on which branch is better.
+        """
+        return west > east

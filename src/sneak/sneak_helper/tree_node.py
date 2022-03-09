@@ -42,8 +42,8 @@ class TreeNode:
         Output:
                 np.sum(res) :Sum of elements in res,Numpy array
         """
-        w = np.array(self.west[0].item)
-        e = np.array(self.east[0].item)
+        w = np.array(self.west.item)
+        e = np.array(self.east.item)
         res = np.logical_xor(w, e)
         return np.sum(res)
 
@@ -56,7 +56,7 @@ class TreeNode:
         Output:
                 res :Numpy Array
         """
-        w = np.array(self.west[0].item)
-        e = np.array(self.east[0].item)
+        w = np.array(self.west.item)
+        e = np.array(self.east.item)
         res = np.logical_xor(w, e)
         return res

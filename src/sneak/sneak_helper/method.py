@@ -6,6 +6,7 @@ cur_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.pat
 sys.path.append(cur_dir)
 import scipy.stats as st
 import numpy as np
+import math
 from src.sneak.config import configparams as cfg
 from src.sneak.utils.utils import sway
 from src.sneak.sneak_helper.sat_solver import SatSolver
@@ -34,8 +35,8 @@ class Method:
             self.rank = Ranker.level_rank_features(self.tree, self.weights)
             self.cur_best_node = Ranker.rank_nodes(self.tree, self.rank)
             # IO.get_question_text('terms_sentence_map.csv', 'sentence')
-            self.questions = InputOutput.get_question_text(
-                cur_dir + '/' + cfg.whunparams["FOLDER"] + 'terms_sentence_map.csv', 'sentence')
+            # self.questions = InputOutput.get_question_text(
+            #     cur_dir + '/' + cfg.whunparams["FOLDER"] + 'terms_sentence_map.csv', 'sentence')
         except Exception as e:
             print(e)
             raise e
@@ -83,12 +84,12 @@ class Method:
             return
         if node.west:
             for i in q_idx:
-                if i in node.west[0].item:
+                if i in node.west.item:
                     node.west_node.weight = 0
                     self.adjust_tree(node.west_node, q_idx)
         if node.east:
             for i in q_idx:
-                if i in node.east[0].item:
+                if i in node.east.item:
                     node.east_node.weight = 0
                     self.adjust_tree(node.east_node, q_idx)
 
@@ -151,9 +152,9 @@ class Method:
        """
         east_options, west_options = [], []
         for _, value in enumerate(q_idx):
-            if node.east[0].item[value]:
+            if node.east.item[value]:
                 east_options.append(self.questions[value])
-            elif node.west[0].item[value]:
+            elif node.west.item[value]:
                 west_options.append(self.questions[value])
 
         len_east = len(east_options)
@@ -184,9 +185,9 @@ class Method:
         node.asked += 1
         east_options, west_options = [], []
         for _, value in enumerate(q_idx):
-            if node.east[0].item[value]:
+            if node.east.item[value]:
                 east_options.append(value)
-            elif node.west[0].item[value]:
+            elif node.west.item[value]:
                 west_options.append(value)
         if picked == 0:  # EAST
             for _, value in enumerate(q_idx):
@@ -255,7 +256,7 @@ class Method:
         """
         return Search.get_item(self.tree, path)
 
-    def pick_best(self, solutions):
+    def pick_best(self, solutions, evaluations):
         """
         Function: pick_best
         Description: picks the best solution among all the possible solutions
@@ -267,6 +268,7 @@ class Method:
         """
         all_items = Search.get_all_leaves(self.tree)
         solutions.sort()
+        evaluations += (len(solutions)*math.log(len(solutions), 2))
         all_items.sort()
         best = solutions[0]
         best.score = 1
@@ -274,4 +276,23 @@ class Method:
             if best == item:
                 best.score = index/float(len(all_items))
 
-        return best
+        return best, evaluations
+
+    def calculate_score(self, selected_solution):
+        """
+        Function: calculate_score
+        Description: calculates the score of a randomly selected solution
+        Inputs:
+            -self: method object
+            -solutions: item nodes
+            -selected_solution: item node
+        Output:
+            selected_solution: item node with caculated score
+        """
+        all_items = Search.get_all_leaves(self.tree)
+        all_items.sort()
+        selected_solution.score = 1
+        for index, item in enumerate(all_items):
+            if selected_solution == item:
+                selected_solution.score = index/float(len(all_items))
+        return selected_solution

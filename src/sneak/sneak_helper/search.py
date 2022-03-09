@@ -174,6 +174,6 @@ class Search:
                 cur = cur.west_node
         last = path[-1]
         if cur.east_node.id == last:
-            return cur.east[0].item
+            return cur.east.item
         elif cur.west_node.id == last:
-            return cur.west[0].item
+            return cur.west.item
